@@ -57,7 +57,7 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
-        <div className="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 ">
           {/* Left Column - Main Content */}
           <div
             className={`text-center lg:text-left transform transition-all duration-1000 ${
@@ -126,14 +126,17 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Column - Background Image */}
+          {/* Right Column - Clean Background Image */}
           <div className="relative hidden lg:block">
-            <img
-              src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
-              alt="Financial growth chart"
-              className="absolute inset-0 w-full h-full object-cover opacity-30"
-            />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-primary/70" />
+            <div className="relative  rounded-md overflow-hidden shadow-lg  shadow-primary/20">
+              <img
+                src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                alt="Financial success and growth"
+                className="w-full h-auto object-cover"
+              />
+              {/* Simple dark overlay for better contrast */}
+              <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/10 to-transparent" />
+            </div>
           </div>
         </div>
       </div>

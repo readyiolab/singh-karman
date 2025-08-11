@@ -122,7 +122,7 @@ const About = () => {
 
       {/* Story Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-white">
-        <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div className="container px-4 sm:px-6 lg:px-8 ">
           <motion.div {...fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               My Story of
@@ -171,7 +171,7 @@ const About = () => {
             </motion.div>
             <motion.div
               variants={fadeInUp}
-              className="lg:sticky lg:top-24 flex justify-center lg:justify-end"
+              className="lg:sticky lg:top-24 flex justify-center "
             >
               <img
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2VvfGVufDB8fDB8fHww"
@@ -279,7 +279,7 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-20 m-16 lg:py-24 bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
+      <section className="py-16 sm:py-20  lg:py-24 bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_rgba(132,204,22,0.2)_0%,_transparent_50%)] opacity-15" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_rgba(107,114,128,0.2)_0%,_transparent_50%)] opacity-15" />
 

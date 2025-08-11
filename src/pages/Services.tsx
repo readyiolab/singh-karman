@@ -158,6 +158,8 @@ const Services = () => {
     },
   ];
 
+  
+
   return (
     <div className="bg-gray-50">
       {/* Hero Section - Enhanced with smoother animations and better overlay */}
@@ -234,7 +236,7 @@ const Services = () => {
               <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
                 Through relentless self-education, Karman mastered the strategies of the wealthy and now shares them to help you build a future of clarity, control, and confidence.
               </p>
-              <p className="text-lg sm:text-xl text-[#1e3a8a] font-semibold leading-relaxed">
+              <p className="text-lg sm:text-xl text-center text-[#1e3a8a] font-semibold leading-relaxed">
                 Discover our services to protect what you’ve built and create lasting wealth.
               </p>
             </div>

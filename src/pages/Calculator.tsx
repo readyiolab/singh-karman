@@ -1,15 +1,54 @@
 import { useState, useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { TrendingUp, DollarSign, Calendar, Percent } from "lucide-react";
-import { Chart, registerables } from 'chart.js';
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowRight, DollarSign, Calendar, Percent, TrendingUp, Sparkles } from "lucide-react";
+import { Chart, registerables } from "chart.js";
 
 // Register Chart.js components
 Chart.register(...registerables);
+
+// Custom Button Component
+const Button = ({ children, className, variant = "default", size = "lg", to, ...props }) => {
+  const baseStyles = "inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 focus:outline-none";
+  const variants = {
+    default: "bg-gradient-to-r from-blue-500 to-cyan-600 text-white shadow-lg hover:shadow-xl",
+    outline: "border-2 border-white text-white bg-transparent hover:bg-white/10",
+    secondary: "bg-gray-800 text-white shadow-md hover:bg-gray-700",
+  };
+  const sizes = {
+    lg: "px-8 py-4 text-lg",
+    md: "px-6 py-3 text-base",
+  };
+
+  return (
+    <Link
+      to={to}
+      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className || ""}`}
+      {...props}
+    >
+      {children}
+    </Link>
+  );
+};
+
+// Animation Variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.2 },
+  transition: { duration: 0.6, ease: "easeOut" },
+};
+
+const staggerContainer = {
+  initial: {},
+  whileInView: {
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+  viewport: { once: true },
+};
 
 const Calculator = () => {
   const [initialAmount, setInitialAmount] = useState(1000);
@@ -28,45 +67,45 @@ const Calculator = () => {
   const calculateCompoundInterest = () => {
     const principal = initialAmount;
     const rate = interestRate / 100;
-    
+
     const frequencies = {
       daily: 365,
       monthly: 12,
       quarterly: 4,
-      annually: 1
+      annually: 1,
     };
-    
+
     const contributionFreqs = {
       weekly: 52,
       biweekly: 26,
       monthly: 12,
-      annually: 1
+      annually: 1,
     };
-    
+
     const n = frequencies[compoundingFrequency];
     const contribN = contributionFreqs[contributionFrequency];
-    
+
     let data = [];
-    
+
     if (interestRate === 0) {
       const totalContrib = principal + monthlyContribution * contribN * years;
       setFinalAmount(totalContrib);
       setTotalContributions(totalContrib);
       setTotalInterest(0);
-      
+
       for (let y = 0; y <= years; y++) {
         const yContribs = principal + monthlyContribution * contribN * y;
         data.push({
           year: y,
           total: yContribs,
           contributions: yContribs,
-          interest: 0
+          interest: 0,
         });
       }
     } else {
       const effectiveRate = Math.pow(1 + rate / n, n / contribN) - 1;
       const numPeriods = contribN * years;
-      
+
       for (let y = 0; y <= years; y++) {
         const yPeriods = contribN * y;
         const yCompound = principal * Math.pow(1 + effectiveRate, yPeriods);
@@ -79,20 +118,20 @@ const Calculator = () => {
         const yTotal = yCompound + yContribFV;
         const yContribs = principal + monthlyContribution * contribN * y;
         const yInterest = yTotal - yContribs;
-        
+
         data.push({
           year: y,
           total: yTotal,
           contributions: yContribs,
-          interest: yInterest
+          interest: yInterest,
         });
       }
-      
+
       setFinalAmount(data[data.length - 1].total);
       setTotalContributions(data[data.length - 1].contributions);
       setTotalInterest(data[data.length - 1].interest);
     }
-    
+
     setChartData(data);
   };
 
@@ -107,23 +146,23 @@ const Calculator = () => {
 
     if (canvasRef.current) {
       chartRef.current = new Chart(canvasRef.current, {
-        type: 'bar',
+        type: "bar",
         data: {
-          labels: chartData.map(data => `Yr ${data.year}`),
+          labels: chartData.map((data) => `Year ${data.year}`),
           datasets: [
             {
-              label: 'Contributions',
-              data: chartData.map(data => data.contributions),
-              backgroundColor: 'rgba(54, 162, 235, 0.6)',
-              stack: 'stack1',
+              label: "Contributions",
+              data: chartData.map((data) => data.contributions),
+              backgroundColor: "#3b82f6", // Blue for contributions
+              stack: "stack1",
             },
             {
-              label: 'Interest',
-              data: chartData.map(data => data.interest),
-              backgroundColor: 'rgba(255, 99, 132, 0.6)',
-              stack: 'stack1',
-            }
-          ]
+              label: "Interest",
+              data: chartData.map((data) => data.interest),
+              backgroundColor: "#06b6d4", // Cyan for interest
+              stack: "stack1",
+            },
+          ],
         },
         options: {
           responsive: true,
@@ -132,39 +171,46 @@ const Calculator = () => {
             x: {
               title: {
                 display: true,
-                text: 'Year'
+                text: "Year",
+                color: "#1f2937",
+                font: { size: 14, weight: "bold" },
               },
-              grid: {
-                display: false
-              }
+              grid: { display: false },
             },
             y: {
               title: {
                 display: true,
-                text: 'Amount ($)'
+                text: "Amount ($)",
+                color: "#1f2937",
+                font: { size: 14, weight: "bold" },
               },
               ticks: {
-                callback: function(value) {
+                callback: function (value) {
                   return `$${Math.round(value / 1000)}k`;
-                }
+                },
+                color: "#1f2937",
               },
-              beginAtZero: true
-            }
+              beginAtZero: true,
+            },
           },
           plugins: {
             legend: {
               display: true,
-              position: 'top'
+              position: "top",
+              labels: {
+                color: "#1f2937",
+                font: { size: 12 },
+              },
             },
             tooltip: {
               callbacks: {
-                label: function(context) {
+                label: function (context) {
                   return `${context.dataset.label}: $${context.parsed.y.toFixed(2)}`;
-                }
-              }
-            }
-          }
-        }
+                },
+              },
+            },
+          },
+        },
       });
     }
 
@@ -176,69 +222,170 @@ const Calculator = () => {
   }, [chartData]);
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
     }).format(amount);
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <section className="bg-primary-gradient py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-heading font-bold text-4xl lg:text-5xl text-primary-foreground mb-6">
-            Compound Interest Calculator
-          </h1>
-          <p className="font-body text-xl text-primary-foreground/90 max-w-3xl mx-auto">
-            See how your savings can grow over time with the power of compound interest. 
-            Calculate returns with different contribution amounts, interest rates, and compounding frequencies.
-          </p>
+    <div className="bg-gray-50">
+      {/* Hero Section */}
+      <section className="relative min-h-screen bg-primary flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_#3b82f6_0%,_transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_#06b6d4_0%,_transparent_50%)]" />
+        </div>
+
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 animate-float">
+            <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-accent" />
+          </div>
+          <div className="absolute top-1/3 right-1/4 animate-float animation-delay-1000">
+            <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+          </div>
+          <div className="absolute bottom-1/3 left-1/5 animate-float animation-delay-2000">
+            <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-accent opacity-40" />
+          </div>
+        </div>
+
+        <div className="container relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-5xl mx-auto"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-3 rounded-full mb-8 border border-white/20 shadow-lg"
+            >
+              <TrendingUp className="w-5 h-5 text-white fill-current" />
+              <span className="text-sm font-medium tracking-wide">Grow Your Wealth</span>
+            </motion.div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
+              Compound Interest
+              <span className="block text-accent-dark mt-2 pb-3">
+                Calculator
+              </span>
+            </h1>
+
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+              Discover the power of compound interest and see how your savings can grow over time with tailored strategies.
+            </p>
+
+            <motion.div whileTap={{ scale: 0.95 }} className="inline-flex text-accent-dark">
+              <Button
+                to="#calculator"
+                size="lg"
+                className="text-white min-w-[220px] justify-center"
+                aria-label="Try the Calculator"
+              >
+                Try Now
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform" />
+              </Button>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Calculator Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
+      <section className="py-16 sm:py-20 lg:py-24 bg-white" id="calculator">
+        <div className="container px-4 sm:px-6 lg:px-8 ">
+          <motion.div {...fadeInUp} className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Plan Your
+              <span className="block text-accent-dark mt-2">
+                Financial Growth
+              </span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Input your investment details to visualize how your wealth can grow with the power of compounding.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            className="grid gap-8 lg:grid-cols-2 items-start"
+          >
+            {/* Sticky Results Section */}
+            <motion.div
+              variants={fadeInUp}
+              className="lg:sticky lg:top-24 space-y-8"
+            >
+              <div className="bg-white p-8 rounded-2xl shadow-lg transition-all duration-300 border border-gray-100">
+                <h3 className="text-2xl font-semibold text-accent-dark mb-6">
+                  Your Investment Growth
+                </h3>
+                <div className="space-y-6">
+                  <div className="text-center p-6 bg-gradient-to-r from-blue-500/10 to-cyan-600/10 rounded-xl border border-blue-500/20">
+                    <p className="text-sm text-gray-600 mb-2">Total Savings After {years} Years</p>
+                    <p className="font-bold text-3xl text-accent-dark">
+                      {formatCurrency(finalAmount)}
+                    </p>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Initial Investment</span>
+                      <span className="font-semibold text-gray-900">{formatCurrency(initialAmount)}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Total Contributions</span>
+                      <span className="font-semibold text-gray-900">{formatCurrency(totalContributions)}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Interest Earned</span>
+                      <span className="font-semibold text-accent-dark">
+                        {formatCurrency(totalInterest)}
+                      </span>
+                    </div>
+                    <div className="text-center p-4 bg-gradient-to-r from-blue-500/10 to-cyan-600/10 rounded-xl border border-blue-500/20">
+                      <p className="text-sm text-gray-600 mb-1">Total Growth</p>
+                      <p className="font-bold text-xl text-accent-dark">
+                        {totalContributions > 0 ? ((totalInterest / totalContributions) * 100).toFixed(1) : 0}%
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
             {/* Input Form */}
-            <div className="space-y-8">
-              <Card className="wealth-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <DollarSign className="w-6 h-6 text-primary" />
-                    <span>Investment Details</span>
-                  </CardTitle>
-                  <CardDescription>
-                    Enter your investment parameters to see potential growth
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
+            <motion.div variants={fadeInUp} className="space-y-8">
+              <div className="bg-white p-8 rounded-2xl shadow-lg transition-all duration-300 border border-gray-100">
+                <h3 className="text-2xl font-semibold text-accent-dark mb-6">
+                  Investment Details
+                </h3>
+                <div className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="initial-amount">Initial Investment Amount</Label>
+                    <label className="text-sm font-medium text-gray-700">Initial Investment Amount</label>
                     <div className="relative">
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">$</span>
-                      <Input
-                        id="initial-amount"
+                      <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <input
                         type="number"
                         value={initialAmount}
                         onChange={(e) => setInitialAmount(Number(e.target.value))}
-                        className="pl-8"
+                        className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 hover:border-blue-300 transition-colors"
                         min="0"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="years">Investment Period (Years)</Label>
+                    <label className="text-sm font-medium text-gray-700">Investment Period (Years)</label>
                     <div className="relative">
-                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                      <Input
-                        id="years"
+                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <input
                         type="number"
                         value={years}
                         onChange={(e) => setYears(Number(e.target.value))}
-                        className="pl-10"
+                        className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 hover:border-blue-300 transition-colors"
                         min="1"
                         max="50"
                       />
@@ -246,15 +393,14 @@ const Calculator = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="interest-rate">Annual Interest Rate (%)</Label>
+                    <label className="text-sm font-medium text-gray-700">Annual Interest Rate (%)</label>
                     <div className="relative">
-                      <Percent className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                      <Input
-                        id="interest-rate"
+                      <Percent className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <input
                         type="number"
                         value={interestRate}
                         onChange={(e) => setInterestRate(Number(e.target.value))}
-                        className="pl-10"
+                        className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 hover:border-blue-300 transition-colors"
                         min="0"
                         max="20"
                         step="0.1"
@@ -263,162 +409,232 @@ const Calculator = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="monthly-contribution">Regular Contribution Amount</Label>
+                    <label className="text-sm font-medium text-gray-700">Regular Contribution Amount</label>
                     <div className="relative">
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">$</span>
-                      <Input
-                        id="monthly-contribution"
+                      <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <input
                         type="number"
                         value={monthlyContribution}
                         onChange={(e) => setMonthlyContribution(Number(e.target.value))}
-                        className="pl-8"
+                        className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 hover:border-blue-300 transition-colors"
                         min="0"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label>Contribution Frequency</Label>
-                    <Select value={contributionFrequency} onValueChange={setContributionFrequency}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="weekly">Weekly</SelectItem>
-                        <SelectItem value="biweekly">Bi-weekly</SelectItem>
-                        <SelectItem value="monthly">Monthly</SelectItem>
-                        <SelectItem value="annually">Annually</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <label className="text-sm font-medium text-gray-700">Contribution Frequency</label>
+                    <select
+                      value={contributionFrequency}
+                      onChange={(e) => setContributionFrequency(e.target.value)}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 hover:border-blue-300 transition-colors"
+                    >
+                      <option value="weekly">Weekly</option>
+                      <option value="biweekly">Bi-weekly</option>
+                      <option value="monthly">Monthly</option>
+                      <option value="annually">Annually</option>
+                    </select>
                   </div>
 
                   <div className="space-y-2">
-                    <Label>Compounding Frequency</Label>
-                    <Select value={compoundingFrequency} onValueChange={setCompoundingFrequency}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="daily">Daily</SelectItem>
-                        <SelectItem value="monthly">Monthly</SelectItem>
-                        <SelectItem value="quarterly">Quarterly</SelectItem>
-                        <SelectItem value="annually">Annually</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <label className="text-sm font-medium text-gray-700">Compounding Frequency</label>
+                    <select
+                      value={compoundingFrequency}
+                      onChange={(e) => setCompoundingFrequency(e.target.value)}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 hover:border-blue-300 transition-colors"
+                    >
+                      <option value="daily">Daily</option>
+                      <option value="monthly">Monthly</option>
+                      <option value="quarterly">Quarterly</option>
+                      <option value="annually">Annually</option>
+                    </select>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Chart Section */}
+          <motion.div
+            variants={fadeInUp}
+            className="mt-8 bg-white p-8 rounded-2xl shadow-lg transition-all duration-300 border border-gray-100"
+          >
+            <h3 className="text-2xl font-semibold text-accent-dark mb-6">
+              Growth Over Time
+            </h3>
+            <div className="h-[400px] w-full">
+              <canvas ref={canvasRef}></canvas>
             </div>
-
-            {/* Results */}
-            <div className="space-y-8">
-              <Card className="wealth-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <TrendingUp className="w-6 h-6 text-accent" />
-                    <span>Your Investment Growth</span>
-                  </CardTitle>
-                  <CardDescription>
-                    Here's how your money could grow over time
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-6">
-                    {/* Final Amount */}
-                    <div className="text-center p-6 bg-accent/10 rounded-xl border border-accent/20">
-                      <p className="font-body text-muted-foreground mb-2">Total Savings After {years} Years</p>
-                      <p className="font-heading font-bold text-3xl text-accent">
-                        {formatCurrency(finalAmount)}
-                      </p>
-                    </div>
-
-                    <Separator />
-
-                    {/* Breakdown */}
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center">
-                        <span className="font-body text-muted-foreground">Initial Investment</span>
-                        <span className="font-heading font-semibold text-foreground">
-                          {formatCurrency(initialAmount)}
-                        </span>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <span className="font-body text-muted-foreground">Total Contributions</span>
-                        <span className="font-heading font-semibold text-foreground">
-                          {formatCurrency(totalContributions)}
-                        </span>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <span className="font-body text-muted-foreground">Interest Earned</span>
-                        <span className="font-heading font-semibold text-accent">
-                          {formatCurrency(totalInterest)}
-                        </span>
-                      </div>
-                    </div>
-
-                    <Separator />
-
-                    {/* Growth Percentage */}
-                    <div className="text-center p-4 bg-primary/10 rounded-xl border border-primary/20">
-                      <p className="font-body text-muted-foreground mb-1">Total Growth</p>
-                      <p className="font-heading font-bold text-xl text-primary">
-                        {totalContributions > 0 ? ((totalInterest / totalContributions) * 100).toFixed(1) : 0}%
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="wealth-card">
-                <CardHeader>
-                  <CardTitle>Growth Over Time</CardTitle>
-                  <CardDescription>Breakdown of contributions and interest earned each year</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-[300px] w-full">
-                    <canvas ref={canvasRef}></canvas>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Tips */}
-              <Card className="wealth-card">
-                <CardHeader>
-                  <CardTitle>Maximize Your Growth</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-3 text-sm">
-                    <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="font-body text-muted-foreground">
-                        <strong>Start Early:</strong> Time is your greatest asset in building wealth
-                      </p>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="font-body text-muted-foreground">
-                        <strong>Contribute Regularly:</strong> Even small monthly additions make a big difference
-                      </p>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="font-body text-muted-foreground">
-                        <strong>Choose High-Yield Options:</strong> Every percentage point matters
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <Button className="btn-hero w-full mt-4">
-                    Get Personalized Strategy
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </section>
+
+      {/* Tips Section */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-blue-50 to-cyan-100">
+        <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          <motion.div {...fadeInUp} className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Maximize Your
+              <span className="block text-accent-dark mt-2">
+                Wealth
+              </span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Simple strategies to accelerate your financial growth and secure your future.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {[
+              {
+                id: "early",
+                title: "Start Early",
+                description: "Time is your greatest asset in building wealth. The sooner you start, the more your money can grow.",
+                icon: <Calendar className="w-10 h-10 text-white" />,
+                gradient: "from-blue-400 via-blue-500 to-blue-600",
+              },
+              {
+                id: "regular",
+                title: "Contribute Regularly",
+                description: "Even small, consistent contributions can lead to significant growth over time.",
+                icon: <DollarSign className="w-10 h-10 text-white" />,
+                gradient: "from-cyan-400 via-cyan-500 to-teal-600",
+              },
+              {
+                id: "high-yield",
+                title: "Choose High-Yield",
+                description: "Opt for investments with higher returns to maximize your wealth-building potential.",
+                icon: <TrendingUp className="w-10 h-10 text-white" />,
+                gradient: "from-indigo-400 via-indigo-500 to-blue-600",
+              },
+            ].map((tip) => (
+              <motion.div
+                key={tip.id}
+                variants={fadeInUp}
+                className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg p-8 border border-gray-200/50 hover:shadow-xl transition-shadow"
+                style={{
+                  background: "linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.85) 100%)",
+                }}
+              >
+                <div
+                  className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 shadow-md bg-gradient-to-br ${tip.gradient}`}
+                >
+                  {tip.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">{tip.title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">{tip.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_rgba(59,130,246,0.2)_0%,_transparent_50%)] opacity-15" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_rgba(6,182,212,0.2)_0%,_transparent_50%)] opacity-15" />
+
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          <motion.div {...fadeInUp} className="text-center max-w-4xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
+              Ready to Grow Your
+              <span className="block text-accent-dark mt-2">
+                Wealth?
+              </span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+              Take control of your financial future with a personalized strategy. Schedule a free consultation today.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+              <motion.div whileTap={{ scale: 0.95 }} className="group">
+                <Button
+                  to="/contact#contact-form"
+                  size="lg"
+                  className="min-w-[240px] justify-center"
+                  aria-label="Schedule a Free Consultation"
+                >
+                  Schedule Consultation
+                  <ArrowRight className="w-5 h-5 ml-2 transition-transform" />
+                </Button>
+              </motion.div>
+              <motion.div whileTap={{ scale: 0.95 }} className="group">
+                <Button
+                  to="/about"
+                  size="lg"
+                  variant="outline"
+                  className="min-w-[240px] justify-center"
+                  aria-label="Learn More About Our Mission"
+                >
+                  Learn More
+                </Button>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <style jsx>{`
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-20px) rotate(180deg);
+          }
+        }
+
+        @keyframes pulse {
+          0%,
+          100% {
+            opacity: 0.2;
+          }
+          50% {
+            opacity: 0.4;
+          }
+        }
+
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+          animation: pulse 4s ease-in-out infinite;
+        }
+
+        .animation-delay-1000 {
+          animation-delay: 1s;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        @media (max-width: 768px) {
+          h1 {
+            font-size: 2.5rem;
+            line-height: 1.1;
+          }
+
+          .lg\\:grid-cols-2 {
+            grid-template-columns: 1fr;
+          }
+
+          .lg\\:grid-cols-3 {
+            grid-template-columns: 1fr;
+          }
+
+          .lg\\:sticky {
+            position: static;
+          }
+        }
+      `}</style>
     </div>
   );
 };
