@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Sparkles, Star, Zap, Award, Calculator, TrendingUp, GraduationCap, PiggyBank, Heart, BookOpen, Target, ArrowRight, Play, FileText, CreditCard, ShieldCheck } from 'lucide-react';
+import { Sparkles, Star, Zap, Award, Calculator, TrendingUp, GraduationCap, PiggyBank, Heart, BookOpen, Target, ArrowRight, Play, FileText, CreditCard, ShieldCheck, CheckCircle, Clock, Users, Lock } from 'lucide-react';
 
 // Custom Button Component
 const Button = ({ children, className, variant = 'default', size = 'lg', to, ...props }) => {
@@ -46,197 +46,304 @@ const staggerContainer = {
   viewport: { once: true },
 };
 
+// Why Choose Us Data
+const whyChooseUs = [
+  {
+    icon: CheckCircle,
+    title: 'Proven Expertise',
+    description: 'With years of experience and a foundation built on self-education, we bring strategies used by the wealthy to your fingertips.',
+    gradient: 'from-lime-400 via-green-500 to-teal-600',
+  },
+  {
+    icon: Clock,
+    title: 'Time-Saving Solutions',
+    description: 'We simplify complex financial planning, saving you time and stress while maximizing your wealth.',
+    gradient: 'from-blue-400 via-indigo-500 to-purple-600',
+  },
+  {
+    icon: Users,
+    title: 'Personalized Approach',
+    description: 'Your goals are unique. Our plans are tailored to your lifestyle, income, and aspirations.',
+    gradient: 'from-rose-400 via-red-500 to-orange-500',
+  },
+  {
+    icon: Lock,
+    title: 'Trusted Security',
+    description: 'Your financial future is protected with secure, tax-efficient, and legally sound strategies.',
+    gradient: 'from-teal-400 via-cyan-500 to-blue-500',
+  },
+];
+
+// Services Data
+const services = [
+  {
+    id: 'life-insurance',
+    icon: Sparkles,
+    title: 'Life Insurance Planning',
+    description: 'We go beyond the basics of life coverage and help you use insurance as a strategic asset — one that can protect your family and create long-term cash value.',
+    features: ['Term, whole, and indexed universal options', 'Tax-advantaged growth', 'Asset protection and liquidity'],
+    gradient: 'from-blue-400 via-blue-500 to-blue-600',
+  },
+  {
+    id: 'retirement',
+    icon: TrendingUp,
+    title: 'Tax-Free Retirement Solutions',
+    description: 'Why give away a third of your retirement income in taxes? We help you build retirement income using tools that grow and distribute tax-free.',
+    features: ['Indexed life insurance-based plans', 'Retirement withdrawal strategies', 'Longevity planning'],
+    gradient: 'from-emerald-400 via-green-500 to-teal-600',
+  },
+  {
+    id: 'college-savings',
+    icon: GraduationCap,
+    title: 'College Savings Strategies',
+    description: 'We help parents design plans that grow without market risk and can be used for any purpose — not just tuition.',
+    features: ['Alternative to 529s', 'Cash value growth', 'Multi-use flexibility'],
+    gradient: 'from-rose-400 via-red-500 to-orange-500',
+  },
+  {
+    id: 'annuities',
+    icon: PiggyBank,
+    title: 'Annuities & Rollovers',
+    description: 'Ensure your retirement savings are safe, growing, and guaranteed to provide lifetime income — with no guesswork.',
+    features: ['Fixed & Indexed Annuities', 'IRA / 401(k) Rollovers', 'Market-loss protection'],
+    gradient: 'from-teal-400 via-cyan-500 to-blue-500',
+  },
+  {
+    id: 'debt-elimination',
+    icon: Calculator,
+    title: 'Debt Elimination Plans',
+    description: 'We design cash flow systems that help you clear debts faster and redirect that money toward building wealth.',
+    features: ['Income restructuring', 'Budgeting with purpose', 'Reinvestment of paid-off debt'],
+    gradient: 'from-purple-400 via-purple-500 to-indigo-600',
+  },
+  {
+    id: 'legacy',
+    icon: Heart,
+    title: 'Legacy & Estate Planning',
+    description: 'We guide you in building a legacy that’s structured, tax-efficient, and legally protected — so your wealth goes where you want it to.',
+    features: ['Living trusts', 'Estate life insurance', 'Wealth transfer without probate'],
+    gradient: 'from-pink-400 via-pink-500 to-rose-600',
+  },
+  {
+    id: 'education',
+    icon: BookOpen,
+    title: 'Financial Education',
+    description: 'Not just services — empowerment. Learn the strategies we use so you’re in control, not confused.',
+    features: ['One-on-one coaching', 'Strategy breakdowns', 'Tools & calculators'],
+    gradient: 'from-indigo-400 via-indigo-500 to-blue-600',
+  },
+  {
+    id: 'wealth-roadmaps',
+    icon: Target,
+    title: 'Custom Wealth Roadmaps',
+    description: 'One size doesn’t fit all. We start by understanding you — then create a fully tailored financial plan.',
+    features: ['Personal goal alignment', 'Integrated strategy', 'Annual reviews and adjustments'],
+    gradient: 'from-green-400 via-lime-500 to-emerald-600',
+  },
+];
+
+// Process Steps
+const processSteps = [
+  {
+    step: '01',
+    title: 'One-on-One Strategy Session',
+    description: 'We begin by understanding your goals, fears, and current financial position.',
+  },
+  {
+    step: '02',
+    title: 'Plan Customization',
+    description: 'You’ll receive a clear, customized roadmap that aligns with your income, lifestyle, and legacy needs.',
+  },
+  {
+    step: '03',
+    title: 'Implementation & Support',
+    description: 'We help you take action — with trusted partners, guidance, and ongoing reviews.',
+  },
+  {
+    step: '04',
+    title: 'Growth & Review',
+    description: 'Your financial life evolves. So does our plan. We review and adjust annually or as needed.',
+  },
+];
+
+// Tools Data
+const tools = [
+  {
+    icon: FileText,
+    title: 'PDF Tools',
+    description: 'Access our collection of financial planning PDFs and resources to get started.',
+    to: '/tools/pdf',
+    gradient: 'from-indigo-400 via-indigo-500 to-blue-600',
+  },
+  {
+    icon: Calculator,
+    title: 'Wealth Calculator',
+    description: 'Calculate your potential wealth growth with our interactive tool.',
+    to: '/tools/calculator',
+    gradient: 'from-pink-400 via-pink-500 to-rose-600',
+  },
+  {
+    icon: CreditCard,
+    title: 'Debt Payoff Simulator',
+    description: 'Simulate debt elimination strategies and see how fast you can become debt-free.',
+    to: '/tools/debt-simulator',
+    gradient: 'from-amber-400 via-orange-500 to-red-500',
+  },
+];
+
 const Services = () => {
-  const services = [
-    {
-      id: 'life-insurance',
-      icon: Sparkles,
-      title: 'Life Insurance Planning',
-      description: 'We go beyond the basics of life coverage and help you use insurance as a strategic asset — one that can protect your family and create long-term cash value.',
-      features: ['Term, whole, and indexed universal options', 'Tax-advantaged growth', 'Asset protection and liquidity'],
-      gradient: 'from-blue-400 via-blue-500 to-blue-600',
-    },
-    {
-      id: 'retirement',
-      icon: TrendingUp,
-      title: 'Tax-Free Retirement Solutions',
-      description: 'Why give away a third of your retirement income in taxes? We help you build retirement income using tools that grow and distribute tax-free.',
-      features: ['Indexed life insurance-based plans', 'Retirement withdrawal strategies', 'Longevity planning'],
-      gradient: 'from-emerald-400 via-green-500 to-teal-600',
-    },
-    {
-      id: 'college-savings',
-      icon: GraduationCap,
-      title: 'College Savings Strategies',
-      description: 'We help parents design plans that grow without market risk and can be used for any purpose — not just tuition.',
-      features: ['Alternative to 529s', 'Cash value growth', 'Multi-use flexibility'],
-      gradient: 'from-rose-400 via-red-500 to-orange-500',
-    },
-    {
-      id: 'annuities',
-      icon: PiggyBank,
-      title: 'Annuities & Rollovers',
-      description: 'Ensure your retirement savings are safe, growing, and guaranteed to provide lifetime income — with no guesswork.',
-      features: ['Fixed & Indexed Annuities', 'IRA / 401(k) Rollovers', 'Market-loss protection'],
-      gradient: 'from-teal-400 via-cyan-500 to-blue-500',
-    },
-    {
-      id: 'debt-elimination',
-      icon: Calculator,
-      title: 'Debt Elimination Plans',
-      description: 'We design cash flow systems that help you clear debts faster and redirect that money toward building wealth.',
-      features: ['Income restructuring', 'Budgeting with purpose', 'Reinvestment of paid-off debt'],
-      gradient: 'from-purple-400 via-purple-500 to-indigo-600',
-    },
-    {
-      id: 'legacy',
-      icon: Heart,
-      title: 'Legacy & Estate Planning',
-      description: 'We guide you in building a legacy that’s structured, tax-efficient, and legally protected — so your wealth goes where you want it to.',
-      features: ['Living trusts', 'Estate life insurance', 'Wealth transfer without probate'],
-      gradient: 'from-pink-400 via-pink-500 to-rose-600',
-    },
-    {
-      id: 'education',
-      icon: BookOpen,
-      title: 'Financial Education',
-      description: 'Not just services — empowerment. Learn the strategies we use so you’re in control, not confused.',
-      features: ['One-on-one coaching', 'Strategy breakdowns', 'Tools & calculators'],
-      gradient: 'from-indigo-400 via-indigo-500 to-blue-600',
-    },
-    {
-      id: 'wealth-roadmaps',
-      icon: Target,
-      title: 'Custom Wealth Roadmaps',
-      description: 'One size doesn’t fit all. We start by understanding you — then create a fully tailored financial plan.',
-      features: ['Personal goal alignment', 'Integrated strategy', 'Annual reviews and adjustments'],
-      gradient: 'from-green-400 via-lime-500 to-emerald-600',
-    },
-  ];
-
-  const processSteps = [
-    {
-      step: '01',
-      title: 'One-on-One Strategy Session',
-      description: 'We begin by understanding your goals, fears, and current financial position.',
-    },
-    {
-      step: '02',
-      title: 'Plan Customization',
-      description: 'You’ll receive a clear, customized roadmap that aligns with your income, lifestyle, and legacy needs.',
-    },
-    {
-      step: '03',
-      title: 'Implementation & Support',
-      description: 'We help you take action — with trusted partners, guidance, and ongoing reviews.',
-    },
-    {
-      step: '04',
-      title: 'Growth & Review',
-      description: 'Your financial life evolves. So does our plan. We review and adjust annually or as needed.',
-    },
-  ];
-
-  const tools = [
-    {
-      icon: FileText,
-      title: 'PDF Tools',
-      description: 'Access our collection of financial planning PDFs and resources to get started.',
-      to: '/tools/pdf',
-    },
-    {
-      icon: Calculator,
-      title: 'Wealth Calculator',
-      description: 'Calculate your potential wealth growth with our interactive tool.',
-      to: '/tools/calculator',
-    },
-    {
-      icon: CreditCard,
-      title: 'Debt Payoff Simulator',
-      description: 'Simulate debt elimination strategies and see how fast you can become debt-free.',
-      to: '/tools/debt-simulator',
-    },
-  ];
-
-  
-
   return (
     <div className="bg-gray-50">
-      {/* Hero Section - Enhanced with smoother animations and better overlay */}
-      <section className="relative min-h-screen bg-[#1e3a8a] flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_#84cc16_0%,_transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_#6b7280_0%,_transparent_50%)]" />
-        </div>
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 animate-float">
-            <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-[#84cc16] opacity-60" />
-          </div>
-          <div className="absolute top-1/3 right-1/4 animate-float animation-delay-1000">
-            <Star className="w-3 h-3 sm:w-4 sm:h-4 text-[#6b7280] opacity-50" />
-          </div>
-          <div className="absolute bottom-1/3 left-1/5 animate-float animation-delay-2000">
-            <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-[#1e3a8a] opacity-40" />
-          </div>
-          <div className="absolute top-2/3 right-1/3 animate-float animation-delay-3000">
-            <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-[#84cc16] opacity-70" />
-          </div>
-        </div>
-        <div className="container relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="max-w-5xl mx-auto"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-3 rounded-full mb-8 border border-white/20 shadow-lg"
-            >
-              <Award className="w-5 h-5 text-[#84cc16] fill-current" />
-              <span className="text-sm font-medium tracking-wide">Empowering Wealth Creation</span>
-            </motion.div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
-              Wealth Is More Than Money
-              <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2 pb-3">
-                Freedom. Legacy. Peace.
+      {/* Hero Section */}
+      {/* Hero Section */}
+<section
+  className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
+  style={{
+    backgroundImage: "url('/bg-2.webp')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  {/* Dark + Gradient Overlay */}
+  <div className="absolute inset-0 bg-black/50 z-0" /> {/* Dark overlay for contrast */}
+
+  <div className="absolute inset-0 opacity-20 z-0">
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_#84cc16_0%,_transparent_50%)]" />
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_#6b7280_0%,_transparent_50%)]" />
+  </div>
+
+  {/* Floating Icons */}
+  <div className="absolute inset-0 pointer-events-none z-0">
+    <div className="absolute top-1/4 left-1/4 animate-float">
+      <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-[#84cc16] opacity-60" />
+    </div>
+    <div className="absolute top-1/3 right-1/4 animate-float animation-delay-1000">
+      <Star className="w-3 h-3 sm:w-4 sm:h-4 text-[#6b7280] opacity-50" />
+    </div>
+    <div className="absolute bottom-1/3 left-1/5 animate-float animation-delay-2000">
+      <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-[#1e3a8a] opacity-40" />
+    </div>
+    <div className="absolute top-2/3 right-1/3 animate-float animation-delay-3000">
+      <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-[#84cc16] opacity-70" />
+    </div>
+  </div>
+
+  {/* Content */}
+  <div className="container relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+      className="max-w-5xl mx-auto"
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-3 rounded-full mb-8 border border-white/20 shadow-lg"
+      >
+        <Award className="w-5 h-5 text-[#84cc16] " />
+        <span className="text-sm font-medium tracking-wide">Empowering Wealth Creation</span>
+      </motion.div>
+
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
+        Wealth Is More Than Money
+        <span className="block text-accent-dark mt-2 pb-3">
+          Freedom. Legacy. Peace.
+        </span>
+      </h1>
+
+      <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+        Tailored strategies to protect your income, grow your assets, and secure your family’s future with confidence.
+      </p>
+
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-flex group">
+        <Button
+          to="/contact#contact-form"
+          size="lg"
+          className="min-w-[240px] justify-center"
+          aria-label="Start Your Financial Journey"
+        >
+          Start Your Journey
+          <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+        </Button>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
+
+
+      {/* Why Choose Us Section */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white to-green-50 relative overflow-hidden">
+        <div className="absolute -top-20 -left-20 w-72 h-72 bg-lime-400/20 rounded-full blur-3xl opacity-80" />
+        <div className="absolute bottom-0 -right-20 w-96 h-96 bg-green-300/20 rounded-full blur-3xl opacity-80" />
+        <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative z-10">
+          <motion.div {...fadeInUp} className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Why Choose
+              <span className="block pb-5 bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
+                Karman Singh Financial Services
               </span>
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-              Tailored strategies to protect your income, grow your assets, and secure your family’s future with confidence.
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              We’re not just advisors—we’re your partners in building a secure, prosperous future with strategies tailored to your life.
             </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-flex group">
-              <Button
-                to="/contact#contact-form"
-                size="lg"
-                className="min-w-[240px] justify-center"
-                aria-label="Start Your Financial Journey"
+          </motion.div>
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2"
+          >
+            {whyChooseUs.map((reason, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="group relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 overflow-hidden border border-gray-200/50 hover:-translate-y-2 cursor-pointer"
               >
-                Start Your Journey
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </motion.div>
+                <div
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 shadow-md bg-gradient-to-br ${reason.gradient} group-hover:scale-110 group-hover:rotate-3`}
+                >
+                  <reason.icon className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 ">{reason.title}</h3>
+                <p className="text-base text-gray-600 leading-relaxed ">{reason.description}</p>
+                <div className="absolute inset-0 bg-gradient-to-br from-lime-200/20 via-transparent to-green-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
+              </motion.div>
+            ))}
+          </motion.div>
+          <motion.div
+            {...fadeInUp}
+            className="text-center mt-12"
+          >
+            <Button
+              to="/contact#contact-form"
+              size="md"
+              className="min-w-[240px] justify-center"
+              aria-label="Discover How We Can Help You"
+            >
+              Discover How We Help
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* Introduction Section - Polished with better spacing and hover effects */}
+      {/* Introduction Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-white">
         <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <motion.div
             {...fadeInUp}
             className="bg-gray-50 p-8 sm:p-12 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <div className="space-y-6">
+            <div className="space-y-9">
               <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
                 Karman Singh’s journey began in a hardworking immigrant family, where sacrifice was a way of life. That experience fueled a mission to empower families to break free from financial uncertainty.
               </p>
               <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
                 Through relentless self-education, Karman mastered the strategies of the wealthy and now shares them to help you build a future of clarity, control, and confidence.
               </p>
-              <p className="text-lg sm:text-xl text-center text-[#1e3a8a] font-semibold leading-relaxed">
+              <p className="text-lg sm:text-xl text-center text-[#1e3a8a] font-extrabold leading-relaxed">
                 Discover our services to protect what you’ve built and create lasting wealth.
               </p>
             </div>
@@ -244,7 +351,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Video Section - Enhanced with better placeholder and animations */}
+      {/* Video Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-indigo-50 to-blue-100">
         <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-16">
@@ -280,11 +387,9 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Services Overview - Polished with smoother hover effects and gradients */}
+      {/* Services Overview */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-white via-green-50/30 to-white relative overflow-hidden">
         <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative z-10">
-          
-          {/* Section Heading */}
           <motion.div {...fadeInUp} className="text-center mb-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Our Wealth-Building
@@ -293,12 +398,10 @@ const Services = () => {
               </span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mt-4 leading-relaxed">
-              Expert strategies and tailored solutions to protect your income, accelerate asset growth, 
+              Expert strategies and tailored solutions to protect your income, accelerate asset growth,
               and safeguard your family’s financial future — so you can live with confidence.
             </p>
           </motion.div>
-
-          {/* Services Grid */}
           <motion.div
             variants={staggerContainer}
             initial="initial"
@@ -313,24 +416,17 @@ const Services = () => {
                 className="group relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 overflow-hidden border border-gray-200/50 hover:-translate-y-2 hover:scale-[1.03] cursor-pointer"
                 whileHover={{ scale: 1.03, rotate: 0.5 }}
               >
-                {/* Icon */}
                 <div
                   className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 shadow-md bg-gradient-to-br ${service.gradient} group-hover:scale-110 group-hover:rotate-3`}
                 >
                   <service.icon className="w-10 h-10 text-white" />
                 </div>
-
-                {/* Title */}
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
                   {service.title}
                 </h3>
-
-                {/* Description */}
                 <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-6">
                   {service.description}
                 </p>
-
-                {/* Feature List */}
                 <div className="space-y-2">
                   {service.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center text-sm">
@@ -339,20 +435,16 @@ const Services = () => {
                     </div>
                   ))}
                 </div>
-
-                {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-lime-200/20 via-transparent to-green-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
               </motion.div>
             ))}
           </motion.div>
         </div>
-
-        {/* Decorative Blur Elements - Enhanced for better visual polish */}
         <div className="absolute -top-20 -left-20 w-72 h-72 bg-lime-400/20 rounded-full blur-3xl opacity-80"></div>
         <div className="absolute bottom-0 -right-20 w-96 h-96 bg-green-300/20 rounded-full blur-3xl opacity-80"></div>
       </section>
 
-      {/* Process Section - Enhanced with better card designs */}
+      {/* Process Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-indigo-50 to-blue-100">
         <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-16">
@@ -389,7 +481,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* CTA Section - Polished with better gradients and animations */}
+      {/* CTA Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_rgba(132,204,22,0.2)_0%,_transparent_50%)] opacity-15" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_rgba(107,114,128,0.2)_0%,_transparent_50%)] opacity-15" />
@@ -432,7 +524,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Tools Section - Enhanced to three polished boxes/cards with icons, descriptions, and buttons */}
+      {/* Tools Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-white">
         <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-16">
@@ -458,31 +550,24 @@ const Services = () => {
                 variants={fadeInUp}
                 className="group relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 overflow-hidden border border-gray-200/50 hover:-translate-y-2 cursor-pointer"
               >
-                {/* Icon */}
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 shadow-md bg-gradient-to-br from-lime-400 via-green-500 to-emerald-600 mx-auto group-hover:scale-110">
+                <div
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 shadow-md bg-gradient-to-br ${tool.gradient} mx-auto group-hover:scale-110`}
+                >
                   <tool.icon className="w-10 h-10 text-white" />
                 </div>
-
-                {/* Title */}
                 <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{tool.title}</h3>
-
-                {/* Description */}
                 <p className="text-base text-gray-600 leading-relaxed mb-6 text-center">{tool.description}</p>
-
-                {/* Button */}
                 <div className="flex justify-center">
                   <Button
                     to={tool.to}
                     size="md"
-                    className="justify-center"
+                    className="justify-center bg-black"
                     aria-label={`Try ${tool.title}`}
                   >
                     Get Started
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </div>
-
-                {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-lime-200/20 via-transparent to-green-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
               </motion.div>
             ))}
