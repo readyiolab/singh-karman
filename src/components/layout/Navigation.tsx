@@ -1,14 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState(null); // Track open submenu on mobile
   const navigate = useNavigate();
   const location = useLocation();
-  const timeoutRef = useRef(null);
+  const timeoutRef = useRef(null); // For hover delay
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -25,26 +26,34 @@ const Navigation = () => {
     { name: "Contact", path: "/contact" },
   ];
 
-  // Scroll detection
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Handle mouse enter with delay for submenu
   const handleMouseEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
 
+  // Handle mouse leave with delay for submenu
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {}, 200);
   };
 
   const handleNavClick = (item) => {
     setIsOpen(false);
+    setOpenSubmenu(null);
     navigate(item.path);
+  };
+
+  const toggleSubmenu = (itemName) => {
+    setOpenSubmenu((prev) => (prev === itemName ? null : itemName));
   };
 
   const isActive = (item) => {
@@ -80,7 +89,7 @@ const Navigation = () => {
             />
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Centered */}
           <div className="hidden lg:flex items-center justify-center flex-1">
             <div className="flex items-center space-x-2 bg-white rounded-full p-2 border border-gray-200 shadow-sm">
               {navItems.map((item) => (
@@ -99,9 +108,11 @@ const Navigation = () => {
                     }`}
                   >
                     <span className="relative z-10">{item.name}</span>
-                    {item.children && <ChevronDown size={16} className="ml-1" />}
+                    {item.children && (
+                      <ChevronDown size={16} className="ml-1" />
+                    )}
                     {isActive(item) && (
-                      <div className="absolute inset-0 bg-P rounded-full shadow-lg animate-pulse opacity-20" />
+                      <div className="absolute inset-0 bg-primary rounded-full shadow-lg animate-pulse opacity-20" />
                     )}
                   </button>
                   {item.children && (
@@ -126,7 +137,7 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Desktop CTA */}
+          {/* CTA Button */}
           <div className="hidden lg:flex">
             <Button className="bg-primary text-white font-medium px-8 py-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:bg-blue-700">
               Book Consultation
@@ -144,20 +155,19 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation - All expanded */}
+        {/* Mobile Navigation */}
         <div
           className={`lg:hidden transition-all duration-500 ease-out ${
-            isOpen
-              ? "max-h-screen opacity-100"
-              : "max-h-0 opacity-0 overflow-hidden"
+            isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
           }`}
         >
           <div className="px-4 pt-6 pb-6 space-y-2 bg-white border-t border-gray-200 shadow-md">
             {navItems.map((item, index) => (
               <div key={item.name}>
-                {/* Parent Item */}
                 <button
-                  onClick={() => !item.children && handleNavClick(item)}
+                  onClick={() =>
+                    item.children ? toggleSubmenu(item.name) : handleNavClick(item)
+                  }
                   style={{
                     transitionDelay: isOpen ? `${index * 75}ms` : "0ms",
                   }}
@@ -169,14 +179,20 @@ const Navigation = () => {
                     isActive(item)
                       ? "text-white bg-primary border-transparent shadow-md"
                       : "text-gray-800 hover:text-blue-600 hover:bg-gray-100 border-gray-200 hover:border-gray-300"
-                  }`}
+                  } flex items-center justify-between`}
                 >
-                  {item.name}
+                  <span>{item.name}</span>
+                  {item.children && (
+                    <ChevronRight
+                      size={20}
+                      className={`transition-transform duration-300 ${
+                        openSubmenu === item.name ? "rotate-90" : ""
+                      }`}
+                    />
+                  )}
                 </button>
-
-                {/* Always show submenus if exists */}
-                {item.children && isOpen && (
-                  <div className="pl-4 space-y-1">
+                {item.children && openSubmenu === item.name && (
+                  <div className="pl-4 space-y-1 mt-2">
                     {item.children.map((child, childIndex) => (
                       <button
                         key={child.name}
@@ -203,8 +219,6 @@ const Navigation = () => {
                 )}
               </div>
             ))}
-
-            {/* Mobile CTA */}
             <div
               className={`pt-4 transition-all duration-400 ease-out transform ${
                 isOpen ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"
