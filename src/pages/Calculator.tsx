@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, DollarSign, Calendar, Percent, TrendingUp, Sparkles, BarChart, Users, ShieldCheck } from "lucide-react";
 import { Chart, registerables } from "chart.js";
@@ -8,7 +8,7 @@ import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
 // Custom Button Component
-const Button = ({ children, className, variant = "default", size = "lg", to, ...props }) => {
+const Button = ({ children, className, variant = "default", size = "lg", to, onClick, ...props }) => {
   const baseStyles = "inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500";
   const variants = {
     default: "bg-gradient-to-r from-blue-500 to-cyan-600 text-white shadow-lg hover:shadow-xl hover:from-blue-600 hover:to-cyan-700",
@@ -23,6 +23,7 @@ const Button = ({ children, className, variant = "default", size = "lg", to, ...
   return (
     <Link
       to={to}
+      onClick={onClick}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className || ""}`}
       {...props}
     >
@@ -63,6 +64,8 @@ const Calculator = () => {
   const [chartData, setChartData] = useState([]);
   const chartRef = useRef(null);
   const canvasRef = useRef(null);
+  const calculatorRef = useRef(null);
+  const navigate = useNavigate();
 
   const calculateCompoundInterest = () => {
     const principal = initialAmount;
@@ -153,13 +156,13 @@ const Calculator = () => {
             {
               label: "Contributions",
               data: chartData.map((data) => data.contributions),
-              backgroundColor: "#3b82f6", // Blue for contributions
+              backgroundColor: "#3b82f6",
               stack: "stack1",
             },
             {
               label: "Interest",
               data: chartData.map((data) => data.interest),
-              backgroundColor: "#06b6d4", // Cyan for interest
+              backgroundColor: "#06b6d4",
               stack: "stack1",
             },
           ],
@@ -201,7 +204,10 @@ const Calculator = () => {
               position: "top",
               labels: {
                 color: "#1f2937",
-                font: { size: 12 },
+                font: {
+
+                  size: 12
+                },
               },
             },
             tooltip: {
@@ -235,83 +241,80 @@ const Calculator = () => {
     }).format(amount);
   };
 
+  const handleTryNowClick = () => {
+    if (calculatorRef.current) {
+      calculatorRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+    navigate("#calculator");
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-     {/* Hero Section */}
-<section
-  className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
-  style={{
-    backgroundImage:
-      "url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
-  {/* Dark overlay to make text pop */}
-  <div className="absolute inset-0 bg-black/50 z-0" />
-
-  {/* Gradient overlays */}
-  <div className="absolute inset-0 opacity-20 z-0">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_#3b82f6_0%,_transparent_50%)]" />
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_#06b6d4_0%,_transparent_50%)]" />
-  </div>
-
-  {/* Floating icons */}
-  <div className="absolute inset-0 pointer-events-none z-0">
-    <div className="absolute top-1/4 left-1/4 animate-float">
-      <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-white opacity-60" />
-    </div>
-    <div className="absolute top-1/3 right-1/4 animate-float animation-delay-1000">
-      <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-white opacity-60" />
-    </div>
-    <div className="absolute bottom-1/3 left-1/5 animate-float animation-delay-2000">
-      <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-white opacity-40" />
-    </div>
-  </div>
-
-  {/* Content */}
-  <div className="container relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="max-w-5xl mx-auto"
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-3 rounded-full mb-8 border border-white/20 shadow-lg"
+      <section
+        className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
-        <TrendingUp className="w-5 h-5 text-accent-dark" />
-        <span className="text-sm font-medium tracking-wide">Grow Your Wealth</span>
-      </motion.div>
+        <div className="absolute inset-0 bg-black/50 z-0" />
 
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
-        Compound Interest
-        <span className="block text-accent-dark mt-2 pb-3">Calculator</span>
-      </h1>
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute top-1/4 left-1/4 animate-float">
+            <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-white opacity-60" />
+          </div>
+          <div className="absolute top-1/3 right-1/4 animate-float animation-delay-1000">
+            <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-white opacity-60" />
+          </div>
+          <div className="absolute bottom-1/3 left-1/5 animate-float animation-delay-2000">
+            <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-white opacity-40" />
+          </div>
+        </div>
 
-      <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-        Discover the power of compound interest and see how your savings can grow over time with tailored strategies.
-      </p>
+        <div className="container relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-5xl mx-auto"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-3 rounded-full mb-8 border border-white/20 shadow-lg"
+            >
+              <TrendingUp className="w-5 h-5 text-accent-dark" />
+              <span className="text-sm font-medium tracking-wide">Grow Your Wealth</span>
+            </motion.div>
 
-      <motion.div whileTap={{ scale: 0.95 }} className="inline-flex">
-        <Button
-          to="#calculator"
-          size="lg"
-          className="bg-accent-dark text-white min-w-[220px] justify-center"
-          aria-label="Try the Calculator"
-        >
-          Try Now
-          <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-        </Button>
-      </motion.div>
-    </motion.div>
-  </div>
-</section>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
+              Compound Interest
+              <span className="block text-accent-dark mt-2 pb-3">Calculator</span>
+            </h1>
 
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+              Discover the power of compound interest and see how your savings can grow over time with tailored strategies.
+            </p>
+
+            <div className="flex justify-center">
+              <button
+                to="#calculator"
+
+                onClick={handleTryNowClick}
+                className="justify-center flex items-center rounded-full bg-gradient-to-r from-lime-500 to-green-600 text-white hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl px-12 py-4 text-lg font-semibold"
+
+              >
+                Try Now
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Why This Calculator Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-white">
@@ -350,8 +353,8 @@ const Calculator = () => {
                 gradient: "from-cyan-400 via-cyan-500 to-teal-600",
               },
               {
-                id: "secure",
-                title: "Plan Securely",
+                id: "NO RISK",
+                title: "No Risk",
                 description: "Get accurate projections to make informed decisions about retirement, savings goals, or investment portfolios.",
                 icon: <ShieldCheck className="w-10 h-10 text-white" />,
                 gradient: "from-indigo-400 via-indigo-500 to-blue-600",
@@ -376,7 +379,7 @@ const Calculator = () => {
       </section>
 
       {/* Calculator Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-gray-50" id="calculator">
+      <section ref={calculatorRef} className="py-16 sm:py-20 lg:py-24 bg-gray-50" id="calculator">
         <div className="container px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
@@ -402,7 +405,7 @@ const Calculator = () => {
               className="lg:sticky lg:top-24 space-y-8"
             >
               <div className="bg-white p-8 rounded-3xl shadow-lg transition-all duration-300 border border-gray-100 hover:shadow-xl">
-                <h3 className="text-2xl font-extrabold  mb-6 text-center">
+                <h3 className="text-2xl font-extrabold mb-6 text-center">
                   Your Investment Growth
                 </h3>
                 <div className="space-y-6">
@@ -416,7 +419,7 @@ const Calculator = () => {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                       <span className="text-sm text-gray-600 font-semibold">Initial Investment</span>
-                      <span className="font-semibold text-gray-900 ">{formatCurrency(initialAmount)}</span>
+                      <span className="font-semibold text-gray-900">{formatCurrency(initialAmount)}</span>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                       <span className="text-sm text-gray-600 font-semibold">Total Contributions</span>
@@ -424,9 +427,7 @@ const Calculator = () => {
                     </div>
                     <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                       <span className="text-sm text-gray-600 font-semibold">Interest Earned</span>
-                      <span className="font-semibold text-primary">
-                        {formatCurrency(totalInterest)}
-                      </span>
+                      <span className="font-semibold text-primary">{formatCurrency(totalInterest)}</span>
                     </div>
                     <div className="text-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-100">
                       <p className="text-sm text-gray-600 mb-1 font-semibold">Total Growth</p>
@@ -442,12 +443,12 @@ const Calculator = () => {
             {/* Input Form */}
             <motion.div variants={fadeInUp} className="space-y-8">
               <div className="bg-white p-8 rounded-3xl shadow-lg transition-all duration-300 border border-gray-100 hover:shadow-xl">
-                <h3 className="text-2xl font-extrabold  mb-6 text-center ">
+                <h3 className="text-2xl font-extrabold mb-6 text-center">
                   Investment Details
                 </h3>
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-sm  text-gray-700 font-semibold flex items-center gap-2">
+                    <label className="text-sm text-gray-700 font-semibold flex items-center gap-2">
                       Initial Investment Amount
                       <span className="text-xs text-gray-400">(Starting principal)</span>
                     </label>
@@ -469,15 +470,21 @@ const Calculator = () => {
                       <span className="text-xs text-gray-400">(Time horizon)</span>
                     </label>
                     <div className="relative">
-                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Calendar className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                       <input
-                        type="number"
+                        type="range"
                         value={years}
-                        onChange={(e) => setYears(Math.max(1, Number(e.target.value)))}
-                        className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 hover:border-blue-300 transition-colors"
+                        onChange={(e) => setYears(Number(e.target.value))}
+                        className="w-full pl-10 pr-4 py-3 rounded-lg accent-blue-500"
                         min="1"
                         max="50"
+                        step="1"
                       />
+                      <div className="flex justify-between text-sm text-gray-600 mt-1">
+                        <span>1 Year</span>
+                        <span>{years} Years</span>
+                        <span>50 Years</span>
+                      </div>
                     </div>
                   </div>
 
@@ -487,16 +494,21 @@ const Calculator = () => {
                       <span className="text-xs text-gray-400">(Expected return)</span>
                     </label>
                     <div className="relative">
-                      <Percent className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Percent className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                       <input
-                        type="number"
+                        type="range"
                         value={interestRate}
-                        onChange={(e) => setInterestRate(Math.max(0, Number(e.target.value)))}
-                        className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 hover:border-blue-300 transition-colors"
+                        onChange={(e) => setInterestRate(Number(e.target.value))}
+                        className="w-full pl-10 pr-4 py-3 rounded-lg accent-blue-500"
                         min="0"
                         max="20"
                         step="0.1"
                       />
+                      <div className="flex justify-between text-sm text-gray-600 mt-1">
+                        <span>0%</span>
+                        <span>{interestRate}%</span>
+                        <span>20%</span>
+                      </div>
                     </div>
                   </div>
 
@@ -554,7 +566,7 @@ const Calculator = () => {
             variants={fadeInUp}
             className="mt-12 bg-white p-8 rounded-3xl shadow-lg transition-all duration-300 border border-gray-100 hover:shadow-xl"
           >
-            <h3 className="text-2xl font-extrabold  mb-6 text-center">
+            <h3 className="text-2xl font-extrabold mb-6 text-center">
               Growth Over Time
             </h3>
             <div className="h-[400px] w-full">
@@ -648,15 +660,16 @@ const Calculator = () => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <motion.div whileTap={{ scale: 0.95 }}>
-                <Button
-                  to="/contact#contact-form"
-                  size="lg"
-                  className="min-w-[240px] justify-center"
-                  aria-label="Schedule a Free Consultation"
-                >
-                  Schedule Consultation
-                  <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-                </Button>
+                <Link to="/contact">
+                  <button
+
+
+                    className="min-w-[240px] justify-center bg-accent-dark text-white rounded-full px-8 py-4 text-lg font-semibold shadow-lg hover:bg-accent-darker transition-colors flex items-center group"
+                    aria-label="Schedule a Free Consultation"
+                  >
+                    Schedule Consultation
+                    <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                  </button></Link>
               </motion.div>
               <motion.div whileTap={{ scale: 0.95 }}>
                 <Button

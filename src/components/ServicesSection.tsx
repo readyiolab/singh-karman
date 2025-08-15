@@ -10,6 +10,7 @@ import {
   Sparkles,
   Star
 } from "lucide-react";
+import { NavLink } from 'react-router-dom';
 
 const ServicesSection = () => {
   const services = [
@@ -193,10 +194,12 @@ const ServicesSection = () => {
 
                 {/* Enhanced CTA */}
                 <div className="flex items-center justify-between">
-                  <button className="inline-flex items-center text-primary hover:text-primary-dark font-semibold text-sm group-hover:translate-x-1 transition-all duration-300">
-                    Learn More
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
+                  <NavLink to="/services">
+  <button className="inline-flex items-center text-primary hover:text-primary-dark font-semibold text-sm group-hover:translate-x-1 transition-all duration-300">
+    Learn More
+    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+  </button>
+</NavLink>
                   
                   {/* Progress indicator */}
                   <div className="w-12 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
@@ -215,10 +218,12 @@ const ServicesSection = () => {
 
         {/* Enhanced CTA Section */}
         <div className="text-center">
+          <NavLink to="/services">
           <button className="group bg-accent-dark text-white font-semibold px-8 py-4 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
             <span>Start Your Journey Today</span>
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
           </button>
+          </NavLink>
           
           <p className="text-gray-500 dark:text-gray-400 text-sm mt-4">
             Join thousands of satisfied clients building their financial future

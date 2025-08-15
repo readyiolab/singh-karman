@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Star, Zap, Shield, Target, TrendingUp, Award } from 'lucide-react';
+import { ArrowRight, Sparkles, Star, Zap, Shield, Target, TrendingUp, Award, Users, BookOpen, Heart } from 'lucide-react';
 
 // Custom Button Component
 const Button = ({ children, className, variant = 'default', size = 'lg', to, ...props }) => {
@@ -50,91 +50,85 @@ const About = () => {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      {/* Hero Section */}
-<section
-  className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
-  style={{
-    backgroundImage: "url('/bg-1.webp')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
-  {/* Dark + Gradient Overlay */}
-  <div className="absolute inset-0 bg-black/50 z-0" /> {/* Dark overlay */}
-
-  <div className="absolute inset-0 opacity-20 z-0">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_#84cc16_0%,_transparent_50%)]" />
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_#6b7280_0%,_transparent_50%)]" />
-  </div>
-
-  {/* Floating Icons */}
-  <div className="absolute inset-0 pointer-events-none z-0">
-    <div className="absolute top-1/4 left-1/4 animate-float">
-      <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-[#84cc16] opacity-60" />
-    </div>
-    <div className="absolute top-1/3 right-1/4 animate-float animation-delay-1000">
-      <Star className="w-3 h-3 sm:w-4 sm:h-4 text-[#6b7280] opacity-50" />
-    </div>
-    <div className="absolute bottom-1/3 left-1/5 animate-float animation-delay-2000">
-      <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-[#1e3a8a] opacity-40" />
-    </div>
-    <div className="absolute top-2/3 right-1/3 animate-float animation-delay-3000">
-      <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-[#84cc16] opacity-70" />
-    </div>
-  </div>
-
-  {/* Content */}
-  <div className="container relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="max-w-5xl mx-auto"
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-3 rounded-full mb-8 border border-white/20 shadow-lg"
+      <section
+        className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
+        style={{
+          backgroundImage: "url('/bg-1.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
-        <Award className="w-5 h-5 text-[#84cc16] " />
-        <span className="text-sm font-medium tracking-wide">Empowering Wealth Creation</span>
-      </motion.div>
+        {/* Dark + Gradient Overlay */}
+        <div className="absolute inset-0 bg-black/50 z-0" />
 
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
-        Crafting Your
-        <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2 pb-3">
-          Financial Legacy
-        </span>
-      </h1>
 
-      <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-        From humble beginnings to empowering families with strategies for generational wealth and purpose-driven lives.
-      </p>
+        {/* Floating Icons */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute top-1/4 left-1/4 animate-float">
+            <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-[#84cc16] opacity-60" />
+          </div>
+          <div className="absolute top-1/3 right-1/4 animate-float animation-delay-1000">
+            <Star className="w-3 h-3 sm:w-4 sm:h-4 text-[#6b7280] opacity-50" />
+          </div>
+          <div className="absolute bottom-1/3 left-1/5 animate-float animation-delay-2000">
+            <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-[#1e3a8a] opacity-40" />
+          </div>
+          <div className="absolute top-2/3 right-1/3 animate-float animation-delay-3000">
+            <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-[#84cc16] opacity-70" />
+          </div>
+        </div>
 
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="inline-flex group"
-      >
-        <Button
-          to="/contact#contact-form"
-          size="lg"
-          className="text-white min-w-[220px] justify-center bg-accent-dark"
-          aria-label="Start Your Financial Journey"
-        >
-          Start Your Journey
-          <ArrowRight className="w-5 h-5 translate-x-0 group-hover:translate-x-1 transition-transform" />
-        </Button>
-      </motion.div>
-    </motion.div>
-  </div>
-</section>
+        {/* Content */}
+        <div className="container relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-5xl mx-auto"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-3 rounded-full mb-8 border border-white/20 shadow-lg"
+            >
+              <Award className="w-5 h-5 text-[#84cc16]" />
+              <span className="text-sm font-medium tracking-wide">Empowering Wealth Creation</span>
+            </motion.div>
 
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
+              Crafting Your
+              <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2 pb-3">
+                Financial Legacy
+              </span>
+            </h1>
+
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+              From humble beginnings to empowering families with strategies for generational wealth and purpose-driven lives.
+            </p>
+
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex group"
+            >
+              <Button
+                to="/contact#contact-form"
+                size="lg"
+                className="text-white min-w-[220px] justify-center bg-accent-dark"
+                aria-label="Start Your Financial Journey"
+              >
+                Start Your Journey
+                <ArrowRight className="w-5 h-5 translate-x-0 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Story Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-white">
-        <div className="container px-4 sm:px-6 lg:px-8 ">
+        <div className="container px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               My Story of
@@ -183,12 +177,12 @@ const About = () => {
             </motion.div>
             <motion.div
               variants={fadeInUp}
-              className="lg:sticky lg:top-24 flex justify-center "
+              className="lg:sticky lg:top-24 flex justify-center"
             >
               <img
                 src="./founder.webp"
                 alt="founder image"
-                className="w-full max-w-md h-[450px]  shadow-lg object-cover"
+                className="w-full max-w-md h-auto aspect-[3/4] shadow-lg object-cover"
               />
             </motion.div>
           </motion.div>
@@ -218,80 +212,210 @@ const About = () => {
           >
             {[
               {
-                id: 'clarity',
-                title: 'Clarity',
+                id: 'Integrity',
+                title: 'Integrity',
                 description:
                   'We simplify complex financial concepts to help you understand your money and make informed decisions.',
                 icon: <Sparkles className="w-10 h-10 text-white" />,
-                gradient: 'from-blue-400 via-blue-500 to-blue-600', // Lime
+                gradient: 'from-blue-400 via-blue-500 to-blue-600',
               },
               {
-                id: 'control',
-                title: 'Control',
+                id: 'Liability',
+                title: 'Liability',
                 description:
                   'Take charge of your financial future with strategies designed for stability and growth.',
                 icon: <Target className="w-10 h-10 text-white" />,
-                gradient: 'from-emerald-400 via-green-500 to-teal-600', // Wolf grey
+                gradient: 'from-emerald-400 via-green-500 to-teal-600',
               },
               {
-                id: 'confidence',
-                title: 'Confidence',
+                id: 'Alignment',
+                title: 'Alignment',
                 description:
                   'Build the confidence to pursue your goals with proven tools and personalized guidance.',
                 icon: <Zap className="w-10 h-10 text-white" />,
-                gradient: 'from-rose-400 via-red-500 to-orange-500', // Navy
+                gradient: 'from-rose-400 via-red-500 to-orange-500',
               },
               {
-                id: 'legacy',
+                id: 'Legacy',
                 title: 'Legacy',
                 description:
                   'Create a lasting impact for your family and community with wealth that endures.',
                 icon: <Award className="w-10 h-10 text-white" />,
-                gradient: 'from-teal-400 via-cyan-500 to-blue-500', // Lime with soft fade
+                gradient: 'from-teal-400 via-cyan-500 to-blue-500',
               },
             ].map((value) => (
               <motion.div
                 key={value.id}
                 variants={fadeInUp}
-                className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm
-               rounded-3xl shadow-lg hover:shadow-2xl
-               transition-all duration-500 p-8 overflow-hidden 
-               border border-gray-200/50 dark:border-gray-700/50
-               hover:-translate-y-2 hover:scale-[1.03] cursor-pointer"
+                className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 overflow-hidden border border-gray-200/50 dark:border-gray-700/50 hover:-translate-y-2 hover:scale-[1.03] cursor-pointer"
                 style={{
                   background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.85) 100%)',
                 }}
               >
-                {/* Icon Container */}
                 <div
-                  className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6
-    hover:scale-110 transition-transform duration-300 shadow-md bg-gradient-to-br ${value.gradient}`}
+                  className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 hover:scale-110 transition-transform duration-300 shadow-md bg-gradient-to-br ${value.gradient}`}
                 >
                   {value.icon}
                 </div>
-
-
-                {/* Title */}
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
                   {value.title}
                 </h3>
-
-                {/* Description */}
                 <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                   {value.description}
                 </p>
-
-                {/* Hover Overlay Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-lime-200/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
               </motion.div>
             ))}
           </motion.div>
-
         </div>
       </section>
 
+      {/* About Empower Life Section - Enhanced for Robust UI */}
+      <section className="py-16 sm:py-24 lg:py-32 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_90%,_rgba(132,204,22,0.15)_0%,_transparent_60%)] opacity-60" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,_rgba(107,114,128,0.15)_0%,_transparent_60%)] opacity-60" />
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <div className="absolute top-12 left-12 animate-pulse-slow">
+            <Shield className="w-10 h-10 text-lime-600 opacity-25" />
+          </div>
+          <div className="absolute bottom-12 right-12 animate-pulse-slow animation-delay-3000">
+            <TrendingUp className="w-10 h-10 text-green-700 opacity-25" />
+          </div>
+        </div>
+
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          {/* Header */}
+          <motion.div {...fadeInUp} className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              About <br />
+              <img
+                src="/empower.webp"
+                alt="Empower Life"
+                className="inline mt-2 max-w-full h-auto sm:max-w-[200px] md:max-w-[350px]"
+              />
+            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Empowering individuals, families, and professionals to achieve financial freedom and build lasting legacies with confidence.
+            </p>
+          </motion.div>
+
+          {/* Mission & Community - Side by Side */}
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            className="grid gap-8 lg:grid-cols-2 mb-16"
+          >
+            {/* Our Mission */}
+            <motion.div
+              variants={fadeInUp}
+
+              className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200/30 flex flex-col justify-between relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-lime-100/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="mb-6 flex justify-center">
+                <Shield className="w-12 h-12 text-lime-600" />
+              </div>
+              <div className="relative z-10">
+                <h3 className="text-3xl font-extrabold text-gray-900 mb-4 text-center">
+                  Our Mission
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed text-center">
+                  At Empower Life, we redefine financial empowerment by giving you the tools to live life on your terms. Our mission is to guide individuals, families, and professionals toward financial freedom through tailored strategies in wealth growth, asset protection, and legacy planning. Whether you're starting your journey or securing your retirement, our expert guidance ensures a future of abundance and security.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Our Community */}
+            <motion.div
+              variants={fadeInUp}
+
+              className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200/30 flex flex-col justify-between relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-green-100/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="mb-6 flex justify-center">
+                <Users className="w-12 h-12 text-green-600" />
+              </div>
+              <div className="relative z-10">
+                <h3 className="text-3xl font-extrabold text-gray-900 mb-4 text-center">
+                  Our Community
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed text-center">
+                  Empower Life is a vibrant community of ambitious individuals dedicated to financial success and meaningful impact. We provide unparalleled opportunities for team members to grow their careers with world-class training, mentorship, and proven systems. Our education-first approach empowers both clients and team members to make informed decisions and achieve financial independence together.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* What We Stand For */}
+          <motion.div variants={fadeInUp} className="mb-16">
+            <h3 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">What We Stand For</h3>
+            <motion.div
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="whileInView"
+              className="grid gap-6 sm:grid-cols-2 md:grid-cols-3"
+            >
+              {[
+                {
+                  title: 'Empowerment',
+                  description: 'Equipping clients with tools for financial control and team members with opportunities to build thriving businesses.',
+                  icon: <Users className="w-12 h-12 text-white" />,
+                  gradient: 'from-blue-600 to-blue-800',
+                },
+                {
+                  title: 'Integrity',
+                  description: 'Delivering transparent, honest, and compliant financial solutions you can trust.',
+                  icon: <BookOpen className="w-12 h-12 text-white" />,
+                  gradient: 'from-emerald-600 to-teal-800',
+                },
+                {
+                  title: 'Legacy',
+                  description: 'Building lasting wealth and impact for clients and team members across generations.',
+                  icon: <Heart className="w-12 h-12 text-white" />,
+                  gradient: 'from-teal-600 to-blue-800',
+                },
+              ].map((item) => (
+                <motion.div
+                  key={item.title}
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.05, y: -8 }}
+                  className="group bg-white p-6 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 border border-gray-200/30 overflow-hidden flex flex-col items-center text-center"
+                >
+                  <div
+                    className={`w-16 h-16 rounded-xl flex items-center justify-center bg-gradient-to-br ${item.gradient} shadow-lg group-hover:scale-110 transition-transform duration-500 mb-4`}
+                  >
+                    {item.icon}
+                  </div>
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h4>
+                  <p className="text-base text-gray-600">{item.description}</p>
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-lime-100/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div variants={fadeInUp} className="text-center">
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="group inline-flex">
+              <Button
+                to="/contact#contact-form"
+                size="lg"
+                className="min-w-[260px] justify-center shadow-xl bg-gradient-to-r from-lime-500 to-green-600 hover:from-lime-600 hover:to-green-700 text-white font-semibold rounded-full py-3 px-8 transition-all duration-300"
+                aria-label="Join Empower Life"
+              >
+                Join Empower Life
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
+              </Button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+
       {/* CTA Section */}
-      <section className="py-16 sm:py-20  lg:py-24 bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
+      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_rgba(132,204,22,0.2)_0%,_transparent_50%)] opacity-15" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_rgba(107,114,128,0.2)_0%,_transparent_50%)] opacity-15" />
 

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Shield, Sparkle, TrendingUp, Users } from "lucide-react";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -60,9 +61,8 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 ">
           {/* Left Column - Main Content */}
           <div
-            className={`text-center lg:text-left transform transition-all duration-1000 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-            }`}
+            className={`text-center lg:text-left transform transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              }`}
           >
             <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl text-primary-foreground mb-6 md:mb-8 leading-tight">
               Helping You Build{" "}
@@ -82,27 +82,30 @@ const HeroSection = () => {
 
             {/* CTA Buttons with enhanced styling */}
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center lg:justify-start">
-              <Button
-                size="lg"
-                className="relative bg-accent-dark hover:bg-accent/90 text-accent-foreground text-base md:text-lg px-8 md:px-10 py-5 md:py-6 rounded-2xl shadow-2xl shadow-accent/25 border-0 group overflow-hidden transform hover:scale-105 transition-all duration-300"
-              >
-                <span className="relative z-10 flex items-center">
-                  Get Started Today
-                  <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-                <div className="absolute inset-0 bg-accent/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Button>
-
-              <Button
-                variant="outline"
-                size="lg"
-                className="relative bg-primary-foreground/10 backdrop-blur-sm text-primary-foreground border-primary-foreground/20 hover:bg-primary-foreground/20 text-base md:text-lg px-8 md:px-10 py-5 md:py-6 rounded-2xl group overflow-hidden transform hover:scale-105 transition-all duration-300"
-              >
-                <span className="relative z-10 flex items-center">
-                  Book Free Consultation
-                  <Phone className="ml-3 w-5 h-5 group-hover:rotate-12 transition-transform" />
-                </span>
-              </Button>
+              <NavLink to="/contact">
+                <Button
+                  size="lg"
+                  className="relative bg-accent-dark hover:bg-accent/90 text-accent-foreground text-base md:text-lg px-8 md:px-10 py-5 md:py-6 rounded-2xl shadow-2xl shadow-accent/25 border-0 group overflow-hidden transform hover:scale-105 transition-all duration-300"
+                >
+                  <span className="relative z-10 flex items-center">
+                    Get Started Today
+                    <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  <div className="absolute inset-0 bg-accent/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </Button>
+              </NavLink>
+              <NavLink to="/contact">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="relative bg-primary-foreground/10 backdrop-blur-sm text-primary-foreground border-primary-foreground/20 hover:bg-primary-foreground/20 text-base md:text-lg px-8 md:px-10 py-5 md:py-6 rounded-2xl group overflow-hidden transform hover:scale-105 transition-all duration-300"
+                >
+                  <span className="relative z-10 flex items-center">
+                    Book Free Consultation
+                    <Phone className="ml-3 w-5 h-5 group-hover:rotate-12 transition-transform" />
+                  </span>
+                </Button>
+              </NavLink>
             </div>
 
             {/* Stats row */}
@@ -114,9 +117,8 @@ const HeroSection = () => {
               ].map((stat, index) => (
                 <div
                   key={stat.label}
-                  className={`text-center transform transition-all duration-700 ${
-                    isVisible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
-                  }`}
+                  className={`text-center transform transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+                    }`}
                   style={{ transitionDelay: `${600 + index * 200}ms` }}
                 >
                   <div className="text-xl md:text-2xl font-bold text-accent-dark">{stat.value}</div>

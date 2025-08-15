@@ -225,3 +225,12 @@ All colors MUST be HSL.
     transform: translateX(0);
   }
 }
+
+
+
+
+/* For Firefox */
+html {
+  scrollbar-width: thin;             /* auto | thin | none */
+  scrollbar-color: #072234 #f1f1f1;   /* thumb color track color */
+}

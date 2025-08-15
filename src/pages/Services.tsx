@@ -196,81 +196,78 @@ const Services = () => {
     <div className="bg-gray-50">
       {/* Hero Section */}
       {/* Hero Section */}
-<section
-  className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
-  style={{
-    backgroundImage: "url('/bg-2.webp')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
-  {/* Dark + Gradient Overlay */}
-  <div className="absolute inset-0 bg-black/50 z-0" /> {/* Dark overlay for contrast */}
-
-  <div className="absolute inset-0 opacity-20 z-0">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_#84cc16_0%,_transparent_50%)]" />
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_#6b7280_0%,_transparent_50%)]" />
-  </div>
-
-  {/* Floating Icons */}
-  <div className="absolute inset-0 pointer-events-none z-0">
-    <div className="absolute top-1/4 left-1/4 animate-float">
-      <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-[#84cc16] opacity-60" />
-    </div>
-    <div className="absolute top-1/3 right-1/4 animate-float animation-delay-1000">
-      <Star className="w-3 h-3 sm:w-4 sm:h-4 text-[#6b7280] opacity-50" />
-    </div>
-    <div className="absolute bottom-1/3 left-1/5 animate-float animation-delay-2000">
-      <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-[#1e3a8a] opacity-40" />
-    </div>
-    <div className="absolute top-2/3 right-1/3 animate-float animation-delay-3000">
-      <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-[#84cc16] opacity-70" />
-    </div>
-  </div>
-
-  {/* Content */}
-  <div className="container relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="max-w-5xl mx-auto"
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-3 rounded-full mb-8 border border-white/20 shadow-lg"
+      <section
+        className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
+        style={{
+          backgroundImage: "url('/bg-2.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
-        <Award className="w-5 h-5 text-[#84cc16] " />
-        <span className="text-sm font-medium tracking-wide">Empowering Wealth Creation</span>
-      </motion.div>
+        {/* Dark + Gradient Overlay */}
+        <div className="absolute inset-0 bg-black/50 z-0" /> {/* Dark overlay for contrast */}
 
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
-        Wealth Is More Than Money
-        <span className="block text-accent-dark mt-2 pb-3">
-          Freedom. Legacy. Peace.
-        </span>
-      </h1>
+        
 
-      <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-        Tailored strategies to protect your income, grow your assets, and secure your family’s future with confidence.
-      </p>
+        {/* Floating Icons */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute top-1/4 left-1/4 animate-float">
+            <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-[#84cc16] opacity-60" />
+          </div>
+          <div className="absolute top-1/3 right-1/4 animate-float animation-delay-1000">
+            <Star className="w-3 h-3 sm:w-4 sm:h-4 text-[#6b7280] opacity-50" />
+          </div>
+          <div className="absolute bottom-1/3 left-1/5 animate-float animation-delay-2000">
+            <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-[#1e3a8a] opacity-40" />
+          </div>
+          <div className="absolute top-2/3 right-1/3 animate-float animation-delay-3000">
+            <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-[#84cc16] opacity-70" />
+          </div>
+        </div>
 
-      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-flex group">
-        <Button
-          to="/contact#contact-form"
-          size="lg"
-          className="min-w-[240px] justify-center"
-          aria-label="Start Your Financial Journey"
-        >
-          Start Your Journey
-          <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-        </Button>
-      </motion.div>
-    </motion.div>
-  </div>
-</section>
+        {/* Content */}
+        <div className="container relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="max-w-5xl mx-auto"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-3 rounded-full mb-8 border border-white/20 shadow-lg"
+            >
+              <Award className="w-5 h-5 text-[#84cc16] " />
+              <span className="text-sm font-medium tracking-wide">Empowering Wealth Creation</span>
+            </motion.div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
+              Wealth Is More Than Money
+              <span className="block text-accent-dark mt-2 pb-3">
+                Freedom. Legacy. Peace.
+              </span>
+            </h1>
+
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+              Tailored strategies to protect your income, grow your assets, and secure your family’s future with confidence.
+            </p>
+
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-flex group">
+              <Button
+                to="/contact#contact-form"
+                size="lg"
+                className="min-w-[240px] justify-center"
+                aria-label="Start Your Financial Journey"
+              >
+                Start Your Journey
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
 
       {/* Why Choose Us Section */}
@@ -489,7 +486,7 @@ const Services = () => {
           <motion.div {...fadeInUp} className="text-center max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
               Ready to Build Your
-              <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
+              <span className="block pb-5 bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
                 Financial Legacy?
               </span>
             </h2>

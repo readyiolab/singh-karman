@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Star, Zap, Phone, Mail, MapPin, Calendar, MessageCircle, Instagram, Linkedin, Target } from 'lucide-react';
+import { ArrowRight, Sparkles, Star, Zap, Phone, Mail, MapPin, Calendar, MessageCircle, Instagram, Linkedin, Target, ChevronDown } from 'lucide-react';
 
 // Custom Button Component
 const Button = ({ children, className, variant = 'default', size = 'lg', to, ...props }) => {
@@ -57,6 +57,7 @@ const Contact = () => {
   });
   const [formStatus, setFormStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
 
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -85,6 +86,33 @@ const Contact = () => {
     }
   };
 
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: 'How can I join the Empower Life team and what benefits will I get?',
+      answer: 'Joining our team starts with a simple step — schedule a call using the “Book a Call” button on this page. We’ll guide you through the onboarding process and provide all the tools you need to succeed. Benefits include:\n- Flexible working hours & location freedom\n- Unlimited earning potential\n- World-class training & mentorship\n- The chance to help families secure their financial future',
+    },
+    {
+      question: 'What types of insurance solutions do you provide?',
+      answer: 'We offer a wide range of insurance products, including life insurance, retirement protection plans, and income replacement strategies. Every plan is tailored to your unique needs, ensuring you and your loved ones are covered for life’s unexpected moments.',
+    },
+    {
+      question: 'Can you help me plan for my retirement?',
+      answer: 'Yes! We specialize in customized retirement strategies that aim to protect your savings, reduce tax burdens, and ensure a steady income throughout retirement. Whether you’re just starting or nearing retirement, we have solutions to fit your goals.',
+    },
+    {
+      question: 'Do you offer financial strategies for families and business owners?',
+      answer: 'Absolutely. We work with individuals, families, and small business owners to create financial plans that safeguard assets, manage risks, and build long-term wealth. From estate planning to succession strategies, we’ve got you covered.',
+    },
+    {
+      question: 'How do I know which service is right for me?',
+      answer: 'We start with a free consultation to understand your goals, needs, and financial situation. Based on that, we recommend the best solutions — whether it’s insurance, retirement planning, or wealth-building strategies — so you can make an informed decision with confidence.',
+    },
+  ];
+
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
@@ -98,8 +126,7 @@ const Contact = () => {
           <div className="absolute inset-0 bg-primary/60" />
         </div>
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_#84cc16_0%,_transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_#6b7280_0%,_transparent_50%)]" />
+          
         </div>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 animate-float">
@@ -441,6 +468,66 @@ const Contact = () => {
                   {value.description}
                 </p>
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-lime-200/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-white">
+        <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          <motion.div {...fadeInUp} className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Frequently Asked
+              <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
+                Questions
+              </span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Got questions? We've got answers. Explore our FAQs or reach out for personalized guidance.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            className="space-y-4"
+          >
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="w-full flex justify-between items-center p-6 text-left"
+                  aria-expanded={openFaq === index}
+                  aria-controls={`faq-answer-${index}`}
+                >
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
+                    {faq.question}
+                  </h3>
+                  <ChevronDown
+                    className={`w-6 h-6 text-lime-500 transform transition-transform duration-300 ${
+                      openFaq === index ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                <div
+                  id={`faq-answer-${index}`}
+                  className={`${
+                    openFaq === index ? 'block' : 'hidden'
+                  } px-6 pb-6 text-gray-600 text-base sm:text-lg leading-relaxed`}
+                >
+                  {faq.answer.split('\n').map((line, i) => (
+                    <p key={i} className={line.startsWith('-') ? 'ml-4' : ''}>
+                      {line.startsWith('-') ? `• ${line.slice(2)}` : line}
+                    </p>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </motion.div>
