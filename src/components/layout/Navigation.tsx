@@ -162,47 +162,39 @@ const Navigation = () => {
           }`}
         >
           <div className="px-4 pt-6 pb-6 space-y-2 bg-white border-t border-gray-200 shadow-md">
-            {navItems.map((item, index) => (
-              <div key={item.name}>
-                <button
-                  onClick={() =>
-                    item.children ? toggleSubmenu(item.name) : handleNavClick(item)
-                  }
-                  style={{
-                    transitionDelay: isOpen ? `${index * 75}ms` : "0ms",
-                  }}
-                  className={`block w-full text-left px-6 py-4 font-medium transition-all duration-400 ease-out rounded-xl border transform hover:scale-[0.98] ${
-                    isOpen
-                      ? "translate-x-0 opacity-100"
-                      : "translate-x-4 opacity-0"
-                  } ${
-                    isActive(item)
-                      ? "text-white bg-primary border-transparent shadow-md"
-                      : "text-gray-800 hover:text-blue-600 hover:bg-gray-100 border-gray-200 hover:border-gray-300"
-                  } flex items-center justify-between`}
-                >
-                  <span>{item.name}</span>
-                  {item.children && (
-                    <ChevronRight
-                      size={20}
-                      className={`transition-transform duration-300 ${
-                        openSubmenu === item.name ? "rotate-90" : ""
+            {navItems.map((item, index) => {
+              // If item has children, render both parent and children
+              if (item.children) {
+                return (
+                  <div key={item.name}>
+                    {/* Render parent item */}
+                    <button
+                      onClick={() => handleNavClick(item)}
+                      style={{
+                        transitionDelay: isOpen ? `${index * 75}ms` : "0ms",
+                      }}
+                      className={`block w-full text-left px-6 py-4 font-medium transition-all duration-400 ease-out rounded-xl border transform hover:scale-[0.98] ${
+                        isOpen
+                          ? "translate-x-0 opacity-100"
+                          : "translate-x-4 opacity-0"
+                      } ${
+                        isActive(item)
+                          ? "text-white bg-primary border-transparent shadow-md"
+                          : "text-gray-800 hover:text-blue-600 hover:bg-gray-100 border-gray-200 hover:border-gray-300"
                       }`}
-                    />
-                  )}
-                </button>
-                {item.children && openSubmenu === item.name && (
-                  <div className="pl-4 space-y-1 mt-2">
+                    >
+                      {item.name}
+                    </button>
+                    
+                    {/* Render children items */}
                     {item.children.map((child, childIndex) => (
                       <button
                         key={child.name}
                         onClick={() => handleNavClick(child)}
                         style={{
-                          transitionDelay: isOpen
-                            ? `${(index + childIndex + 1) * 75}ms`
-                            : "0ms",
+                          transitionDelay: isOpen ? `${(index + childIndex + 1) * 75}ms` : "0ms",
                         }}
-                        className={`block w-full text-left px-8 py-3 font-medium transition-all duration-400 ease-out rounded-xl transform hover:scale-[0.98] text-sm ${
+                        className={`block w-full text-left px-8 py-3 font-medium transition-all duration-400 ease-out rounded-xl border transform hover:scale-[0.98] text-sm mt-1 ${
                           isOpen
                             ? "translate-x-0 opacity-100"
                             : "translate-x-4 opacity-0"
@@ -216,9 +208,31 @@ const Navigation = () => {
                       </button>
                     ))}
                   </div>
-                )}
-              </div>
-            ))}
+                );
+              }
+              
+              // Render normal items
+              return (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavClick(item)}
+                  style={{
+                    transitionDelay: isOpen ? `${index * 75}ms` : "0ms",
+                  }}
+                  className={`block w-full text-left px-6 py-4 font-medium transition-all duration-400 ease-out rounded-xl border transform hover:scale-[0.98] ${
+                    isOpen
+                      ? "translate-x-0 opacity-100"
+                      : "translate-x-4 opacity-0"
+                  } ${
+                    isActive(item)
+                      ? "text-white bg-primary border-transparent shadow-md"
+                      : "text-gray-800 hover:text-blue-600 hover:bg-gray-100 border-gray-200 hover:border-gray-300"
+                  }`}
+                >
+                  {item.name}
+                </button>
+              );
+            })}
             <div
               className={`pt-4 transition-all duration-400 ease-out transform ${
                 isOpen ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"

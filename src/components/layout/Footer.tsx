@@ -11,9 +11,7 @@ const Footer = () => {
     ],
     resources: [
       { name: "Wealth Calculator", href: "/calculator" },
-      { name: "Free PDF Guides", href: "/resources" },
-      { name: "Educational Videos", href: "/resources#videos" },
-      { name: "Blog Articles", href: "/blog" }
+      { name: "Free PDF Guides", href: "/resources" }
     ],
     company: [
       { name: "About Karman", href: "/about" },
@@ -31,21 +29,18 @@ const Footer = () => {
 
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        
         {/* Main Footer Content */}
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 mb-12">
+          
           {/* Company Info */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="bg-accent w-10 h-10 rounded-lg flex items-center justify-center">
-                <span className="text-accent-foreground font-heading font-bold text-lg">E</span>
-              </div>
-              <div>
-                <span className="font-heading font-bold text-xl">Empower</span>
-                <span className="font-heading font-bold text-xl text-accent">Life</span>
+          <div className="text-center md:text-left">
+            <div className="flex justify-center md:justify-start items-center space-x-3 mb-6">
+              <div className="h-10 w-auto">
+                <img src="/footer-logo.webp" alt="Company Logo" className="h-16 w-auto " />
               </div>
             </div>
-            
             <p className="font-body text-primary-foreground/80 mb-6 leading-relaxed">
               Building generational wealth through purpose-driven financial strategies. 
               Empowering families to achieve clarity, control, and confidence in their financial future.
@@ -53,39 +48,32 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div className="space-y-3">
-              <div className="flex items-center space-x-3">
+              <div className="flex justify-center md:justify-start items-center space-x-3">
                 <Phone className="w-5 h-5 text-accent" />
-                <a href="tel:206-801-0330" className="font-body text-primary-foreground/80 hover:text-accent transition-colors">
+                <a href="tel:206-801-0330" className="hover:text-accent transition-colors">
                   (206) 801-0330
                 </a>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex justify-center md:justify-start items-center space-x-3">
                 <Mail className="w-5 h-5 text-accent" />
-                <a href="mailto:info@empowerlife.com" className="font-body text-primary-foreground/80 hover:text-accent transition-colors">
+                <a href="mailto:info@empowerlife.com" className="hover:text-accent transition-colors">
                   info@empowerlife.com
                 </a>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex justify-center md:justify-start items-center space-x-3">
                 <MapPin className="w-5 h-5 text-accent" />
-                <span className="font-body text-primary-foreground/80">
-                  USA
-                </span>
+                <span>USA</span>
               </div>
             </div>
           </div>
 
           {/* Services */}
-          <div>
-            <h3 className="font-heading font-semibold text-lg text-primary-foreground mb-6">
-              Services
-            </h3>
+          <div className="text-center md:text-left">
+            <h3 className="font-heading font-semibold text-lg mb-6">Services</h3>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    to={link.href} 
-                    className="font-body text-primary-foreground/80 hover:text-accent transition-colors"
-                  >
+                  <Link to={link.href} className="hover:text-accent transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -94,17 +82,12 @@ const Footer = () => {
           </div>
 
           {/* Resources */}
-          <div>
-            <h3 className="font-heading font-semibold text-lg text-primary-foreground mb-6">
-              Resources
-            </h3>
+          <div className="text-center md:text-left">
+            <h3 className="font-heading font-semibold text-lg mb-6">Resources</h3>
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    to={link.href} 
-                    className="font-body text-primary-foreground/80 hover:text-accent transition-colors"
-                  >
+                  <Link to={link.href} className="hover:text-accent transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -113,17 +96,12 @@ const Footer = () => {
           </div>
 
           {/* Company */}
-          <div>
-            <h3 className="font-heading font-semibold text-lg text-primary-foreground mb-6">
-              Company
-            </h3>
+          <div className="text-center md:text-left">
+            <h3 className="font-heading font-semibold text-lg mb-6">Company</h3>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    to={link.href} 
-                    className="font-body text-primary-foreground/80 hover:text-accent transition-colors"
-                  >
+                  <Link to={link.href} className="hover:text-accent transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -134,36 +112,24 @@ const Footer = () => {
 
         {/* Social Links & CTA */}
         <div className="border-t border-primary-foreground/20 pt-8 mb-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-            <div className="text-center md:text-left">
-              <h4 className="font-heading font-semibold text-lg text-primary-foreground mb-2">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+              <h4 className="font-heading font-semibold text-lg mb-2">
                 Ready to Build Your Legacy?
               </h4>
-              <p className="font-body text-primary-foreground/80">
-                Schedule your free consultation today
-              </p>
+              <p>Schedule your free consultation today</p>
             </div>
-            
-            <div className="flex items-center space-x-6">
+            <div className="flex flex-wrap justify-center md:justify-end gap-4">
               {/* Social Icons */}
-              <div className="flex items-center space-x-4">
+              <div className="flex gap-4">
                 {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="text-primary-foreground/60 hover:text-accent transition-colors"
-                  >
+                  <a key={social.label} href={social.href} aria-label={social.label} className="hover:text-accent transition-colors">
                     <social.icon className="w-5 h-5" />
                   </a>
                 ))}
               </div>
-              
               {/* CTA Button */}
-              <Link 
-                to="/contact" 
-                className="bg-accent text-accent-foreground px-6 py-3 rounded-lg font-body font-medium hover:bg-accent-dark transition-colors"
-              >
+              <Link to="/contact" className="bg-accent px-6 py-3 rounded-lg font-medium hover:bg-accent-dark transition-colors">
                 Get Started
               </Link>
             </div>
@@ -171,11 +137,11 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/20 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-primary-foreground/60 text-sm">
+        <div className="border-t border-primary-foreground/20 pt-8 text-center md:text-left">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex flex-col md:flex-row items-center gap-4 text-sm">
               <p>&copy; 2024 Empower Life. All rights reserved.</p>
-              <div className="flex items-center space-x-4">
+              <div className="flex gap-4">
                 <Link to="/privacy" className="hover:text-accent transition-colors">
                   Privacy Policy
                 </Link>
@@ -187,12 +153,10 @@ const Footer = () => {
                 </Link>
               </div>
             </div>
-            
-            <p className="text-primary-foreground/60 text-sm text-center md:text-right">
-              Licensed Financial Professional | NMLS #123456
-            </p>
+            <p className="text-sm">Licensed Financial Professional | NMLS #123456</p>
           </div>
         </div>
+
       </div>
     </footer>
   );
