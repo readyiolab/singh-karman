@@ -213,11 +213,11 @@ const Contact = () => {
                 Send Me a Message
               </h3>
               <div className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid  ">
                   <div className="space-y-2">
-                    <label htmlFor="firstName" className="text-base font-medium text-gray-900">First Name</label>
+                    <label htmlFor="Name" className="text-base font-medium text-gray-900"> Name</label>
                     <input
-                      id="firstName"
+                      id="Name"
                       type="text"
                       value={formData.firstName}
                       onChange={(e) => handleInputChange('firstName', e.target.value)}
@@ -226,18 +226,7 @@ const Contact = () => {
                       required
                     />
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="lastName" className="text-base font-medium text-gray-900">Last Name</label>
-                    <input
-                      id="lastName"
-                      type="text"
-                      value={formData.lastName}
-                      onChange={(e) => handleInputChange('lastName', e.target.value)}
-                      placeholder="Your last name"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-lime-500 transition-all duration-300"
-                      required
-                    />
-                  </div>
+                  
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-base font-medium text-gray-900">Email</label>

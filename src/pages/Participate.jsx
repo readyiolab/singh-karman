@@ -88,7 +88,7 @@ const Participate = () => {
     <div className="bg-gray-50">
       {/* Hero Section */}
       <section
-        className="relative min-h-[60vh] flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmluYW5jZXxlbnwwfHwwfHx8MA%3D%3D')",
