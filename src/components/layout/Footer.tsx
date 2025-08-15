@@ -30,15 +30,15 @@ const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        
+
         {/* Main Footer Content */}
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 mb-12">
-          
+
           {/* Company Info */}
-          <div className="text-center md:text-left">
-            <div className="flex justify-center md:justify-start items-center space-x-3 mb-6">
+          <div className="text-left">
+            <div className="flex justify-start items-center space-x-3 mb-6">
               <div className="h-10 w-auto">
-                <img src="/footer-logo.webp" alt="Company Logo" className="h-16 w-auto " />
+                <img src="/footer-logo.webp" alt="Company Logo" className="h-16 w-auto" />
               </div>
             </div>
             <p className="font-body text-primary-foreground/80 mb-6 leading-relaxed">
@@ -48,19 +48,19 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div className="space-y-3">
-              <div className="flex justify-center md:justify-start items-center space-x-3">
+              <div className="flex justify-start items-center space-x-3">
                 <Phone className="w-5 h-5 text-accent" />
                 <a href="tel:206-801-0330" className="hover:text-accent transition-colors">
                   (206) 801-0330
                 </a>
               </div>
-              <div className="flex justify-center md:justify-start items-center space-x-3">
+              <div className="flex justify-start items-center space-x-3">
                 <Mail className="w-5 h-5 text-accent" />
                 <a href="mailto:info@empowerlife.com" className="hover:text-accent transition-colors">
                   info@empowerlife.com
                 </a>
               </div>
-              <div className="flex justify-center md:justify-start items-center space-x-3">
+              <div className="flex justify-start items-center space-x-3">
                 <MapPin className="w-5 h-5 text-accent" />
                 <span>USA</span>
               </div>
@@ -68,7 +68,7 @@ const Footer = () => {
           </div>
 
           {/* Services */}
-          <div className="text-center md:text-left">
+          <div className="text-left">
             <h3 className="font-heading font-semibold text-lg mb-6">Services</h3>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
@@ -82,7 +82,7 @@ const Footer = () => {
           </div>
 
           {/* Resources */}
-          <div className="text-center md:text-left">
+          <div className="text-left">
             <h3 className="font-heading font-semibold text-lg mb-6">Resources</h3>
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
@@ -96,7 +96,7 @@ const Footer = () => {
           </div>
 
           {/* Company */}
-          <div className="text-center md:text-left">
+          <div className="text-left">
             <h3 className="font-heading font-semibold text-lg mb-6">Company</h3>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
@@ -112,14 +112,14 @@ const Footer = () => {
 
         {/* Social Links & CTA */}
         <div className="border-t border-primary-foreground/20 pt-8 mb-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-left">
             <div>
               <h4 className="font-heading font-semibold text-lg mb-2">
                 Ready to Build Your Legacy?
               </h4>
               <p>Schedule your free consultation today</p>
             </div>
-            <div className="flex flex-wrap justify-center md:justify-end gap-4">
+            <div className="flex flex-wrap justify-start md:justify-end gap-4">
               {/* Social Icons */}
               <div className="flex gap-4">
                 {socialLinks.map((social) => (
@@ -137,9 +137,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/20 pt-8 text-center md:text-left">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex flex-col md:flex-row items-center gap-4 text-sm">
+        <div className="border-t border-primary-foreground/20 pt-8 text-left">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-4 text-sm">
               <p>&copy; 2024 Empower Life. All rights reserved.</p>
               <div className="flex gap-4">
                 <Link to="/privacy" className="hover:text-accent transition-colors">
