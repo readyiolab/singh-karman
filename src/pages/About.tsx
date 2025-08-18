@@ -153,11 +153,14 @@ const About = () => {
                   The Struggle
                 </h3>
                 <p className="text-base text-gray-600 leading-relaxed">
-                  There were many times I felt like my life wasn’t amounting to anything. I’d work hard, achieve a little, and then feel it slipping away. Deep down, I wanted to build something of my own — something that couldn’t be taken away, something with my name on it. But I didn’t come from money. In fact, I was often seen as below average. I felt stuck. I knew I couldn’t live my life working for someone else and calling that fulfillment.
+                 There were times I felt like my life wasn’t going anywhere. I would work hard, make a little progress, only to watch it slip away. Deep down, I wanted to build something lasting — something that couldn’t be taken from me, something with my name on it. But I didn’t come from money. In fact, I was often underestimated, seen as “average.” I felt stuck, and I knew working for someone else would never give me the fulfillment I longed for.
+
                   <br /><br />
-                  I realized this isn’t the era where we need to “work for the man” just to survive. If I was going to work eight hours a day, I decided I’d rather do it for myself — and for a bigger purpose. The only problem? I didn’t have the funds or a financial cushion. I wasn’t going to ask my family for help — they had already given so much just to provide a decent life for me and my little sister. My parents sacrificed endlessly, yet they still didn’t have peace of mind. That lit a fire in me.
+                 I realized we’re no longer in an era where success has to mean “working for the man” just to survive. If I was going to pour eight hours a day into work, I wanted it to be for myself — and for a greater purpose. The challenge? I had no financial cushion, no outside funding, and I refused to ask my family for help. My parents had already sacrificed so much to provide a decent life for me and my little sister. Even after all their hard work, they still didn’t have peace of mind — and that lit a fire in me.
+
                   <br /><br />
-                  I started building while still working. I took every ounce of determination I had and pushed toward a future that looked nothing like my present. Along the way, I met people doing things on their own terms — building freedom, creating impact, owning their time. And I knew I was on the right path.
+                So I started building while still working. With nothing but determination, I pushed toward a future completely different from my present. Along the way, I met people who were living life on their own terms — creating freedom, impact, and ownership of their time. In that moment, I knew I was on the right path.
+
                 </p>
               </div>
               <div className="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
@@ -165,11 +168,13 @@ const About = () => {
                   The Mission
                 </h3>
                 <p className="text-base text-gray-600 leading-relaxed">
-                  I wasn’t born into wealth. My family worked hard — incredibly hard — to give me and all my family a great life. They sacrificed without hesitation. But even with all that effort, they often came up short on peace of mind. That left a mark on me. I saw the struggle, and I knew I never wanted to just “get by.”
+                  My mission is simple: to equip families with the knowledge and strategies to build lasting wealth, protect what matters most, and create a legacy with confidence.
+
                   <br /><br />
-                  I also knew I wasn’t wired to work a job just for the sake of survival. I craved purpose. Ownership. Legacy. But like many others, I didn’t know where to start. Financial literacy wasn’t taught to me in school — or at home. I had to find it myself.
+                 I believe financial freedom is not just about numbers — it’s about clarity, control, and peace of mind. 
                   <br /><br />
-                  And I did. I immersed myself in the world of money, freedom, and long-term thinking. I studied how the elite protect and multiply their wealth — and why so many others stay stuck. I committed to mastering this craft not just for myself, but so I could give it away. Because I believe in empowering people, not just advising them.
+                 Through education and purposeful planning, I empower people to take ownership of their future and live with intention.
+
                   <br /><br />
                   Today, I help families build generational wealth with strategies rooted in clarity, control, and confidence. I help people understand their money, protect their loved ones, and live with intention. This isn’t just what I do — it’s who I’ve become. And it’s how I give back to the people I care about: my family, my community, and anyone who’s ready to take ownership of their future.
                 </p>
@@ -200,7 +205,8 @@ const About = () => {
               </span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              The principles that guide our mission to empower you toward financial freedom and a purpose-driven life.
+              The principles that guide everything we do — empowering you to achieve financial freedom with clarity and confidence.
+
             </p>
           </motion.div>
 
@@ -212,26 +218,26 @@ const About = () => {
           >
             {[
               {
-                id: 'Integrity',
-                title: 'Integrity',
+                id: 'Confidence',
+                title: 'Confidence',
                 description:
-                  'We simplify complex financial concepts to help you understand your money and make informed decisions.',
+                  'We empower you to make informed financial decisions with clarity and peace of mind.',
                 icon: <Sparkles className="w-10 h-10 text-white" />,
                 gradient: 'from-blue-400 via-blue-500 to-blue-600',
               },
               {
-                id: 'Liability',
-                title: 'Liability',
+                id: 'Integrity',
+                title: 'Integrity',
                 description:
-                  'Take charge of your financial future with strategies designed for stability and growth.',
+                  'Every recommendation is built on honesty, transparency, and your best interest.  ',
                 icon: <Target className="w-10 h-10 text-white" />,
                 gradient: 'from-emerald-400 via-green-500 to-teal-600',
               },
               {
-                id: 'Alignment',
-                title: 'Alignment',
+                id: 'Reliability',
+                title: 'Reliability',
                 description:
-                  'Build the confidence to pursue your goals with proven tools and personalized guidance.',
+                  'We deliver consistent guidance you can trust — today, tomorrow, and for generations.',
                 icon: <Zap className="w-10 h-10 text-white" />,
                 gradient: 'from-rose-400 via-red-500 to-orange-500',
               },
@@ -239,7 +245,7 @@ const About = () => {
                 id: 'Legacy',
                 title: 'Legacy',
                 description:
-                  'Create a lasting impact for your family and community with wealth that endures.',
+                  'We help you create lasting impact for your family and community through purposeful wealth planning.',
                 icon: <Award className="w-10 h-10 text-white" />,
                 gradient: 'from-teal-400 via-cyan-500 to-blue-500',
               },
@@ -296,7 +302,8 @@ const About = () => {
               />
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Empowering individuals, families, and professionals to achieve financial freedom and build lasting legacies with confidence.
+              EEmpowering individuals, families, and professionals to achieve financial freedom and build lasting legacies with clarity and confidence.
+
             </p>
           </motion.div>
 
@@ -322,7 +329,8 @@ const About = () => {
                   Our Mission
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed text-center">
-                  At Empower Life, we redefine financial empowerment by giving you the tools to live life on your terms. Our mission is to guide individuals, families, and professionals toward financial freedom through tailored strategies in wealth growth, asset protection, and legacy planning. Whether you're starting your journey or securing your retirement, our expert guidance ensures a future of abundance and security.
+                At Empower Life, we redefine what it means to be financially empowered. Our mission is to guide people at every stage of life — from building their first plan to securing their retirement — with tailored strategies in wealth growth, asset protection, and legacy planning. With expert guidance and proven systems, we help ensure a future of abundance, stability, and purpose.
+
                 </p>
               </div>
             </motion.div>
@@ -342,7 +350,8 @@ const About = () => {
                   Our Community
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed text-center">
-                  Empower Life is a vibrant community of ambitious individuals dedicated to financial success and meaningful impact. We provide unparalleled opportunities for team members to grow their careers with world-class training, mentorship, and proven systems. Our education-first approach empowers both clients and team members to make informed decisions and achieve financial independence together.
+               Empower Life is more than a company — it’s a community of ambitious individuals committed to financial success and meaningful impact. We provide world-class mentorship, education, and growth opportunities for both clients and team members. Through collaboration and an education-first approach, we empower people to achieve independence, create legacies, and thrive together.
+
                 </p>
               </div>
             </motion.div>
@@ -360,19 +369,19 @@ const About = () => {
               {[
                 {
                   title: 'Empowerment',
-                  description: 'Equipping clients with tools for financial control and team members with opportunities to build thriving businesses.',
+                  description: 'We equip clients with the tools to take control of their financial future — and provide team members the opportunity to build thriving, purpose-driven businesses.',
                   icon: <Users className="w-12 h-12 text-white" />,
                   gradient: 'from-blue-600 to-blue-800',
                 },
                 {
                   title: 'Integrity',
-                  description: 'Delivering transparent, honest, and compliant financial solutions you can trust.',
+                  description: 'Every solution we provide is transparent, honest, and fully aligned with your best interests. Trust is the foundation of everything we do.',
                   icon: <BookOpen className="w-12 h-12 text-white" />,
                   gradient: 'from-emerald-600 to-teal-800',
                 },
                 {
                   title: 'Legacy',
-                  description: 'Building lasting wealth and impact for clients and team members across generations.',
+                  description: 'We help families and professionals create lasting wealth and impact — building a future that endures for generations.',
                   icon: <Heart className="w-12 h-12 text-white" />,
                   gradient: 'from-teal-600 to-blue-800',
                 },
@@ -423,7 +432,7 @@ const About = () => {
           <motion.div {...fadeInUp} className="text-center max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
               Ready to Build Your
-              <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
+              <span className="block pb-4 bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
                 Financial Legacy?
               </span>
             </h2>

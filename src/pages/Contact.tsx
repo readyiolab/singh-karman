@@ -121,12 +121,11 @@ const Contact = () => {
           <img
             src="https://images.unsplash.com/uploads/141103282695035fa1380/95cdfeef?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fGNvbnRhY3R8ZW58MHx8MHx8fDA%3D"
             alt="Hero background"
-            className="w-full h-full object-cover opacity-80"
+            className="w leakage-full h-full object-cover opacity-80"
           />
           <div className="absolute inset-0 bg-primary/60" />
         </div>
         <div className="absolute inset-0 opacity-20">
-          
         </div>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 animate-float">
@@ -213,9 +212,9 @@ const Contact = () => {
                 Send Me a Message
               </h3>
               <div className="space-y-6">
-                <div className="grid  ">
+                <div className="grid">
                   <div className="space-y-2">
-                    <label htmlFor="Name" className="text-base font-medium text-gray-900"> Name</label>
+                    <label htmlFor="Name" className="text-base font-medium text-gray-900">Name</label>
                     <input
                       id="Name"
                       type="text"
@@ -226,7 +225,6 @@ const Contact = () => {
                       required
                     />
                   </div>
-                  
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-base font-medium text-gray-900">Email</label>
@@ -308,10 +306,10 @@ const Contact = () => {
                     icon: <Mail className="w-6 h-6 text-lime-500 flex-shrink-0" />,
                     content: (
                       <a
-                        href="mailto:contact@empowerlife.com"
+                        href="mailto:admin@singhkarman.com"
                         className="text-gray-700 hover:text-lime-500 transition-colors duration-300"
                       >
-                        contact@empowerlife.com
+                        admin@singhkarman.com
                       </a>
                     ),
                   },
@@ -347,12 +345,12 @@ const Contact = () => {
                     icon: <Instagram className="w-6 h-6 text-lime-500 flex-shrink-0" />,
                     content: (
                       <a
-                        href="https://instagram.com/empowerlife"
+                        href="https://instagram.com/singhkarman"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-700 hover:text-lime-500 transition-colors duration-300"
                       >
-                        @empowerlife
+                        @singhkarman
                       </a>
                     ),
                   },
@@ -360,12 +358,12 @@ const Contact = () => {
                     icon: <Linkedin className="w-6 h-6 text-lime-500 flex-shrink-0" />,
                     content: (
                       <a
-                        href="https://linkedin.com/company/empowerlife"
+                        href="https://linkedin.com/in/karmansinghceo"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-700 hover:text-lime-500 transition-colors duration-300"
                       >
-                        EmpowerLife
+                        karmansinghceo
                       </a>
                     ),
                   },
@@ -388,7 +386,8 @@ const Contact = () => {
 
       {/* Core Values Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-indigo-50 to-blue-100">
-        <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div className="container px-4 sm:px-
+6 lg:px-8 max-w-6xl mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Why Connect
@@ -397,7 +396,7 @@ const Contact = () => {
               </span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Our commitment to your financial journey is rooted in trust, responsiveness, and empowerment.
+              Our commitment is rooted in the values that guide everything we do. When you reach out, you’re not just meeting an advisor — you’re partnering with someone who puts your future first.
             </p>
           </motion.div>
 
@@ -409,30 +408,32 @@ const Contact = () => {
           >
             {[
               {
-                id: 'trust',
-                title: 'Trust',
-                description: 'We prioritize transparency and integrity in every interaction to build lasting relationships.',
+                id: 'Confidence',
+                title: 'Confidence',
+                description: 'We empower you to make informed decisions with clarity and peace of mind.',
                 icon: <Sparkles className="w-10 h-10 text-white" />,
                 gradient: 'from-blue-400 via-blue-500 to-blue-600',
               },
               {
-                id: 'responsiveness',
-                title: 'Responsiveness',
-                description: 'Your questions and goals deserve timely, thoughtful answers. We’re here when you need us.',
+                id: 'Integrity',
+                title: 'Integrity',
+                description: 'Every recommendation is built on honesty, transparency, and your best interest.',
                 icon: <Zap className="w-10 h-10 text-white" />,
                 gradient: 'from-emerald-400 via-green-500 to-teal-600',
               },
               {
-                id: 'empowerment',
-                title: 'Empowerment',
-                description: 'We equip you with the knowledge and tools to take control of your financial future.',
+                id: 'Reliability',
+                title: 'Reliability',
+                description
+
+: 'We deliver consistent guidance you can trust — today, tomorrow, and for generations.',
                 icon: <Target className="w-10 h-10 text-white" />,
                 gradient: 'from-rose-400 via-red-500 to-orange-500',
               },
               {
-                id: 'personalization',
-                title: 'Personalization',
-                description: 'Every journey is unique. We tailor our approach to your specific goals and needs.',
+                id: 'Legacy',
+                title: 'Legacy',
+                description: 'We help you create lasting impact for your family and community through purposeful wealth planning.',
                 icon: <Calendar className="w-10 h-10 text-white" />,
                 gradient: 'from-teal-400 via-cyan-500 to-blue-500',
               },
@@ -500,16 +501,12 @@ const Contact = () => {
                     {faq.question}
                   </h3>
                   <ChevronDown
-                    className={`w-6 h-6 text-lime-500 transform transition-transform duration-300 ${
-                      openFaq === index ? 'rotate-180' : ''
-                    }`}
+                    className={`w-6 h-6 text-lime-500 transform transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}
                   />
                 </button>
                 <div
                   id={`faq-answer-${index}`}
-                  className={`${
-                    openFaq === index ? 'block' : 'hidden'
-                  } px-6 pb-6 text-gray-600 text-base sm:text-lg leading-relaxed`}
+                  className={`${openFaq === index ? 'block' : 'hidden'} px-6 pb-6 text-gray-600 text-base sm:text-lg leading-relaxed`}
                 >
                   {faq.answer.split('\n').map((line, i) => (
                     <p key={i} className={line.startsWith('-') ? 'ml-4' : ''}>
@@ -541,30 +538,35 @@ const Contact = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group">
                 <a
-                  href="https://calendly.com/simran-shinakaur/15"
+                  href="https://calendly.com/singhkarman/businessoverview"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Button
                     size="lg"
-                    className="min-w-[240px] justify-center"
-                    aria-label="Book a Free Consultation"
+                    className="min-w-[240px] justify-center bg-gradient-to-r from-lime-500 to-green-600 text-white font-semibold"
+                    aria-label="Book a Business Overview Consultation"
                   >
-                    Book Consultation
+                    Business Overview
                     <Calendar className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group">
-                <Button
-                  to="/about"
-                  size="lg"
-                  variant="outline"
-                  className="min-w-[240px] justify-center"
-                  aria-label="Learn More About Our Mission"
+                <a
+                  href="https://calendly.com/singhkarman/financialstrategy"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Learn More
-                </Button>
+                  <Button
+                    size="lg"
+                    className="min-w-[240px] justify-center bg-gradient-to-r from-lime-500 to-green-600 text-white font-semibold"
+                    aria-label="Book a Financial Strategy Consultation"
+                  >
+                    Financial Strategy
+                    <Calendar className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </a>
               </motion.div>
             </div>
           </motion.div>

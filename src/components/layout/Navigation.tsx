@@ -139,9 +139,16 @@ const Navigation = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:flex">
-            <Button className="bg-primary text-white font-medium px-8 py-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:bg-blue-700">
-              Book Consultation
-            </Button>
+           <a
+  href="https://calendly.com/karmansingh/businessoverview"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Button className="w-full bg-primary hover:bg-blue-700 text-white font-medium py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[0.98] transition-all duration-300">
+    Book Consultation
+  </Button>
+</a>
+
           </div>
 
           {/* Mobile menu button */}
@@ -241,9 +248,16 @@ const Navigation = () => {
                 transitionDelay: isOpen ? `${navItems.length * 100}ms` : "0ms",
               }}
             >
-              <Button className="w-full bg-primary hover:bg-blue-700 text-white font-medium py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[0.98] transition-all duration-300">
-                Book Consultation
-              </Button>
+           <a
+  href="https://calendly.com/karmansingh/businessoverview"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Button className="w-full bg-primary hover:bg-blue-700 text-white font-medium py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[0.98] transition-all duration-300">
+    Book Consultation
+  </Button>
+</a>
+
             </div>
           </div>
         </div>

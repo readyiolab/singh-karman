@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Heart, Target, Users } from "lucide-react";
+import { ArrowRight, Heart, Target, Users, Book } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -9,19 +9,25 @@ const AboutPreview = () => {
       icon: Target,
       title: "Purpose-Driven Approach",
       description:
-        "Every strategy is crafted with your family’s future in mind, prioritizing long-term impact over fleeting gains.",
+        "Every plan is built with your family’s future in mind — designed to protect your present and strengthen your legacy.",
     },
     {
       icon: Users,
-      title: "Education-Focused Sessions",
+      title: "Education-Focused",
       description:
-        "We empower you with knowledge, not just advice, so you can make confident financial decisions.",
+        "We go beyond advice. You’ll gain the knowledge and tools to make confident financial decisions for life.",
+    },
+    {
+      icon: Book,
+      title: "Personalized Planning",
+      description:
+        "No cookie-cutter solutions. Your plan is tailored to your lifestyle, income, and vision for the future.",
     },
     {
       icon: Heart,
       title: "Simplified Strategies",
       description:
-        "Clear, jargon-free plans designed to build your confidence through understanding.",
+        "Finance doesn’t need to be complicated. We deliver clear, jargon-free strategies so you can move forward with confidence.",
     },
   ];
 
@@ -54,9 +60,9 @@ const AboutPreview = () => {
               transition={{ delay: 0.3 }}
               className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-foreground"
             >
-              From Humble Roots to{" "}
-              <span className="bg-clip-text text-accent-dark ">
-                Purposeful Wealth
+              Beyond Advice —{" "}
+              <span className="bg-clip-text text-accent-dark">
+                Real Tools for Your Financial Future
               </span>
             </motion.h2>
 
@@ -67,14 +73,10 @@ const AboutPreview = () => {
               className="space-y-4 text-base sm:text-lg text-muted-foreground leading-relaxed"
             >
               <p>
-                Karman’s journey began with a family that worked tirelessly,
-                sacrificing everything for a better future. That relentless drive
-                to create a lasting legacy fuels his mission today.
-              </p>
-              <p>
-                He’s now dedicated to empowering others to break free from
-                financial uncertainty, using time-tested strategies once reserved
-                for the elite. This isn’t just business—it’s personal.
+                I know what it feels like to face financial uncertainty — and I
+                also know the freedom that comes from building lasting wealth. My
+                role is to guide you with strategies that don’t just tell you what
+                to do, but empower you to take confident action at every step.
               </p>
             </motion.div>
 
@@ -111,7 +113,7 @@ const AboutPreview = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-cyan-400 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-3xl rounded-bl-3xl"></div>
 
                   {/* Main content */}
-                  <div className="relative bg-primary  backdrop-blur-md border border-blue-800 shadow-lg group-hover:shadow-2xl transition-all duration-300 p-4 sm:p-6 flex items-start space-x-4 rounded-tr-3xl rounded-bl-3xl group-hover:scale-[1.03]">
+                  <div className="relative bg-primary backdrop-blur-md border border-blue-800 shadow-lg group-hover:shadow-2xl transition-all duration-300 p-4 sm:p-6 flex items-start space-x-4 rounded-tr-3xl rounded-bl-3xl group-hover:scale-[1.03]">
                     <div className="bg-white p-2 sm:p-3 rounded-full flex-shrink-0 transition-colors duration-300 group-hover:bg-primary-foreground/65">
                       <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                     </div>

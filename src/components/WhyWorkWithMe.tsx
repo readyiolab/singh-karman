@@ -5,26 +5,26 @@ const WhyWorkWithMe = () => {
   const reasons = [
     {
       icon: Target,
-      title: "Purpose-Driven Approach",
-      description: "This isn't just business — it's personal. Every strategy is designed with your family's legacy in mind.",
+      title: "Clarity First",
+      description: "Simple, jargon-free strategies you can actually understand and trust.",
       gradient: "from-blue-400 via-blue-500 to-blue-600"
     },
     {
       icon: BookOpen,
-      title: "Education-Focused",
-      description: "We don't just advise — we equip you with the knowledge to make confident financial decisions for life.",
+      title: "Ongoing Guidance ",
+      description: "Annual reviews and check-ins to ensure your plan grows with you.",
       gradient: "from-emerald-400 via-green-500 to-teal-600"
     },
     {
       icon: Users,
-      title: "Personalized Planning",
+      title: "Empowering Education ",
       description: "One size doesn't fit all. Your plan is tailored to your income, lifestyle, and unique goals.",
       gradient: "from-teal-400 via-cyan-500 to-blue-500"
     },
     {
       icon: Heart,
-      title: "Simplified Strategies",
-      description: "Clear, understandable plans without the jargon — because clarity leads to confidence and action.",
+      title: "Real Solutions ",
+      description: "Proven strategies designed for real families — practical, effective, lasting.",
       gradient: "from-rose-400 via-red-500 to-orange-500"
     }
   ];
@@ -51,7 +51,7 @@ const WhyWorkWithMe = () => {
   return (
     <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-gray-100/50 to-gray-50/20 dark:from-gray-900/50 dark:to-gray-800/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,7 +68,7 @@ const WhyWorkWithMe = () => {
             <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="font-semibold text-sm uppercase tracking-wider">Why Choose Us</span>
           </motion.div>
-          
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,14 +77,14 @@ const WhyWorkWithMe = () => {
           >
             I Don't Just Advise — <span className="bg-clip-text text-transparent bg-accent-dark">I Equip</span>
           </motion.h2>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
             className="font-body text-sm sm:text-base lg:text-lg xl:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
-            Having walked the path from financial uncertainty to building generational wealth, 
+            Having walked the path from financial uncertainty to building generational wealth,
             I understand the challenges you face — and I'm here to guide you through every step.
           </motion.p>
         </motion.div>
@@ -136,7 +136,7 @@ const WhyWorkWithMe = () => {
             transition={{ delay: 0.7, duration: 0.5 }}
             className="font-playwrite font-bold text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-gray-900 dark:text-gray-100 mb-6 sm:mb-8 text-center "
           >
-            My <span className="text-accent-dark  f">Commitment</span> to You
+            My <span className="text-accent-dark  f">Commitment</span> 
           </motion.h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {commitments.map((commitment, index) => (
@@ -168,36 +168,35 @@ const WhyWorkWithMe = () => {
         </motion.div>
 
         {/* Quote Section */}
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.9, duration: 0.5 }}
-  style={{
-    backgroundImage: 'linear-gradient(135deg, #004e92 0%, #007494 50%, #009688 100%)'
-  }}
-  className="max-w-4xl mx-auto rounded-tl-2xl rounded-br-2xl p-4 sm:p-6 lg:p-8 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9, duration: 0.5 }}
+          style={{
+            backgroundImage: 'linear-gradient(135deg, #004e92 0%, #007494 50%, #009688 100%)'
+          }}
+          className="max-w-4xl mx-auto rounded-tl-2xl rounded-br-2xl p-4 sm:p-6 lg:p-8 
              border border-blue-500/20 shadow-lg hover:shadow-xl transition-all duration-300"
->
-  <div className="relative text-center">
-    {/* Decorative circles */}
-    <div className="absolute -top-2 -left-2 w-4 h-4 bg-teal-500/20 rounded-full" />
-    <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-teal-500/20 rounded-full" />
+        >
+          <div className="relative text-center">
+            {/* Decorative circles */}
+            <div className="absolute -top-2 -left-2 w-4 h-4 bg-teal-500/20 rounded-full" />
+            <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-teal-500/20 rounded-full" />
 
-    {/* Quote Text */}
-    <p className="font-body text-sm sm:text-base lg:text-lg xl:text-xl 
+            {/* Quote Text */}
+            <p className="font-body text-sm sm:text-base lg:text-lg xl:text-xl 
                   text-gray-100 italic leading-relaxed relative z-10">
-      "I built this business from the ground up — not with funding, but with purpose. 
-      I know what it feels like to struggle financially, and I'm here to show you 
-      how to break free and build wealth with integrity."
-    </p>
+              "This business was built on purpose, not privilege. I’ve lived through financial struggle, and my mission is to help families rise above it creating wealth with clarity, confidence, and integrity.”
 
-    {/* Author */}
-    <p className="font-playwrite font-semibold text-white mt-3 sm:mt-4 lg:mt-6 
+            </p>
+
+            {/* Author */}
+            <p className="font-playwrite font-semibold text-white mt-3 sm:mt-4 lg:mt-6 
                   text-sm sm:text-base lg:text-lg xl:text-xl relative z-10">
-      — Karman Singh
-    </p>
-  </div>
-</motion.div>
+              — Karman Singh
+            </p>
+          </div>
+        </motion.div>
 
       </div>
     </section>

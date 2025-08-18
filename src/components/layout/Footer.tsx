@@ -11,7 +11,7 @@ const Footer = () => {
     ],
     resources: [
       { name: "Wealth Calculator", href: "/calculator" },
-      { name: "Free PDF Guides", href: "/resources" }
+      { name: "Free PDF Guides", href: "#" }
     ],
     company: [
       { name: "About Karman", href: "/about" },
@@ -22,9 +22,8 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Facebook, href: "#", label: "Facebook" }
+    { icon: Instagram, href: "https://instagram.com/singhkarman", label: "Instagram" },
+    { icon: Linkedin, href: "https://linkedin.com/in/karmansinghceo", label: "LinkedIn" }
   ];
 
   return (
@@ -56,8 +55,8 @@ const Footer = () => {
               </div>
               <div className="flex justify-start items-center space-x-3">
                 <Mail className="w-5 h-5 text-accent" />
-                <a href="mailto:info@empowerlife.com" className="hover:text-accent transition-colors">
-                  info@empowerlife.com
+                <a href="mailto:admin@singhkarman.com" className="hover:text-accent transition-colors">
+                  admin@singhkarman.com
                 </a>
               </div>
               <div className="flex justify-start items-center space-x-3">
@@ -123,15 +122,20 @@ const Footer = () => {
               {/* Social Icons */}
               <div className="flex gap-4">
                 {socialLinks.map((social) => (
-                  <a key={social.label} href={social.href} aria-label={social.label} className="hover:text-accent transition-colors">
+                  <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
                     <social.icon className="w-5 h-5" />
                   </a>
                 ))}
               </div>
-              {/* CTA Button */}
-              <Link to="/contact" className="bg-accent px-6 py-3 rounded-lg font-medium hover:bg-accent-dark transition-colors">
-                Get Started
-              </Link>
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a href="https://calendly.com/singhkarman/businessoverview" target="_blank" rel="noopener noreferrer" className="bg-accent px-6 py-3 rounded-lg font-medium hover:bg-accent-dark transition-colors text-center">
+                  Business Overview
+                </a>
+                <a href="https://calendly.com/singhkarman/financialstrategy" target="_blank" rel="noopener noreferrer" className="bg-accent px-6 py-3 rounded-lg font-medium hover:bg-accent-dark transition-colors text-center">
+                  Financial Strategy
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -153,7 +157,7 @@ const Footer = () => {
                 </Link>
               </div>
             </div>
-            <p className="text-sm">Licensed Financial Professional | NMLS #123456</p>
+            <p className="text-sm">Licensed Financial Professional </p>
           </div>
         </div>
 

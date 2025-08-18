@@ -282,8 +282,8 @@ const PDFDownload = () => {
             >
               <X size={24} />
             </button>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Get Your Free Guide: {selectedGuide?.title}
+            <h3 className="text-xl font-semibold text-gray-900 mb-6 mt-2">
+            {selectedGuide?.title}
             </h3>
             {error && (
               <p className="text-red-500 text-sm mb-4">{error}</p>

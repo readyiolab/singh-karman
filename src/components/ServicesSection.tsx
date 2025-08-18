@@ -17,7 +17,7 @@ const ServicesSection = () => {
     {
       icon: Shield,
       title: "Life Insurance Planning",
-      description: "Protection that builds wealth, not just covers loss. Secure your family's future with smart insurance strategies.",
+      description: "Protect your family and grow wealth at the same time. Our strategies go beyond coverage — they create lasting security.",
       gradient: "from-blue-400 via-blue-500 to-blue-600",
       bgPattern: "shield",
       stats: "98% Client Satisfaction"
@@ -25,7 +25,7 @@ const ServicesSection = () => {
     {
       icon: TrendingUp,
       title: "Tax-Free Retirement",
-      description: "Maximize your income, minimize your tax bill. Build a retirement that works as hard as you did.",
+      description: "Keep more of what you earn. Build a retirement that pays you back — tax-efficient and stress-free.",
       gradient: "from-emerald-400 via-green-500 to-teal-600",
       bgPattern: "chart",
       stats: "Average 15% Tax Savings"
@@ -33,7 +33,7 @@ const ServicesSection = () => {
     {
       icon: GraduationCap,
       title: "College Savings",
-      description: "Give your children a debt-free start. Strategic education funding that grows with your family.",
+      description: "Give your children the gift of a debt-free future with education funding that grows alongside your family.",
       gradient: "from-purple-400 via-violet-500 to-indigo-600",
       bgPattern: "education",
       stats: "250+ Families Helped"
@@ -41,7 +41,7 @@ const ServicesSection = () => {
     {
       icon: Users,
       title: "Legacy Planning",
-      description: "Leave more than money — leave direction. Create lasting impact for generations to come.",
+      description: "Leave more than money — leave clarity, direction, and a legacy your family can carry forward.",
       gradient: "from-indigo-400 via-blue-500 to-purple-600",
       bgPattern: "family",
       stats: "$50M+ Protected"
@@ -49,7 +49,7 @@ const ServicesSection = () => {
     {
       icon: BookOpen,
       title: "Financial Education",
-      description: "Understand what the wealthy know — and apply it. Transform your money mindset with proven strategies.",
+      description: "Learn the wealth strategies of the successful — and apply them to your own life with confidence.",
       gradient: "from-teal-400 via-cyan-500 to-blue-500",
       bgPattern: "knowledge",
       stats: "1000+ Students Trained"
@@ -57,7 +57,7 @@ const ServicesSection = () => {
     {
       icon: Calculator,
       title: "Debt Elimination",
-      description: "Get ahead faster by becoming truly debt-free. Strategic debt payoff that accelerates wealth building.",
+      description: "Break free from debt faster with strategies that accelerate payoff and unlock your wealth-building potential.",
       gradient: "from-rose-400 via-red-500 to-orange-500",
       bgPattern: "calculator",
       stats: "Average 3.2x Faster Payoff"
@@ -195,11 +195,11 @@ const ServicesSection = () => {
                 {/* Enhanced CTA */}
                 <div className="flex items-center justify-between">
                   <NavLink to="/services">
-  <button className="inline-flex items-center text-primary hover:text-primary-dark font-semibold text-sm group-hover:translate-x-1 transition-all duration-300">
-    Learn More
-    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-  </button>
-</NavLink>
+                    <button className="inline-flex items-center text-primary hover:text-primary-dark font-semibold text-sm group-hover:translate-x-1 transition-all duration-300">
+                      Learn More
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                    </button>
+                  </NavLink>
                   
                   {/* Progress indicator */}
                   <div className="w-12 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
@@ -219,10 +219,10 @@ const ServicesSection = () => {
         {/* Enhanced CTA Section */}
         <div className="text-center">
           <NavLink to="/services">
-          <button className="group bg-accent-dark text-white font-semibold px-8 py-4 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
-            <span>Start Your Journey Today</span>
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-          </button>
+            <button className="group bg-accent-dark text-white font-semibold px-8 py-4 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
+              <span>Start Your Journey Today</span>
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
           </NavLink>
           
           <p className="text-gray-500 dark:text-gray-400 text-sm mt-4">

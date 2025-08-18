@@ -76,8 +76,8 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 md:mb-10 max-w-2xl leading-relaxed mx-auto lg:mx-0">
-              Purpose-driven financial strategies designed to empower you and your family.
-              Break the cycle of financial uncertainty and create the legacy you deserve.
+             Your financial future deserves more than guesswork. We design strategies that protect what you’ve built, grow what you’ve earned, and create a legacy that lasts. With guidance you can trust, you’ll gain peace of mind today — and security for tomorrow.
+
             </p>
 
             {/* CTA Buttons with enhanced styling */}
