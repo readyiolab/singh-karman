@@ -1,27 +1,21 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [openSubmenu, setOpenSubmenu] = useState(null); // Track open submenu on mobile
   const navigate = useNavigate();
   const location = useLocation();
-  const timeoutRef = useRef(null); // For hover delay
 
+  // Flattened navigation items
   const navItems = [
-    { name: "Home", path: "/" },
+    
     { name: "About", path: "/about" },
-    {
-      name: "Services",
-      path: "/services",
-      children: [
-        { name: "PDF Download", path: "/pdf-download" },
-        { name: "Participate", path: "/participate" },
-      ],
-    },
+    { name: "Services", path: "/services" },
+    { name: "PDF Download", path: "/pdf-download" },
+    { name: "Participate", path: "/participate" },
     { name: "Calculator", path: "/calculator" },
     { name: "Contact", path: "/contact" },
   ];
@@ -36,34 +30,12 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle mouse enter with delay for submenu
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-  };
-
-  // Handle mouse leave with delay for submenu
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {}, 200);
-  };
-
   const handleNavClick = (item) => {
     setIsOpen(false);
-    setOpenSubmenu(null);
     navigate(item.path);
   };
 
-  const toggleSubmenu = (itemName) => {
-    setOpenSubmenu((prev) => (prev === itemName ? null : itemName));
-  };
-
   const isActive = (item) => {
-    if (!item.path) return false;
-    if (item.children) {
-      return (
-        item.path === location.pathname ||
-        item.children.some((child) => child.path === location.pathname)
-      );
-    }
     return item.path === location.pathname;
   };
 
@@ -82,73 +54,42 @@ const Navigation = () => {
               navigate("/");
             }}
           >
-            <img
-              src="/logo.webp"
-              alt="Logo"
-              className="w-auto h-12 object-contain"
-            />
+            <img src="/logo.webp" alt="Logo" className="w-20 h-auto" />
           </div>
 
           {/* Desktop Navigation - Centered */}
           <div className="hidden lg:flex items-center justify-center flex-1">
             <div className="flex items-center space-x-2 bg-white rounded-full p-2 border border-gray-200 shadow-sm">
               {navItems.map((item) => (
-                <div
+                <button
                   key={item.name}
-                  className="relative group"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                  onClick={() => handleNavClick(item)}
+                  className={`relative px-6 py-3 font-medium text-sm rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center ${
+                    isActive(item)
+                      ? "text-white bg-primary shadow-lg"
+                      : "text-gray-800 hover:text-blue-600 hover:bg-gray-100"
+                  }`}
                 >
-                  <button
-                    onClick={() => handleNavClick(item)}
-                    className={`relative px-6 py-3 font-medium text-sm rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center ${
-                      isActive(item)
-                        ? "text-white bg-primary shadow-lg"
-                        : "text-gray-800 hover:text-blue-600 hover:bg-gray-100"
-                    }`}
-                  >
-                    <span className="relative z-10">{item.name}</span>
-                    {item.children && (
-                      <ChevronDown size={16} className="ml-1" />
-                    )}
-                    {isActive(item) && (
-                      <div className="absolute inset-0 bg-primary rounded-full shadow-lg animate-pulse opacity-20" />
-                    )}
-                  </button>
-                  {item.children && (
-                    <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 opacity-0 group-hover:opacity-100 group-hover:block transition-opacity duration-200 z-50 border border-gray-100">
-                      {item.children.map((child) => (
-                        <button
-                          key={child.name}
-                          onClick={() => handleNavClick(child)}
-                          className={`block w-full text-left px-4 py-2 text-sm transition-colors ${
-                            child.path === location.pathname
-                              ? "bg-primary text-white"
-                              : "text-gray-800 hover:bg-gray-100 hover:text-blue-600"
-                          }`}
-                        >
-                          {child.name}
-                        </button>
-                      ))}
-                    </div>
+                  <span className="relative z-10">{item.name}</span>
+                  {isActive(item) && (
+                    <div className="absolute inset-0 bg-primary rounded-full shadow-lg animate-pulse opacity-20" />
                   )}
-                </div>
+                </button>
               ))}
             </div>
           </div>
 
           {/* CTA Button */}
           <div className="hidden lg:flex">
-           <a
-  href="https://calendly.com/karmansingh/businessoverview"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Button className="w-full bg-primary hover:bg-blue-700 text-white font-medium py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[0.98] transition-all duration-300">
-    Book Consultation
-  </Button>
-</a>
-
+            <a
+              href=" https://calendly.com/karmansingh/financialstratgey "
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="w-full bg-primary hover:bg-blue-700 text-white font-medium py-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-[0.98] transition-all duration-300">
+                Book Consultation 
+              </Button>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -169,95 +110,43 @@ const Navigation = () => {
           }`}
         >
           <div className="px-4 pt-6 pb-6 space-y-2 bg-white border-t border-gray-200 shadow-md">
-            {navItems.map((item, index) => {
-              // If item has children, render both parent and children
-              if (item.children) {
-                return (
-                  <div key={item.name}>
-                    {/* Render parent item */}
-                    <button
-                      onClick={() => handleNavClick(item)}
-                      style={{
-                        transitionDelay: isOpen ? `${index * 75}ms` : "0ms",
-                      }}
-                      className={`block w-full text-left px-6 py-4 font-medium transition-all duration-400 ease-out rounded-xl border transform hover:scale-[0.98] ${
-                        isOpen
-                          ? "translate-x-0 opacity-100"
-                          : "translate-x-4 opacity-0"
-                      } ${
-                        isActive(item)
-                          ? "text-white bg-primary border-transparent shadow-md"
-                          : "text-gray-800 hover:text-blue-600 hover:bg-gray-100 border-gray-200 hover:border-gray-300"
-                      }`}
-                    >
-                      {item.name}
-                    </button>
-                    
-                    {/* Render children items */}
-                    {item.children.map((child, childIndex) => (
-                      <button
-                        key={child.name}
-                        onClick={() => handleNavClick(child)}
-                        style={{
-                          transitionDelay: isOpen ? `${(index + childIndex + 1) * 75}ms` : "0ms",
-                        }}
-                        className={`block w-full text-left px-8 py-3 font-medium transition-all duration-400 ease-out rounded-xl border transform hover:scale-[0.98] text-sm mt-1 ${
-                          isOpen
-                            ? "translate-x-0 opacity-100"
-                            : "translate-x-4 opacity-0"
-                        } ${
-                          child.path === location.pathname
-                            ? "text-white bg-primary border-transparent shadow-sm"
-                            : "text-gray-700 hover:text-blue-600 hover:bg-gray-100 border-gray-100 hover:border-gray-200"
-                        }`}
-                      >
-                        - {child.name}
-                      </button>
-                    ))}
-                  </div>
-                );
-              }
-              
-              // Render normal items
-              return (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavClick(item)}
-                  style={{
-                    transitionDelay: isOpen ? `${index * 75}ms` : "0ms",
-                  }}
-                  className={`block w-full text-left px-6 py-4 font-medium transition-all duration-400 ease-out rounded-xl border transform hover:scale-[0.98] ${
-                    isOpen
-                      ? "translate-x-0 opacity-100"
-                      : "translate-x-4 opacity-0"
-                  } ${
-                    isActive(item)
-                      ? "text-white bg-primary border-transparent shadow-md"
-                      : "text-gray-800 hover:text-blue-600 hover:bg-gray-100 border-gray-200 hover:border-gray-300"
-                  }`}
-                >
-                  {item.name}
-                </button>
-              );
-            })}
+            {navItems.map((item, index) => (
+              <button
+                key={item.name}
+                onClick={() => handleNavClick(item)}
+                style={{
+                  transitionDelay: isOpen ? `${index * 75}ms` : "0ms",
+                }}
+                className={`block w-full text-left px-6 py-4 font-medium transition-all duration-400 ease-out rounded-xl border transform hover:scale-[0.98] ${
+                  isOpen
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-4 opacity-0"
+                } ${
+                  isActive(item)
+                    ? "text-white bg-primary border-transparent shadow-md"
+                    : "text-gray-800 hover:text-blue-600 hover:bg-gray-100 border-gray-200 hover:border-gray-300"
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
             <div
               className={`pt-4 transition-all duration-400 ease-out transform ${
                 isOpen ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"
               }`}
               style={{
-                transitionDelay: isOpen ? `${navItems.length * 100}ms` : "0ms",
+                transitionDelay: isOpen ? `${navItems.length * 75}ms` : "0ms",
               }}
             >
-           <a
-  href="https://calendly.com/karmansingh/businessoverview"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Button className="w-full bg-primary hover:bg-blue-700 text-white font-medium py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[0.98] transition-all duration-300">
-    Book Consultation
-  </Button>
-</a>
-
+              <a
+                href=" https://calendly.com/karmansingh/financialstratgey "
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="w-full bg-primary hover:bg-blue-700 text-white font-medium py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[0.98] transition-all duration-300">
+                  Book Consultation
+                </Button>
+              </a>
             </div>
           </div>
         </div>

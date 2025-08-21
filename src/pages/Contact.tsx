@@ -171,15 +171,17 @@ const Contact = () => {
               whileTap={{ scale: 0.95 }}
               className="inline-flex group"
             >
-              <Button
-                to="#contact-form"
-                size="lg"
-                className="text-white min-w-[220px] justify-center bg-accent-dark"
+             <a href=" https://calendly.com/karmansingh/financialstratgey " target="_blank" rel="noopener noreferrer">
+               <button
+               
+                
+                                  className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
                 aria-label="Contact Us Now"
               >
                 Get in Touch
                 <ArrowRight className="w-5 h-5 translate-x-0 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              </button>
+             </a>
             </motion.div>
           </motion.div>
         </div>
@@ -542,14 +544,14 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button
-                    size="lg"
-                    className="min-w-[240px] justify-center bg-gradient-to-r from-lime-500 to-green-600 text-white font-semibold"
+                  <button
+                    
+                     className="min-w-[240px] justify-center bg-accent-dark text-white rounded-full px-8 py-4 text-lg font-semibold shadow-lg hover:bg-accent-darker transition-colors flex items-center group"
                     aria-label="Book a Business Overview Consultation"
                   >
                     Business Overview
                     <Calendar className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
+                  </button>
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group">
@@ -558,14 +560,14 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button
-                    size="lg"
-                    className="min-w-[240px] justify-center bg-gradient-to-r from-lime-500 to-green-600 text-white font-semibold"
+                  <button
+                    
+                     className="min-w-[240px] justify-center bg-accent-dark text-white rounded-full px-8 py-4 text-lg font-semibold shadow-lg hover:bg-accent-darker transition-colors flex items-center group"
                     aria-label="Book a Financial Strategy Consultation"
                   >
                     Financial Strategy
                     <Calendar className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
+                  </button>
                 </a>
               </motion.div>
             </div>

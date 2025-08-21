@@ -41,7 +41,7 @@ const pdfGuides = [
     ],
     gradient: "from-emerald-400 via-green-500 to-teal-600",
     icon: FileText,
-    fileName: "dummy-pdf-1.pdf", // Matches file in D:\SK\backend\public\pdfs
+    fileName: "dummy-pdf-1.pdf",
   },
   {
     title: "How to Create Generational Wealth Without a Million-Dollar Salary",
@@ -75,9 +75,9 @@ const PDFDownload = () => {
     phone: "",
   });
   const [showForm, setShowForm] = useState(false);
-  const [error, setError] = useState(null); // Add error state
-   const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate(); // For redirection
+  const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const handleDownloadClick = (guide) => {
     setSelectedGuide(guide);
@@ -87,7 +87,7 @@ const PDFDownload = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    setIsSubmitting(true); // Start loader
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("http://localhost:3000/api/applications", {
@@ -111,7 +111,7 @@ const PDFDownload = () => {
       setError("Error submitting form. Please try again.");
       console.error("Form submission error:", err);
     } finally {
-      setIsSubmitting(false); // Stop loader
+      setIsSubmitting(false);
     }
   };
 
@@ -120,7 +120,6 @@ const PDFDownload = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Function to handle smooth scrolling to PDF Guides Section
   const scrollToGuides = () => {
     const guidesSection = document.getElementById("pdf-guides-section");
     if (guidesSection) {
@@ -225,45 +224,66 @@ const PDFDownload = () => {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="group relative bg-white/95 backdrop-blur-md rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 overflow-hidden border border-gray-200/50 hover:-translate-y-2 cursor-pointer flex flex-col h-full"
+                className="group relative bg-white/95 backdrop-blur-md rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 overflow-hidden border border-gray-200/50 hover:-translate-y-2 cursor-pointer flex flex-col min-h-[450px]"
               >
-                <div
-                  className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 shadow-md bg-gradient-to-br ${guide.gradient} group-hover:scale-110 group-hover:rotate-3`}
-                >
-                  <guide.icon className="w-10 h-10 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 min-h-[60px] flex items-center">
-                  {guide.title}
-                </h3>
-                <div className="text-base text-gray-700 leading-relaxed space-y-4 mb-6 flex-1">
-                  {guide.description.map((item, idx) => (
-                    <motion.p
-                      key={idx}
-                      className={`${
-                        idx % 2 === 0 ? "text-left" : "text-right"
-                      } max-w-[85%] ${
-                        idx % 2 === 0 ? "mr-auto" : "ml-auto"
-                      } bg-gray-100/50 p-3 rounded-lg shadow-sm transition-all duration-300 hover:bg-gray-100 hover:shadow-md`}
-                      initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: idx * 0.1 }}
-                      viewport={{ once: true }}
+                <div className="flex flex-col flex-grow">
+                  <div
+                    className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 shadow-md bg-gradient-to-br ${guide.gradient} group-hover:scale-110 group-hover:rotate-3`}
+                  >
+                    <guide.icon className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 min-h-[60px] flex items-center">
+                    {guide.title}
+                  </h3>
+                  <div className="text-base text-gray-700 leading-relaxed space-y-4 mb-6 flex-1">
+                    {guide.description.map((item, idx) => (
+                      <motion.p
+                        key={idx}
+                        className={`${
+                          idx % 2 === 0 ? "text-left" : "text-right"
+                        } max-w-[85%] ${
+                          idx % 2 === 0 ? "mr-auto" : "ml-auto"
+                        } bg-gray-100/50 p-3 rounded-lg shadow-sm transition-all duration-300 hover:bg-gray-100 hover:shadow-md`}
+                        initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: idx * 0.1 }}
+                        viewport={{ once: true }}
+                      >
+                        {item}
+                      </motion.p>
+                    ))}
+                  </div>
+                  <div className="mt-auto">
+                    <button
+                      onClick={() => handleDownloadClick(guide)}
+                      className="w-full flex justify-center items-center bg-gradient-to-r from-lime-500 to-green-600 text-white hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl py-3 rounded-3xl text-lg font-semibold transition-all duration-300"
                     >
-                      {item}
-                    </motion.p>
-                  ))}
+                      Download Now
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
                 </div>
-                <button
-                  onClick={() => handleDownloadClick(guide)}
-                  className="w-full flex justify-center items-center bg-accent-dark text-white hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl py-3 rounded-3xl text-lg font-semibold transition-all duration-300"
-                >
-                  Download Now
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </button>
                 <div className="absolute inset-0 bg-gradient-to-br from-lime-200/20 via-transparent to-green-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
               </motion.div>
             ))}
           </motion.div>
+          {/* Bottom CTA */}
+          <div className="text-center mt-16">
+            <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-8 border border-gray-200/50 shadow-xl backdrop-blur-sm">
+              <h3 className="font-bold text-2xl text-gray-900 mb-4">
+                Need Something Specific?
+              </h3>
+              <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+                Can't find what you're looking for? Let's schedule a free consultation to discuss your unique financial situation.
+              </p>
+              <a href="https://calendly.com/karmansingh/financialstratgey" target="_blank" rel="noopener noreferrer">
+                <button className="inline-flex items-center space-x-2 bg-gradient-to-r from-lime-500 to-green-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                  <span>Schedule Free Consultation</span>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -283,7 +303,7 @@ const PDFDownload = () => {
               <X size={24} />
             </button>
             <h3 className="text-xl font-semibold text-gray-900 mb-6 mt-2">
-            {selectedGuide?.title}
+              {selectedGuide?.title}
             </h3>
             {error && (
               <p className="text-red-500 text-sm mb-4">{error}</p>
@@ -342,9 +362,12 @@ const PDFDownload = () => {
               </div>
               <button
                 type="submit"
-                className="w-full flex justify-center items-center bg-gradient-to-r from-lime-500 to-green-600 text-white hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl py-3 rounded-lg text-lg font-semibold"
+                disabled={isSubmitting}
+                className={`w-full flex justify-center items-center bg-gradient-to-r from-lime-500 to-green-600 text-white hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl py-3 rounded-lg text-lg font-semibold transition-all duration-300 ${
+                  isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               >
-                Get My Free Guide
+                {isSubmitting ? "Submitting..." : "Get My Free Guide"}
               </button>
             </form>
           </motion.div>

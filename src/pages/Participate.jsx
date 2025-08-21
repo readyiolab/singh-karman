@@ -143,16 +143,15 @@ const Participate = () => {
               className="group"
             >
               <a
-  href="https://calendly.com/singhkarman/financialstrategy"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex items-center justify-center min-w-[280px] py-4 px-8 bg-gradient-to-r from-lime-500 to-green-600 rounded-2xl text-white text-lg font-semibold hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl transition-all duration-300"
-  aria-label="Explore Financial Guides"
->
-  Schedule Your Call
-  <PhoneCall className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
-</a>
-
+                href="https://calendly.com/karmansingh/businessoverview "
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center min-w-[280px] py-4 px-8 bg-gradient-to-r from-lime-500 to-green-600 rounded-2xl text-white text-lg font-semibold hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                aria-label="Explore Financial Guides"
+              >
+                Schedule Your Call
+                <PhoneCall className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
+              </a>
             </motion.div>
           </motion.div>
         </div>
@@ -339,14 +338,16 @@ const Participate = () => {
               whileTap={{ scale: 0.95 }}
               className="group flex justify-center"
             >
-              <Link to="/contact">
-              <button
-                onClick={handleJoinClick}
-                className="justify-center flex items-center rounded-full bg-gradient-to-r from-lime-500 to-green-600 text-white hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl px-8 py-4 text-lg font-semibold"
+              <a
+                href="https://calendly.com/karmansingh/businessoverview"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Join the Team Today
-                <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
-              </button></Link>
+                <button className="justify-center flex items-center rounded-full bg-gradient-to-r from-lime-500 to-green-600 text-white hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl px-8 py-4 text-lg font-semibold">
+                  Join the Team Today
+                  <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </a>
             </motion.div>
           </motion.div>
         </div>

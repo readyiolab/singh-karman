@@ -76,13 +76,18 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 md:mb-10 max-w-2xl leading-relaxed mx-auto lg:mx-0">
-             Your financial future deserves more than guesswork. We design strategies that protect what you’ve built, grow what you’ve earned, and create a legacy that lasts. With guidance you can trust, you’ll gain peace of mind today — and security for tomorrow.
+              Your financial future deserves more than guesswork. We design strategies that protect what you’ve built, grow what you’ve earned, and create a legacy that lasts. With guidance you can trust, you’ll gain peace of mind today — and security for tomorrow.
 
             </p>
 
             {/* CTA Buttons with enhanced styling */}
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center lg:justify-start">
-              <NavLink to="/contact">
+              {/* First Button - Calendly link */}
+              <a
+                href="https://calendly.com/karmansingh/financialstratgey"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   size="lg"
                   className="relative bg-accent-dark hover:bg-accent/90 text-accent-foreground text-base md:text-lg px-8 md:px-10 py-5 md:py-6 rounded-2xl shadow-2xl shadow-accent/25 border-0 group overflow-hidden transform hover:scale-105 transition-all duration-300"
@@ -93,8 +98,14 @@ const HeroSection = () => {
                   </span>
                   <div className="absolute inset-0 bg-accent/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Button>
-              </NavLink>
-              <NavLink to="/contact">
+              </a>
+
+              {/* Second Button - Calendly link */}
+              <a
+                href="https://calendly.com/karmansingh/financialstratgey"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   variant="outline"
                   size="lg"
@@ -105,8 +116,9 @@ const HeroSection = () => {
                     <Phone className="ml-3 w-5 h-5 group-hover:rotate-12 transition-transform" />
                   </span>
                 </Button>
-              </NavLink>
+              </a>
             </div>
+
 
             {/* Stats row */}
             <div className="flex justify-center lg:justify-start space-x-6 md:space-x-8 mt-10 md:mt-12">
@@ -134,7 +146,7 @@ const HeroSection = () => {
               <img
                 src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
                 alt="Financial success and growth"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto "
               />
               {/* Simple dark overlay for better contrast */}
               <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/10 to-transparent" />

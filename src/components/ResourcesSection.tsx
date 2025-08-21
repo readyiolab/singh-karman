@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Download,
   Calculator,
@@ -28,7 +29,8 @@ const ResourcesSection = () => {
       statsIcon: Download,
       features: ["Step-by-step strategies", "Real-world examples", "Action worksheets"],
       time: "15 min read",
-      popularity: "Most Popular"
+      popularity: "Most Popular",
+      link: "/pdf-download"
     },
     {
       icon: Calculator,
@@ -41,7 +43,8 @@ const ResourcesSection = () => {
       statsIcon: Users,
       features: ["Visual projections", "Multiple scenarios", "Export results"],
       time: "5 min setup",
-      popularity: "Interactive"
+      popularity: "Interactive",
+      link: "/calculator"
     },
     {
       icon: PlayCircle,
@@ -54,7 +57,8 @@ const ResourcesSection = () => {
       statsIcon: Eye,
       features: ["Expert insights", "Clear explanations", "Actionable tips"],
       time: "5 min watch",
-      popularity: "Trending"
+      popularity: "Trending",
+      link: "/service"
     }
   ];
 
@@ -77,7 +81,6 @@ const ResourcesSection = () => {
 
   return (
     <section className="py-20 bg-slate-50 relative overflow-hidden">
-      {/* Enhanced Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-100/30 to-transparent rounded-full blur-3xl animate-pulse"></div>
@@ -85,7 +88,6 @@ const ResourcesSection = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-emerald-100/20 to-blue-100/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
       </div>
 
-      {/* Decorative grid pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <svg className="w-full h-full" viewBox="0 0 100 100">
           <defs>
@@ -98,7 +100,6 @@ const ResourcesSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Enhanced Header */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 text-primary px-4 py-2 rounded-full mb-6 shadow-lg backdrop-blur-sm border border-primary/20">
             <BookOpen className="w-5 h-5 animate-pulse" />
@@ -107,10 +108,7 @@ const ResourcesSection = () => {
           </div>
 
           <h2 className="font-bold text-4xl lg:text-6xl text-slate-800 mb-8 leading-tight">
-            Start With <span className="text-accent-dark ">
-              Clarity
-
-            </span>
+            Start With <span className="text-accent-dark">Clarity</span>
           </h2>
 
           <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-8">
@@ -118,7 +116,6 @@ const ResourcesSection = () => {
             Knowledge is power — and these resources are your first step toward financial freedom.
           </p>
 
-          {/* Trust indicators */}
           <div className="flex items-center justify-center space-x-8 text-sm text-slate-500">
             <div className="flex items-center space-x-2">
               <TrendingUp className="w-4 h-4" />
@@ -135,35 +132,26 @@ const ResourcesSection = () => {
           </div>
         </div>
 
-        {/* Enhanced Resources Grid */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           {resources.map((resource, index) => (
             <div
               key={resource.title}
-              className="group relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 flex flex-col border border-slate-100/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] cursor-pointer overflow-hidden"
+              className="group relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 flex flex-col border border-slate-100/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] cursor-pointer overflow-hidden min-h-[450px]"
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              {/* Floating decorative elements */}
               <FloatingElements index={index} />
-
-              {/* Gradient overlay on hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl bg-gradient-to-br from-blue-500 to-purple-500"></div>
-
-              {/* Popularity badge */}
               <div className="absolute top-4 right-4 bg-black text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
                 {resource.popularity}
               </div>
 
-              <div className="relative z-10">
-                {/* Enhanced Icon */}
+              <div className="relative z-10 flex flex-col flex-grow">
                 <div className="relative mb-8">
                   <div className={`${resource.gradient} p-5 rounded-2xl w-fit shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden group-hover:scale-110`}>
                     <resource.icon className="w-8 h-8 text-white relative z-10" />
                     <div className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-
-                  {/* Stats with enhanced styling */}
                   <div className="absolute -bottom-2 -right-2 bg-white border-2 border-slate-100 rounded-full px-3 py-1 shadow-lg">
                     <div className="flex items-center space-x-1 text-xs">
                       <resource.statsIcon className="w-3 h-3 text-slate-500" />
@@ -172,28 +160,23 @@ const ResourcesSection = () => {
                   </div>
                 </div>
 
-                {/* Enhanced Type Badge */}
                 <div className="bg-gradient-to-r from-slate-100 to-slate-50 text-slate-700 px-4 py-2 rounded-full text-sm font-semibold mb-6 inline-block shadow-sm border border-slate-200/50">
                   {resource.type}
                 </div>
 
-                {/* Time indicator */}
                 <div className="flex items-center space-x-2 text-xs text-slate-500 mb-4">
                   <Clock className="w-3 h-3" />
                   <span>{resource.time}</span>
                 </div>
 
-                {/* Enhanced Title */}
                 <h3 className="font-bold text-xl lg:text-2xl text-slate-800 mb-4 text-center group-hover:text-blue-700 transition-colors duration-300">
                   {resource.title}
                 </h3>
 
-                {/* Enhanced Description */}
                 <p className="text-slate-600 mb-6 leading-relaxed text-center">
                   {resource.description}
                 </p>
 
-                {/* Enhanced Features List */}
                 <div className="space-y-3 mb-8">
                   {resource.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center text-sm text-slate-600 bg-slate-50/50 rounded-lg px-3 py-2 group-hover:bg-blue-50/50 transition-colors duration-300">
@@ -203,17 +186,17 @@ const ResourcesSection = () => {
                   ))}
                 </div>
 
-                {/* Enhanced CTA Button */}
-                <button className="w-full bg-slate-800 hover:bg-slate-900 text-white py-4 px-6 rounded-xl font-semibold flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 relative overflow-hidden">
-                  <span className="relative z-10">{resource.action}</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000"></div>
-                </button>
-
-
+                <div className="mt-auto">
+                  <Link to={resource.link}>
+                    <button className="w-full bg-slate-800 hover:bg-slate-900 text-white py-4 px-6 rounded-xl font-semibold flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 relative overflow-hidden">
+                      <span className="relative z-10">{resource.action}</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000"></div>
+                    </button>
+                  </Link>
+                </div>
               </div>
 
-              {/* Card shine effect */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000"></div>
               </div>
@@ -221,7 +204,6 @@ const ResourcesSection = () => {
           ))}
         </div>
 
-        {/* Enhanced bottom CTA */}
         <div className="text-center">
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-slate-200/50 shadow-xl backdrop-blur-sm">
             <h3 className="font-bold text-2xl text-slate-800 mb-4">
@@ -230,10 +212,12 @@ const ResourcesSection = () => {
             <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
               Can't find what you're looking for? Let's schedule a free consultation to discuss your unique financial situation.
             </p>
-            <button className="inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-900 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-              <span>Schedule Free Consultation</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
+            <a href="https://calendly.com/karmansingh/financialstratgey" target="_blank" rel="noopener noreferrer">
+              <button className="inline-flex items-center space-x-2 bg-accent-dark text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <span>Schedule Free Consultation</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </a>
           </div>
         </div>
       </div>

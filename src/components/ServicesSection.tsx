@@ -218,7 +218,7 @@ const ServicesSection = () => {
 
         {/* Enhanced CTA Section */}
         <div className="text-center">
-          <NavLink to="/services">
+          <NavLink to="/contact">
             <button className="group bg-accent-dark text-white font-semibold px-8 py-4 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
               <span>Start Your Journey Today</span>
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />

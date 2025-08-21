@@ -112,15 +112,16 @@ const About = () => {
               whileTap={{ scale: 0.95 }}
               className="inline-flex group"
             >
-              <Button
-                to="/contact#contact-form"
-                size="lg"
-                className="text-white min-w-[220px] justify-center bg-accent-dark"
-                aria-label="Start Your Financial Journey"
-              >
-                Start Your Journey
-                <ArrowRight className="w-5 h-5 translate-x-0 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <a href="https://calendly.com/karmansingh/financialstratgey " target="_blank" rel="noopener noreferrer">
+                <button
+
+                  className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
+                  aria-label="Start Your Financial Journey"
+                >
+                  Start Your Journey
+                  <ArrowRight className="w-5 h-5 translate-x-0 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </a>
             </motion.div>
           </motion.div>
         </div>
@@ -145,50 +146,49 @@ const About = () => {
             variants={staggerContainer}
             initial="initial"
             whileInView="whileInView"
-            className="grid gap-8 lg:grid-cols-2 items-start"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid gap-12 lg:grid-cols-2 items-start max-w-7xl mx-auto px-6 py-12"
           >
-            <motion.div variants={fadeInUp} className="space-y-8">
-              <div className="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                <h3 className="text-2xl font-extrabold text-black mb-4">
-                  The Struggle
+            <motion.div  className="space-y-10">
+              <div className="bg-gradient-to-br from-white to-gray-100 p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                <h3 className="text-3xl font-bold text-gray-900 mb-6 tracking-tight">
+                  The <span className='text-accent-dark'>Struggle</span>
                 </h3>
-                <p className="text-base text-gray-600 leading-relaxed">
-                 There were times I felt like my life wasn’t going anywhere. I would work hard, make a little progress, only to watch it slip away. Deep down, I wanted to build something lasting — something that couldn’t be taken from me, something with my name on it. But I didn’t come from money. In fact, I was often underestimated, seen as “average.” I felt stuck, and I knew working for someone else would never give me the fulfillment I longed for.
-
+                <p className="text-lg text-gray-700 leading-relaxed font-medium">
+                  There were times I felt like my life wasn’t going anywhere. I would work hard, make a little progress, only to watch it slip away. Deep down, I wanted to build something lasting — something that couldn’t be taken from me, something with my name on it. But I didn’t come from money. In fact, I was often underestimated, seen as “average.” I felt stuck, and I knew working for someone else would never give me the fulfillment I longed for.
                   <br /><br />
-                 I realized we’re no longer in an era where success has to mean “working for the man” just to survive. If I was going to pour eight hours a day into work, I wanted it to be for myself — and for a greater purpose. The challenge? I had no financial cushion, no outside funding, and I refused to ask my family for help. My parents had already sacrificed so much to provide a decent life for me and my little sister. Even after all their hard work, they still didn’t have peace of mind — and that lit a fire in me.
-
+                  I realized we’re no longer in an era where success has to mean “working for the man” just to survive. If I was going to pour eight hours a day into work, I wanted it to be for myself — and for a greater purpose. The challenge? I had no financial cushion, no outside funding, and I refused to ask my family for help. My parents had already sacrificed so much to provide a decent life for me and my little sister. Even after all their hard work, they still didn’t have peace of mind — and that lit a fire in me.
                   <br /><br />
-                So I started building while still working. With nothing but determination, I pushed toward a future completely different from my present. Along the way, I met people who were living life on their own terms — creating freedom, impact, and ownership of their time. In that moment, I knew I was on the right path.
-
+                  So I started building while still working. With nothing but determination, I pushed toward a future completely different from my present. Along the way, I met people who were living life on their own terms — creating freedom, impact, and ownership of their time. In that moment, I knew I was on the right path.
                 </p>
               </div>
-              <div className="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                <h3 className="text-2xl font-extrabold text-black mb-4">
-                  The Mission
+              <div className="bg-gradient-to-br from-white to-gray-100 p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                <h3 className="text-3xl font-bold text-gray-900 mb-6 tracking-tight">
+                  The <span className='text-accent-dark'>Mission</span>
                 </h3>
-                <p className="text-base text-gray-600 leading-relaxed">
+                <p className="text-lg text-gray-700 leading-relaxed font-medium">
                   My mission is simple: to equip families with the knowledge and strategies to build lasting wealth, protect what matters most, and create a legacy with confidence.
-
                   <br /><br />
-                 I believe financial freedom is not just about numbers — it’s about clarity, control, and peace of mind. 
+                  I believe financial freedom is not just about numbers — it’s about clarity, control, and peace of mind.
                   <br /><br />
-                 Through education and purposeful planning, I empower people to take ownership of their future and live with intention.
-
+                  Through education and purposeful planning, I empower people to take ownership of their future and live with intention.
                   <br /><br />
                   Today, I help families build generational wealth with strategies rooted in clarity, control, and confidence. I help people understand their money, protect their loved ones, and live with intention. This isn’t just what I do — it’s who I’ve become. And it’s how I give back to the people I care about: my family, my community, and anyone who’s ready to take ownership of their future.
                 </p>
               </div>
             </motion.div>
             <motion.div
-              variants={fadeInUp}
+              
               className="lg:sticky lg:top-24 flex justify-center"
             >
-              <img
-                src="./founder.webp"
-                alt="founder image"
-                className="w-full max-w-md h-auto aspect-[3/4] shadow-lg object-cover"
-              />
+              <div className="relative w-full max-w-md">
+               
+                <img
+                  src="./founder.webp"
+                  alt="founder image"
+                  className="w-full h-auto aspect-[3/4] rounded-2xl shadow-2xl object-cover relative z-10 border-4 border-white"
+                />
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -298,11 +298,11 @@ const About = () => {
               <img
                 src="/empower.webp"
                 alt="Empower Life"
-                className="inline mt-2 max-w-full h-auto sm:max-w-[200px] md:max-w-[350px]"
+                className="inline mt-2 max-w-full h-44 sm:max-w-[200px] md:max-w-[350px]"
               />
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              EEmpowering individuals, families, and professionals to achieve financial freedom and build lasting legacies with clarity and confidence.
+              Empowering individuals, families, and professionals to achieve financial freedom and build lasting legacies with clarity and confidence.
 
             </p>
           </motion.div>
@@ -329,7 +329,7 @@ const About = () => {
                   Our Mission
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed text-center">
-                At Empower Life, we redefine what it means to be financially empowered. Our mission is to guide people at every stage of life — from building their first plan to securing their retirement — with tailored strategies in wealth growth, asset protection, and legacy planning. With expert guidance and proven systems, we help ensure a future of abundance, stability, and purpose.
+                  At Empower Life, we redefine what it means to be financially empowered. Our mission is to guide people at every stage of life — from building their first plan to securing their retirement — with tailored strategies in wealth growth, asset protection, and legacy planning. With expert guidance and proven systems, we help ensure a future of abundance, stability, and purpose.
 
                 </p>
               </div>
@@ -350,7 +350,7 @@ const About = () => {
                   Our Community
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed text-center">
-               Empower Life is more than a company — it’s a community of ambitious individuals committed to financial success and meaningful impact. We provide world-class mentorship, education, and growth opportunities for both clients and team members. Through collaboration and an education-first approach, we empower people to achieve independence, create legacies, and thrive together.
+                  Empower Life is more than a company — it’s a community of ambitious individuals committed to financial success and meaningful impact. We provide world-class mentorship, education, and growth opportunities for both clients and team members. Through collaboration and an education-first approach, we empower people to achieve independence, create legacies, and thrive together.
 
                 </p>
               </div>
@@ -407,18 +407,28 @@ const About = () => {
 
           {/* CTA */}
           <motion.div variants={fadeInUp} className="text-center">
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="group inline-flex">
-              <Button
-                to="/contact#contact-form"
-                size="lg"
-                className="min-w-[260px] justify-center shadow-xl bg-gradient-to-r from-lime-500 to-green-600 hover:from-lime-600 hover:to-green-700 text-white font-semibold rounded-full py-3 px-8 transition-all duration-300"
-                aria-label="Join Empower Life"
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="group inline-flex"
+            >
+              <a
+                href="https://calendly.com/karmansingh/financialstratgey"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Join Empower Life
-                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
-              </Button>
+                <button
+                  size="lg"
+                  className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
+                  aria-label="Join Empower Life"
+                >
+                  Join Empower Life
+                  <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
+                </button>
+              </a>
             </motion.div>
           </motion.div>
+
         </div>
       </section>
 
@@ -441,29 +451,27 @@ const About = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group">
-                <Button
-                  to="/contact#contact-form"
-                  size="lg"
-                  className="min-w-[240px] justify-center"
-                  aria-label="Schedule a Free Financial Consultation"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group"
+              >
+                <a
+                  href="https://calendly.com/karmansingh/financialstratgey"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Schedule Consultation
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group">
-                <Button
-                  to="/about"
-                  size="lg"
-                  variant="outline"
-                  className="min-w-[240px] justify-center"
-                  aria-label="Learn More About Our Mission"
-                >
-                  Learn More
-                </Button>
+                  <button
+                    className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
+                    aria-label="Schedule a Free Financial Consultation"
+                  >
+                    Schedule Consultation
+                    <ArrowRight className="w-5 h-5 ml-2 flex group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </a>
               </motion.div>
             </div>
+
           </motion.div>
         </div>
       </section>

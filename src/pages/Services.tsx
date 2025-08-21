@@ -172,21 +172,21 @@ const tools = [
     icon: FileText,
     title: 'PDF Tools',
     description: 'Access our collection of financial planning PDFs and resources to get started.',
-    to: '/tools/pdf',
+    to: '/pdf-download',
     gradient: 'from-indigo-400 via-indigo-500 to-blue-600',
   },
   {
     icon: Calculator,
     title: 'Wealth Calculator',
     description: 'Calculate your potential wealth growth with our interactive tool.',
-    to: '/tools/calculator',
+    to: '/calculator',
     gradient: 'from-pink-400 via-pink-500 to-rose-600',
   },
   {
     icon: CreditCard,
     title: 'Debt Payoff Simulator',
     description: 'Simulate debt elimination strategies and see how fast you can become debt-free.',
-    to: '/tools/debt-simulator',
+    to: '/calculator',
     gradient: 'from-amber-400 via-orange-500 to-red-500',
   },
 ];
@@ -255,15 +255,17 @@ const Services = () => {
             </p>
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-flex group">
-              <Button
-                to="/contact#contact-form"
-                size="lg"
-                className="min-w-[240px] justify-center"
+              <a href=" https://calendly.com/karmansingh/financialstratgey " target="_blank" rel="noopener noreferrer">
+                <button
+              
+                
+                className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
                 aria-label="Start Your Financial Journey"
               >
                 Start Your Journey
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              </button>
+              </a>
             </motion.div>
           </motion.div>
         </div>
@@ -495,58 +497,51 @@ const Services = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group">
-                <Button
-                  to="/contact#contact-form"
-                  size="lg"
-                  className="min-w-[240px] justify-center"
+                <a href=" https://calendly.com/karmansingh/financialstratgey " target="_blank" rel="noopener noreferrer">
+                  <button
+                  
+             
+                    className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
                   aria-label="Schedule a Free Financial Consultation"
                 >
                   Schedule Consultation
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                </button>
+                </a>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group">
-                <Button
-                  to="/about"
-                  size="lg"
-                  variant="outline"
-                  className="min-w-[240px] justify-center"
-                  aria-label="Learn More About Our Mission"
-                >
-                  Learn More
-                </Button>
-              </motion.div>
+              
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Tools Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-white">
-        <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-          <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Prefer to Explore on Your Own First?
-              <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
-                Try Our Tools
-              </span>
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Try out our tools to see what’s possible with just a few numbers.
-            </p>
-          </motion.div>
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {tools.map((tool, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="group relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 overflow-hidden border border-gray-200/50 hover:-translate-y-2 cursor-pointer"
-              >
+       <section className="py-16 sm:py-20 lg:py-24 bg-white">
+      <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <motion.div {...fadeInUp} className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            Prefer to Explore on Your Own First?
+            <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
+              Try Our Tools
+            </span>
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Try out our tools to see what’s possible with just a few numbers.
+          </p>
+        </motion.div>
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="whileInView"
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {tools.map((tool, index) => (
+            <motion.div
+              key={index}
+              variants={fadeInUp}
+              className="group relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 overflow-hidden border border-gray-200/50 hover:-translate-y-2 cursor-pointer min-h-[350px] flex flex-col"
+            >
+              <div className="flex flex-col flex-grow">
                 <div
                   className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 shadow-md bg-gradient-to-br ${tool.gradient} mx-auto group-hover:scale-110`}
                 >
@@ -554,23 +549,24 @@ const Services = () => {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{tool.title}</h3>
                 <p className="text-base text-gray-600 leading-relaxed mb-6 text-center">{tool.description}</p>
-                <div className="flex justify-center">
+                <div className="mt-auto flex justify-center">
                   <Button
                     to={tool.to}
                     size="md"
-                    className="justify-center bg-black"
+                    className="justify-center bg-black text-white w-full"
                     aria-label={`Try ${tool.title}`}
                   >
                     Get Started
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-lime-200/20 via-transparent to-green-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-lime-200/20 via-transparent to-green-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
 
       <style jsx>{`
         @keyframes float {

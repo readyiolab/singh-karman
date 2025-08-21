@@ -660,8 +660,9 @@ const Calculator = () => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <motion.div whileTap={{ scale: 0.95 }}>
-                <Link to="/contact">
-                  <button
+                
+                 <a href=" https://calendly.com/karmansingh/financialstratgey " target="_blank" rel="noopener noreferrer">
+                   <button
 
 
                     className="min-w-[240px] justify-center bg-accent-dark text-white rounded-full px-8 py-4 text-lg font-semibold shadow-lg hover:bg-accent-darker transition-colors flex items-center group"
@@ -669,19 +670,10 @@ const Calculator = () => {
                   >
                     Schedule Consultation
                     <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-                  </button></Link>
+                  </button>
+                 </a>
               </motion.div>
-              <motion.div whileTap={{ scale: 0.95 }}>
-                <Button
-                  to="/about"
-                  size="lg"
-                  variant="outline"
-                  className="min-w-[240px] justify-center"
-                  aria-label="Learn More About Our Mission"
-                >
-                  Learn More
-                </Button>
-              </motion.div>
+              
             </div>
           </motion.div>
         </div>
