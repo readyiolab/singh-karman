@@ -37,7 +37,7 @@ const Footer = () => {
           <div className="text-left">
             <div className="flex justify-start items-center space-x-3 mb-6">
               <div className="h-10 w-auto">
-                <img src="/footer-logo.webp" alt="Company Logo" className="h-16 w-auto" />
+                <img src="/footer-logo.png" alt="Company Logo" className="h-16 w-auto" />
               </div>
             </div>
             <p className="font-body text-primary-foreground/80 mb-6 leading-relaxed">
