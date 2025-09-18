@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Star, Zap, Shield, Target, TrendingUp, Award, Users, BookOpen, Heart } from 'lucide-react';
 
-// Custom Button Component
+// Custom Button Component (unchanged)
 const Button = ({ children, className, variant = 'default', size = 'lg', to, ...props }) => {
   const baseStyles = 'inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 focus:outline-none';
   const variants = {
@@ -27,7 +27,7 @@ const Button = ({ children, className, variant = 'default', size = 'lg', to, ...
   );
 };
 
-// Animation Variants
+// Animation Variants (unchanged)
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
@@ -46,10 +46,144 @@ const staggerContainer = {
   viewport: { once: true },
 };
 
+// Team Members Data (moved from MeetTheTeam)
+const teamMembers = [
+  {
+    name: 'Brianna Cruise',
+    role: 'Financial Consultant',
+    bio: [
+      'A passionate, family-centered professional who knows what it takes to succeed.',
+      'As a proud mother, her children are her greatest inspiration and the reason she strives every day to create a future of freedom and opportunity. That same drive fuels her commitment to helping other families secure their futures, ensuring they have the peace of mind and financial confidence they deserve.',
+      'She brings a quick wit, a sharp mind, and a heartfelt determination to every conversation. Brianna believes that true success comes not just from working hard, but from learning, growing, and sharing knowledge that empowers others.',
+      'When she’s not helping others, Brianna cherishes time with her kids, building memories and modeling what dedication and perseverance look like.'
+    ],
+    image: '/brianna-cruise.webp',
+    quote: 'Family is why I do this, and family is why I’ll always give my best.'
+  },
+  {
+    name: 'Bianca Brunetti',
+    role: 'Wealth Strategist',
+    bio: [
+      'Discovered the power of life insurance and has made it her mission to educate others.',
+      'From the moment she realized how these tools could transform a family’s future, she made it her mission to share that knowledge with everyone she meets. For Bianca, life insurance isn’t just a product — it’s a pathway to security, stability, and lasting generational wealth.',
+      'She practices what she teaches, implementing multiple policies for herself and her family. That personal commitment gives her a unique perspective and authenticity that clients immediately recognize.',
+      'What sets Bianca apart is her unwavering dedication. She doesn’t just aim to meet expectations; she goes above and beyond to deliver on every promise.'
+    ],
+    image: '/bianca-brunetti.webp',
+    quote: 'The greatest gift we can give our families is a future built on security and love.'
+  },
+  {
+    name: 'Matt Barnes',
+    role: 'Legacy Advisor',
+    bio: [
+      'For Matt, family means love. He grew up with the gift of a life insurance policy his parents set up for him, and over the years he has seen firsthand the power of planning ahead.',
+      'Matt is a student of life, always learning, adapting, and refining his approach. He digs into the details, ensuring he knows exactly how every strategy works before sharing it with the people he cares about.',
+      'As a proud uncle, Matthew is driven by the vision of passing on tools and wisdom that his nieces and nephews can use for decades to come. What inspires him most is knowing that strategies once reserved for the wealthy are now available to anyone willing to take action.'
+    ],
+    image: '/matt-barnes.webp',
+    quote: 'When knowledge meets action, generations rise.'
+  },
+  {
+    name: 'Shina Kaur',
+    role: 'Student Coordinator & Entrepreneur',
+    bio: [
+      'Shina Kaur’s journey is proof that age is no barrier to impact. As a student coordinator at her university, she quickly earned a reputation for inspiring others with her leadership and vision.',
+      'Her ability to break through obstacles has left an impression not only on her peers, but also on her family and friends. By helping them see the bigger vision, Shina has become a source of strength and motivation.',
+      'Beyond her academic achievements, Shina is also the proud owner of multiple companies. Despite her success, she continues to lay the groundwork due to its fundamentals and importance.'
+    ],
+    image: '/shina-kaur.webp',
+    quote: 'Barriers exist only until someone breaks them — and I live to break them.'
+  },
+  {
+    name: 'EK',
+    role: 'Financial Strategist',
+    bio: [
+      'I joined this industry because I saw how money is at the center of almost everything in people’s lives. If it’s handled right, it makes life easier. If it’s not, it causes stress, arguments, and limits people from living the way they want.',
+      'What keeps me going is the growth that comes with it. I’ve pushed myself to improve in every area of life, and I get to help clients do the same—whether that’s building better money habits, saving more, or just having peace of mind.',
+      'One experience that really showed me why this work matters was with a single mother. We set up a small savings and insurance plan for her, and when she passed unexpectedly, it gave her two young kids stability when they needed it most.'
+    ],
+    image: '/ek.webp',
+    quote: 'Money isn’t just numbers on a page — it’s the difference between stress and peace, limits and freedom, hardship and legacy.'
+  },
+  {
+    name: 'Raman Kaur',
+    role: 'Community Wealth Educator',
+    bio: [
+      'Raman Kaur is a source of joy, dependability, and motherly love — not only to her own children, but to the countless young lives she touched during her years as a teacher.',
+      'When Raman discovered the wealth strategies that had long been reserved for the few, she was ecstatic to finally bring these tools to her community. She has a gift for helping people see a light they may have never noticed before, guiding them toward the path they were always meant to walk.',
+      'Her daily practices of meditation, prayer, and unwavering faith in a higher power keep her centered and strong. For Raman, true wealth is more than money — it’s a life filled with love, abundance, and service.'
+    ],
+    image: '/raman-kaur.webp',
+    quote: 'True wealth is love in action — and I live it every day.'
+  },
+  {
+    name: 'Eknoor',
+    role: 'Community Wealth Educator',
+    bio: [
+      'Eknoor has a unique talent for bringing people together and helping them see a bigger vision for themselves. With the ability to paint a clear picture of what’s possible, he inspires others to believe in their own potential.',
+      'From a young age, Eknoor achieved great feats that placed him at the forefront of his industry. Even with his early success, he has never stopped striving forward — not just for his own growth, but to lift others up to new levels.',
+      'What sets Eknoor apart is the way he operates with loyalty, integrity, and confidence in every relationship and endeavor. For Eknoor, success is not just about reaching the top — it’s about bringing others with him.'
+    ],
+    image: '/eknoor.webp',
+    quote: 'True leadership isn’t about titles — it’s about building people.'
+  }
+];
+
+// TeamMember Component (moved from MeetTheTeam)
+const TeamMember = ({ member, index }) => {
+  return (
+    <div
+      className={`group flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center bg-white/15 p-6 lg:p-8  shadow-md  transition-all duration-500 border border-gray-100/50 max-w-6xl mx-auto  `}
+    >
+      {/* Image Container */}
+      <div className={`flex justify-center mb-6 lg:mb-0 ${index % 2 === 0 ? 'lg:mr-8' : 'lg:ml-8'} flex-shrink-0`}>
+        <div className="relative overflow-hidden ">
+          <img
+            src={member.image}
+            alt={`${member.name} profile`}
+            className="w-64 h-80 sm:w-72 sm:h-96 lg:w-80 lg:h-[28rem] xl:w-96 xl:h-[32rem] object-cover transition-transform duration-500 "
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+      </div>
+      
+      {/* Content Container */}
+      <div className="lg:flex-1 flex flex-col justify-center text-center lg:text-left">
+        <h3 className="text-2xl lg:text-3xl xl:text-4xl font-semibold text-gray-800 mb-2  transition-colors duration-300">
+          {member.name}
+        </h3>
+        <p className="text-sm lg:text-xl  md:text-sm  mb-6 uppercase tracking-wide">
+          {member.role}
+        </p>
+        
+        {/* Bio List */}
+        <div className="text-sm lg:text-lg text-gray-600 leading-relaxed mb-6 space-y-4">
+          {member.bio.map((item, idx) => (
+            <div key={idx} className="flex items-center text-left">
+              <span className="text-black mr-3 mt-1 text-lg font-bold">•</span>
+              <span className="flex-1 text-sm">{item}</span>
+            </div>
+          ))}
+        </div>
+        
+        {/* Quote */}
+        <div className="relative">
+          <div className="absolute -left-2 -top-2 text-4xl text-lime-500/30 font-serif">"</div>
+          <p className="text-sm lg:text-base xl:text-lg text-gray-500 italic tracking-wide leading-relaxed pl-6 pr-6 py-2 bg-gray-50/50 rounded-lg border-l-4 border-lime-500">
+            {member.quote}
+          </p>
+          <div className="absolute -right-2 -bottom-2 text-4xl text-lime-500/30 font-serif rotate-180">"</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const About = () => {
   return (
     <div className="bg-gray-50">
-      {/* Hero Section */}
+      {/* Hero Section (unchanged) */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
         style={{
@@ -58,11 +192,7 @@ const About = () => {
           backgroundPosition: "center",
         }}
       >
-        {/* Dark + Gradient Overlay */}
         <div className="absolute inset-0 bg-black/50 z-0" />
-
-
-        {/* Floating Icons */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div className="absolute top-1/4 left-1/4 animate-float">
             <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-[#84cc16] opacity-60" />
@@ -77,8 +207,6 @@ const About = () => {
             <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-[#84cc16] opacity-70" />
           </div>
         </div>
-
-        {/* Content */}
         <div className="container relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -95,27 +223,23 @@ const About = () => {
               <Award className="w-5 h-5 text-[#84cc16]" />
               <span className="text-sm font-medium tracking-wide">Empowering Wealth Creation</span>
             </motion.div>
-
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
               Crafting Your
               <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2 pb-3">
                 Financial Legacy
               </span>
             </h1>
-
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-12 max-w-3xl mx-auto leading-relaxed font-light">
               From humble beginnings to empowering families with strategies for generational wealth and purpose-driven lives.
             </p>
-
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex group"
             >
-              <a href="https://calendly.com/karmansingh/financialstratgey " target="_blank" rel="noopener noreferrer">
+              <a href="https://calendly.com/karmansingh/financialstratgey" target="_blank" rel="noopener noreferrer">
                 <button
-
-                  className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
+                  className="min-w-[240px] bg-accent-dark flex justify-center items-center text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
                   aria-label="Start Your Financial Journey"
                 >
                   Start Your Journey
@@ -127,7 +251,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Story Section */}
+      {/* Story Section (unchanged) */}
       <section className="py-16 sm:py-20 lg:py-24 bg-white">
         <div className="container px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center mb-16">
@@ -141,7 +265,6 @@ const About = () => {
               A journey from feeling stuck to empowering others with the tools to build wealth and live with purpose.
             </p>
           </motion.div>
-
           <motion.div
             variants={staggerContainer}
             initial="initial"
@@ -149,7 +272,7 @@ const About = () => {
             viewport={{ once: true, amount: 0.2 }}
             className="grid gap-12 lg:grid-cols-2 items-start max-w-7xl mx-auto px-6 py-12"
           >
-            <motion.div  className="space-y-10">
+            <motion.div className="space-y-10">
               <div className="bg-gradient-to-br from-white to-gray-100 p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                 <h3 className="text-3xl font-bold text-gray-900 mb-6 tracking-tight">
                   The <span className='text-accent-dark'>Struggle</span>
@@ -178,11 +301,9 @@ const About = () => {
               </div>
             </motion.div>
             <motion.div
-              
               className="lg:sticky lg:top-24 flex justify-center"
             >
               <div className="relative w-full max-w-md">
-               
                 <img
                   src="./founder.webp"
                   alt="founder image"
@@ -194,7 +315,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Core Values Section */}
+      {/* Core Values Section (unchanged) */}
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-indigo-50 to-blue-100">
         <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-16">
@@ -206,10 +327,8 @@ const About = () => {
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               The principles that guide everything we do — empowering you to achieve financial freedom with clarity and confidence.
-
             </p>
           </motion.div>
-
           <motion.div
             variants={staggerContainer}
             initial="initial"
@@ -220,32 +339,28 @@ const About = () => {
               {
                 id: 'Confidence',
                 title: 'Confidence',
-                description:
-                  'We empower you to make informed financial decisions with clarity and peace of mind.',
+                description: 'We empower you to make informed financial decisions with clarity and peace of mind.',
                 icon: <Sparkles className="w-10 h-10 text-white" />,
                 gradient: 'from-blue-400 via-blue-500 to-blue-600',
               },
               {
                 id: 'Integrity',
                 title: 'Integrity',
-                description:
-                  'Every recommendation is built on honesty, transparency, and your best interest.  ',
+                description: 'Every recommendation is built on honesty, transparency, and your best interest.',
                 icon: <Target className="w-10 h-10 text-white" />,
                 gradient: 'from-emerald-400 via-green-500 to-teal-600',
               },
               {
                 id: 'Reliability',
                 title: 'Reliability',
-                description:
-                  'We deliver consistent guidance you can trust — today, tomorrow, and for generations.',
+                description: 'We deliver consistent guidance you can trust — today, tomorrow, and for generations.',
                 icon: <Zap className="w-10 h-10 text-white" />,
                 gradient: 'from-rose-400 via-red-500 to-orange-500',
               },
               {
                 id: 'Legacy',
                 title: 'Legacy',
-                description:
-                  'We help you create lasting impact for your family and community through purposeful wealth planning.',
+                description: 'We help you create lasting impact for your family and community through purposeful wealth planning.',
                 icon: <Award className="w-10 h-10 text-white" />,
                 gradient: 'from-teal-400 via-cyan-500 to-blue-500',
               },
@@ -276,9 +391,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* About Empower Life Section - Enhanced for Robust UI */}
+      {/* About Empower Life Section (unchanged) */}
       <section className="py-16 sm:py-24 lg:py-32 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
-        {/* Subtle Background Elements */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_90%,_rgba(132,204,22,0.15)_0%,_transparent_60%)] opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,_rgba(107,114,128,0.15)_0%,_transparent_60%)] opacity-60" />
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
@@ -289,9 +403,7 @@ const About = () => {
             <TrendingUp className="w-10 h-10 text-green-700 opacity-25" />
           </div>
         </div>
-
         <div className="container relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          {/* Header */}
           <motion.div {...fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               About <br />
@@ -303,21 +415,16 @@ const About = () => {
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Empowering individuals, families, and professionals to achieve financial freedom and build lasting legacies with clarity and confidence.
-
             </p>
           </motion.div>
-
-          {/* Mission & Community - Side by Side */}
           <motion.div
             variants={staggerContainer}
             initial="initial"
             whileInView="whileInView"
             className="grid gap-8 lg:grid-cols-2 mb-16"
           >
-            {/* Our Mission */}
             <motion.div
               variants={fadeInUp}
-
               className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200/30 flex flex-col justify-between relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-lime-100/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -330,15 +437,11 @@ const About = () => {
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed text-center">
                   At Empower Life, we redefine what it means to be financially empowered. Our mission is to guide people at every stage of life — from building their first plan to securing their retirement — with tailored strategies in wealth growth, asset protection, and legacy planning. With expert guidance and proven systems, we help ensure a future of abundance, stability, and purpose.
-
                 </p>
               </div>
             </motion.div>
-
-            {/* Our Community */}
             <motion.div
               variants={fadeInUp}
-
               className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200/30 flex flex-col justify-between relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-green-100/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -351,13 +454,10 @@ const About = () => {
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed text-center">
                   Empower Life is more than a company — it’s a community of ambitious individuals committed to financial success and meaningful impact. We provide world-class mentorship, education, and growth opportunities for both clients and team members. Through collaboration and an education-first approach, we empower people to achieve independence, create legacies, and thrive together.
-
                 </p>
               </div>
             </motion.div>
           </motion.div>
-
-          {/* What We Stand For */}
           <motion.div variants={fadeInUp} className="mb-16">
             <h3 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">What We Stand For</h3>
             <motion.div
@@ -404,8 +504,6 @@ const About = () => {
               ))}
             </motion.div>
           </motion.div>
-
-          {/* CTA */}
           <motion.div variants={fadeInUp} className="text-center">
             <motion.div
               whileHover={{ scale: 1.1 }}
@@ -419,7 +517,7 @@ const About = () => {
               >
                 <button
                   size="lg"
-                  className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
+                  className="min-w-[240px] bg-accent-dark flex justify-center items-center text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
                   aria-label="Join Empower Life"
                 >
                   Join Empower Life
@@ -428,16 +526,42 @@ const About = () => {
               </a>
             </motion.div>
           </motion.div>
-
         </div>
       </section>
 
+      {/* Meet the Team Section  */}
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_rgba(132,204,22,0.15)_0%,_transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_rgba(107,114,128,0.1)_0%,_transparent_70%)]" />
+        <div className="container px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12 lg:mb-20">
+          <div className="inline-block mb-4">
+            <span className="text-lime-600 font-semibold text-lg uppercase tracking-wide">Our Team</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            Meet the Team Behind
+            <span className="block pb-5 bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
+              Empower Life
+            </span>
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Our team of dedicated professionals from finance, strategy, and client service is united by a shared commitment to helping families secure their financial futures with clarity and confidence.
+          </p>
+        </div>
+          <div className="space-y-12 lg:space-y-16 xl:space-y-20">
+            {teamMembers.map((member, index) => (
+              <div key={member.name} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
+                <TeamMember member={member} index={index} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* CTA Section */}
+      {/* CTA Section (unchanged) */}
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_rgba(132,204,22,0.2)_0%,_transparent_50%)] opacity-15" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_rgba(107,114,128,0.2)_0%,_transparent_50%)] opacity-15" />
-
         <div className="container relative z-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <motion.div {...fadeInUp} className="text-center max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
@@ -449,7 +573,6 @@ const About = () => {
             <p className="text-lg sm:text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
               Take the first step toward clarity, control, and confidence. Schedule your free consultation today and start your journey.
             </p>
-
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -462,7 +585,7 @@ const About = () => {
                   rel="noopener noreferrer"
                 >
                   <button
-                    className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
+                    className="min-w-[240px] bg-accent-dark flex justify-center items-center text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
                     aria-label="Schedule a Free Financial Consultation"
                   >
                     Schedule Consultation
@@ -471,11 +594,11 @@ const About = () => {
                 </a>
               </motion.div>
             </div>
-
           </motion.div>
         </div>
       </section>
 
+      {/* Styles (updated to include MeetTheTeam animations) */}
       <style jsx>{`
         @keyframes float {
           0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -492,6 +615,17 @@ const About = () => {
           100% { background-position: 200% 0; }
         }
 
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         .animate-float {
           animation: float 6s ease-in-out infinite;
         }
@@ -504,6 +638,11 @@ const About = () => {
           background: linear-gradient(to right, #84cc16 0%, #65a30d 50%, #84cc16 100%);
           background-size: 200% 100%;
           animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out forwards;
+          opacity: 0;
         }
 
         .animation-delay-1000 {
@@ -528,6 +667,10 @@ const About = () => {
             grid-template-columns: 1fr;
           }
 
+          .lg\\:grid-cols-3 {
+            grid-template-columns: 1fr;
+          }
+
           .lg\\:sticky {
             position: static;
           }
@@ -538,6 +681,19 @@ const About = () => {
 
           .max-w-md {
             max-width: 100%;
+          }
+
+          .lg\\:flex-row, .lg\\:flex-row-reverse {
+            flex-direction: column;
+          }
+
+          .lg\\:mr-8, .lg\\:ml-8 {
+            margin-right: 0;
+            margin-left: 0;
+          }
+
+          .lg\\:text-left {
+            text-align: center;
           }
         }
       `}</style>
