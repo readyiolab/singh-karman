@@ -52,10 +52,10 @@ const staggerContainer = {
 };
 
 const Calculator = () => {
-  const [initialAmount, setInitialAmount] = useState(1000);
+  const [initialAmount, setInitialAmount] = useState(""); // Initialize as empty string
   const [years, setYears] = useState(10);
   const [interestRate, setInterestRate] = useState(5);
-  const [monthlyContribution, setMonthlyContribution] = useState(100);
+  const [monthlyContribution, setMonthlyContribution] = useState(""); // Initialize as empty string
   const [contributionFrequency, setContributionFrequency] = useState("monthly");
   const [compoundingFrequency, setCompoundingFrequency] = useState("monthly");
   const [finalAmount, setFinalAmount] = useState(0);
@@ -68,8 +68,9 @@ const Calculator = () => {
   const navigate = useNavigate();
 
   const calculateCompoundInterest = () => {
-    const principal = initialAmount;
-    const rate = interestRate / 100;
+    const principal = Number(initialAmount) || 0; // Fallback to 0 for calculations
+    const rate = Number(interestRate) / 100 || 0;
+    const contribution = Number(monthlyContribution) || 0; // Fallback to 0 for calculations
 
     const frequencies = {
       daily: 365,
@@ -90,14 +91,14 @@ const Calculator = () => {
 
     let data = [];
 
-    if (interestRate === 0) {
-      const totalContrib = principal + monthlyContribution * contribN * years;
+    if (rate === 0) {
+      const totalContrib = principal + contribution * contribN * years;
       setFinalAmount(totalContrib);
       setTotalContributions(totalContrib);
       setTotalInterest(0);
 
       for (let y = 0; y <= years; y++) {
-        const yContribs = principal + monthlyContribution * contribN * y;
+        const yContribs = principal + contribution * contribN * y;
         data.push({
           year: y,
           total: yContribs,
@@ -114,12 +115,12 @@ const Calculator = () => {
         const yCompound = principal * Math.pow(1 + effectiveRate, yPeriods);
         let yContribFV = 0;
         if (effectiveRate > 0) {
-          yContribFV = monthlyContribution * (Math.pow(1 + effectiveRate, yPeriods) - 1) / effectiveRate;
+          yContribFV = contribution * (Math.pow(1 + effectiveRate, yPeriods) - 1) / effectiveRate;
         } else {
-          yContribFV = monthlyContribution * yPeriods;
+          yContribFV = contribution * yPeriods;
         }
         const yTotal = yCompound + yContribFV;
-        const yContribs = principal + monthlyContribution * contribN * y;
+        const yContribs = principal + contribution * contribN * y;
         const yInterest = yTotal - yContribs;
 
         data.push({
@@ -204,10 +205,7 @@ const Calculator = () => {
               position: "top",
               labels: {
                 color: "#1f2937",
-                font: {
-
-                  size: 12
-                },
+                font: { size: 12 },
               },
             },
             tooltip: {
@@ -261,7 +259,6 @@ const Calculator = () => {
         }}
       >
         <div className="absolute inset-0 bg-black/50 z-0" />
-
         <div className="absolute inset-0 pointer-events-none z-0">
           <div className="absolute top-1/4 left-1/4 animate-float">
             <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-white opacity-60" />
@@ -302,11 +299,8 @@ const Calculator = () => {
 
             <div className="flex justify-center">
               <button
-                to="#calculator"
-
                 onClick={handleTryNowClick}
                 className="justify-center flex items-center rounded-full bg-gradient-to-r from-lime-500 to-green-600 text-white hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl px-12 py-4 text-lg font-semibold"
-
               >
                 Try Now
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
@@ -322,9 +316,7 @@ const Calculator = () => {
           <motion.div {...fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Why Use This
-              <span className="block text-accent-dark mt-2">
-                Calculator?
-              </span>
+              <span className="block text-accent-dark mt-2">Calculator?</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Compound interest is often called the "eighth wonder of the world" by Albert Einstein. It allows your money to grow exponentially over time by earning interest on both your principal and accumulated interest. Our calculator helps you visualize this magic in action.
@@ -384,9 +376,7 @@ const Calculator = () => {
           <motion.div {...fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Plan Your
-              <span className="block text-accent-dark mt-2">
-                Financial Growth
-              </span>
+              <span className="block text-accent-dark mt-2">Financial Growth</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Input your investment details to visualize how your wealth can grow with the power of compounding.
@@ -400,20 +390,13 @@ const Calculator = () => {
             className="grid gap-8 lg:grid-cols-2 items-start"
           >
             {/* Sticky Results Section */}
-            <motion.div
-              variants={fadeInUp}
-              className="lg:sticky lg:top-24 space-y-8"
-            >
+            <motion.div variants={fadeInUp} className="lg:sticky lg:top-24 space-y-8">
               <div className="bg-white p-8 rounded-3xl shadow-lg transition-all duration-300 border border-gray-100 hover:shadow-xl">
-                <h3 className="text-2xl font-extrabold mb-6 text-center">
-                  Your Investment Growth
-                </h3>
+                <h3 className="text-2xl font-extrabold mb-6 text-center">Your Investment Growth</h3>
                 <div className="space-y-6">
                   <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-100">
                     <p className="text-sm text-gray-600 mb-2 font-semibold">Total Savings After {years} Years</p>
-                    <p className="font-bold text-3xl text-primary">
-                      {formatCurrency(finalAmount)}
-                    </p>
+                    <p className="font-bold text-3xl text-primary">{formatCurrency(finalAmount)}</p>
                   </div>
 
                   <div className="space-y-4">
@@ -443,9 +426,7 @@ const Calculator = () => {
             {/* Input Form */}
             <motion.div variants={fadeInUp} className="space-y-8">
               <div className="bg-white p-8 rounded-3xl shadow-lg transition-all duration-300 border border-gray-100 hover:shadow-xl">
-                <h3 className="text-2xl font-extrabold mb-6 text-center">
-                  Investment Details
-                </h3>
+                <h3 className="text-2xl font-extrabold mb-6 text-center">Investment Details</h3>
                 <div className="space-y-6">
                   <div className="space-y-2">
                     <label className="text-sm text-gray-700 font-semibold flex items-center gap-2">
@@ -457,9 +438,13 @@ const Calculator = () => {
                       <input
                         type="number"
                         value={initialAmount}
-                        onChange={(e) => setInitialAmount(Math.max(0, Number(e.target.value)))}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          setInitialAmount(value === "" ? "" : Math.max(0, Number(value)));
+                        }}
                         className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 hover:border-blue-300 transition-colors"
                         min="0"
+                        placeholder="Enter amount"
                       />
                     </div>
                   </div>
@@ -522,9 +507,13 @@ const Calculator = () => {
                       <input
                         type="number"
                         value={monthlyContribution}
-                        onChange={(e) => setMonthlyContribution(Math.max(0, Number(e.target.value)))}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          setMonthlyContribution(value === "" ? "" : Math.max(0, Number(value)));
+                        }}
                         className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 hover:border-blue-300 transition-colors"
                         min="0"
+                        placeholder="Enter amount"
                       />
                     </div>
                   </div>
@@ -566,9 +555,7 @@ const Calculator = () => {
             variants={fadeInUp}
             className="mt-12 bg-white p-8 rounded-3xl shadow-lg transition-all duration-300 border border-gray-100 hover:shadow-xl"
           >
-            <h3 className="text-2xl font-extrabold mb-6 text-center">
-              Growth Over Time
-            </h3>
+            <h3 className="text-2xl font-extrabold mb-6 text-center">Growth Over Time</h3>
             <div className="h-[400px] w-full">
               <canvas ref={canvasRef}></canvas>
             </div>
@@ -582,9 +569,7 @@ const Calculator = () => {
           <motion.div {...fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Maximize Your
-              <span className="block text-accent-dark mt-2">
-                Wealth
-              </span>
+              <span className="block text-accent-dark mt-2">Wealth</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Simple strategies to accelerate your financial growth and secure your future.
@@ -650,9 +635,7 @@ const Calculator = () => {
           <motion.div {...fadeInUp} className="text-center max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
               Ready to Grow Your
-              <span className="block text-accent-dark mt-2">
-                Wealth?
-              </span>
+              <span className="block text-accent-dark mt-2">Wealth?</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
               Take control of your financial future with a personalized strategy. Schedule a free consultation today.
@@ -660,20 +643,16 @@ const Calculator = () => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <motion.div whileTap={{ scale: 0.95 }}>
-                
-                 <a href=" https://calendly.com/karmansingh/financialstratgey " target="_blank" rel="noopener noreferrer">
-                   <button
-
-
+                <a href="https://calendly.com/karmansingh/financialstratgey" target="_blank" rel="noopener noreferrer">
+                  <button
                     className="min-w-[240px] justify-center bg-accent-dark text-white rounded-full px-8 py-4 text-lg font-semibold shadow-lg hover:bg-accent-darker transition-colors flex items-center group"
                     aria-label="Schedule a Free Consultation"
                   >
                     Schedule Consultation
                     <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                   </button>
-                 </a>
+                </a>
               </motion.div>
-              
             </div>
           </motion.div>
         </div>

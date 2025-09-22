@@ -4,46 +4,50 @@ import { motion } from "framer-motion";
 const WhyWorkWithMe = () => {
   const reasons = [
     {
-      icon: Target,
-      title: "Clarity First",
-      description: "Simple, jargon-free strategies you can actually understand and trust.",
+      icon: Heart,
+      title: "Purpose-Driven Approach",
+      description: "Every plan is built with your family’s future in mind — designed to protect your present and strengthen your legacy.",
       gradient: "from-blue-400 via-blue-500 to-blue-600"
     },
     {
       icon: BookOpen,
-      title: "Ongoing Guidance ",
-      description: "Annual reviews and check-ins to ensure your plan grows with you.",
+      title: "Education-Focused",
+      description: "We go beyond advice. You’ll gain the knowledge and tools to make confident financial decisions for life.",
       gradient: "from-emerald-400 via-green-500 to-teal-600"
     },
     {
       icon: Users,
-      title: "Empowering Education ",
-      description: "One size doesn't fit all. Your plan is tailored to your income, lifestyle, and unique goals.",
+      title: "Personalized Planning",
+      description: "No cookie-cutter solutions. Your plan is tailored to your lifestyle, income, and vision for the future.",
       gradient: "from-teal-400 via-cyan-500 to-blue-500"
     },
     {
-      icon: Heart,
-      title: "Real Solutions ",
-      description: "Proven strategies designed for real families — practical, effective, lasting.",
+      icon: Target,
+      title: "Simplified Strategies",
+      description: "Finance doesn’t need to be complicated. We deliver clear, jargon-free strategies so you can move forward with confidence.",
       gradient: "from-rose-400 via-red-500 to-orange-500"
     }
   ];
 
   const commitments = [
     {
-      description: "No confusing jargon — just clear strategies",
+      title: "Clarity First",
+      description: "Simple, jargon-free strategies you can actually understand and trust.",
       gradient: "from-purple-400 via-purple-500 to-indigo-600"
     },
     {
-      description: "Annual reviews to keep you on track",
+      title: "Ongoing Guidance",
+      description: "Annual reviews and check-ins to ensure your plan grows with you.",
       gradient: "from-amber-400 via-yellow-500 to-orange-600"
     },
     {
-      description: "Education that empowers your decisions",
+      title: "Empowering Education",
+      description: "Knowledge that equips you to make confident, informed financial choices.",
       gradient: "from-cyan-400 via-teal-500 to-emerald-600"
     },
     {
-      description: "Strategies that work for real families",
+      title: "Real Solutions",
+      description: "Proven strategies designed for real families — practical, effective, lasting.",
       gradient: "from-pink-400 via-rose-500 to-red-600"
     }
   ];
@@ -75,7 +79,7 @@ const WhyWorkWithMe = () => {
             transition={{ delay: 0.3, duration: 0.5 }}
             className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-gray-900 dark:text-gray-100 mb-3 sm:mb-4 lg:mb-6"
           >
-            I Don't Just Advise — <span className="bg-clip-text text-transparent bg-accent-dark">I Equip</span>
+            Beyond Advice — <span className="bg-clip-text text-transparent bg-accent-dark">Real Tools for Your Financial Future</span>
           </motion.h2>
 
           <motion.p
@@ -84,8 +88,7 @@ const WhyWorkWithMe = () => {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="font-body text-sm sm:text-base lg:text-lg xl:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
-            Having walked the path from financial uncertainty to building generational wealth,
-            I understand the challenges you face — and I'm here to guide you through every step.
+            I know what it feels like to face financial uncertainty — and I also know the freedom that comes from building lasting wealth. My role is to guide you with strategies that don’t just tell you what to do, but empower you to take confident action at every step.
           </motion.p>
         </motion.div>
 
@@ -134,14 +137,14 @@ const WhyWorkWithMe = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.5 }}
-            className="font-playwrite font-bold text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-gray-900 dark:text-gray-100 mb-6 sm:mb-8 text-center "
+            className="font-playwrite font-bold text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-gray-900 dark:text-gray-100 mb-6 sm:mb-8 text-center"
           >
-            My <span className="text-accent-dark  f">Commitment</span> 
+            My <span className="text-accent-dark">Commitment</span>
           </motion.h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {commitments.map((commitment, index) => (
               <motion.div
-                key={index}
+                key={commitment.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
@@ -157,6 +160,9 @@ const WhyWorkWithMe = () => {
                   <div className={`bg-gradient-to-r ${commitment.gradient} p-2 sm:p-3 rounded-lg mb-3 sm:mb-4 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300`}>
                     <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
+                  <h4 className="font-heading font-semibold text-base sm:text-lg lg:text-xl text-gray-900 dark:text-gray-100 mb-2 sm:mb-3">
+                    {commitment.title}
+                  </h4>
                   <p className="font-body text-xs sm:text-sm lg:text-base xl:text-lg text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
                     {commitment.description}
                   </p>
@@ -187,7 +193,6 @@ const WhyWorkWithMe = () => {
             <p className="font-body text-sm sm:text-base lg:text-lg xl:text-xl 
                   text-gray-100 italic leading-relaxed relative z-10">
               "This business was built on purpose, not privilege. I’ve lived through financial struggle, and my mission is to help families rise above it creating wealth with clarity, confidence, and integrity.”
-
             </p>
 
             {/* Author */}

@@ -186,8 +186,9 @@ const tools = [
     icon: CreditCard,
     title: 'Debt Payoff Simulator',
     description: 'Simulate debt elimination strategies and see how fast you can become debt-free.',
-    to: '/calculator',
+    link: 'https://calendly.com/karmansingh/financialstratgey', // external link
     gradient: 'from-amber-400 via-orange-500 to-red-500',
+    external: true,
   },
 ];
 
@@ -207,7 +208,7 @@ const Services = () => {
         {/* Dark + Gradient Overlay */}
         <div className="absolute inset-0 bg-black/50 z-0" /> {/* Dark overlay for contrast */}
 
-        
+
 
         {/* Floating Icons */}
         <div className="absolute inset-0 pointer-events-none z-0">
@@ -257,14 +258,14 @@ const Services = () => {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-flex group">
               <a href=" https://calendly.com/karmansingh/financialstratgey " target="_blank" rel="noopener noreferrer">
                 <button
-              
-                
-                className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
-                aria-label="Start Your Financial Journey"
-              >
-                Start Your Journey
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </button>
+
+
+                  className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
+                  aria-label="Start Your Financial Journey"
+                >
+                  Start Your Journey
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </button>
               </a>
             </motion.div>
           </motion.div>
@@ -499,74 +500,90 @@ const Services = () => {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group">
                 <a href=" https://calendly.com/karmansingh/financialstratgey " target="_blank" rel="noopener noreferrer">
                   <button
-                  
-             
+
+
                     className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
-                  aria-label="Schedule a Free Financial Consultation"
-                >
-                  Schedule Consultation
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </button>
+                    aria-label="Schedule a Free Financial Consultation"
+                  >
+                    Schedule Consultation
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </a>
               </motion.div>
-              
+
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Tools Section */}
-       <section className="py-16 sm:py-20 lg:py-24 bg-white">
-      <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-        <motion.div {...fadeInUp} className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            Prefer to Explore on Your Own First?
-            <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
-              Try Our Tools
-            </span>
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Try out our tools to see what’s possible with just a few numbers.
-          </p>
-        </motion.div>
-        <motion.div
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="whileInView"
-          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {tools.map((tool, index) => (
-            <motion.div
-              key={index}
-              variants={fadeInUp}
-              className="group relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 overflow-hidden border border-gray-200/50 hover:-translate-y-2 cursor-pointer min-h-[350px] flex flex-col"
-            >
-              <div className="flex flex-col flex-grow">
-                <div
-                  className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 shadow-md bg-gradient-to-br ${tool.gradient} mx-auto group-hover:scale-110`}
-                >
-                  <tool.icon className="w-10 h-10 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{tool.title}</h3>
-                <p className="text-base text-gray-600 leading-relaxed mb-6 text-center">{tool.description}</p>
-                <div className="mt-auto flex justify-center">
-                  <Button
-                    to={tool.to}
-                    size="md"
-                    className="justify-center bg-black text-white w-full"
-                    aria-label={`Try ${tool.title}`}
+      <section className="py-16 sm:py-20 lg:py-24 bg-white">
+        <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          <motion.div {...fadeInUp} className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Prefer to Explore on Your Own First?
+              <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
+                Try Our Tools
+              </span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Try out our tools to see what’s possible with just a few numbers.
+            </p>
+          </motion.div>
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          >
+           {tools.map((tool, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="group relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 overflow-hidden border border-gray-200/50 hover:-translate-y-2 cursor-pointer min-h-[350px] flex flex-col"
+              >
+                <div className="flex flex-col flex-grow">
+                  <div
+                    className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 shadow-md bg-gradient-to-br ${tool.gradient} mx-auto group-hover:scale-110`}
                   >
-                    Get Started
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
+                    <tool.icon className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{tool.title}</h3>
+                  <p className="text-base text-gray-600 leading-relaxed mb-6 text-center">{tool.description}</p>
+
+                  <div className="mt-auto flex justify-center">
+                    {tool.external ? (
+                      <a
+                        href={tool.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="justify-center bg-accent-dark text-white w-full flex  items-center px-5 py-3 rounded-full  transition"
+                        aria-label={`Try ${tool.title}`}
+                      >
+                        Get Started
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    ) : (
+                      <Button
+                        to={tool.to}
+                        size="md"
+                        className="justify-center bg-black text-white w-full"
+                        aria-label={`Try ${tool.title}`}
+                      >
+                        Get Started
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-lime-200/20 via-transparent to-green-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
+
+                <div className="absolute inset-0 bg-gradient-to-br from-lime-200/20 via-transparent to-green-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
+              </motion.div>
+            ))}
+
+          </motion.div>
+        </div>
+      </section>
 
       <style jsx>{`
         @keyframes float {

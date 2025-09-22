@@ -48,17 +48,17 @@ const ResourcesSection = () => {
     },
     {
       icon: PlayCircle,
-      title: "Financial Freedom Video",
-      description: "5-minute explainer on tax-free retirement strategies",
+      title: "Become A Part of Empower Life",
+      description: "Your opportunity to Earn & Grow .Take the first step toward financial independence .Join Empower Life and Explore how you can build income while making an impact .",
       type: "Video Resource",
-      action: "Watch Now",
+      action: "Apply Now ",
       gradient: "bg-gradient-to-br from-emerald-500 to-emerald-600",
       stats: "25k+ Views",
       statsIcon: Eye,
-      features: ["Expert insights", "Clear explanations", "Actionable tips"],
+      features: ["Simple process to get started", "Ongoing support & mentorship ", "Flexible earning opportunities."],
       time: "5 min watch",
       popularity: "Trending",
-      link: "/service"
+      link: "/participate"
     }
   ];
 
