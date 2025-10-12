@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import { motion } from "framer-motion";
 import {
   Play,
@@ -12,7 +12,7 @@ import {
   Sparkles,
   PhoneCall,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 
 // Animation Variants
 const fadeInUp = {
@@ -68,7 +68,7 @@ const Participate = () => {
     phone: "",
   });
   const [showForm, setShowForm] = useState(false);
-
+const [isOpen, setIsOpen] = useState(false);
   const handleJoinClick = () => {
     setShowForm(true);
   };
@@ -86,6 +86,33 @@ const Participate = () => {
 
   return (
     <div className="bg-gray-50">
+      <Helmet>
+        <title>Join Our Team - Karman Singh Financial Services</title>
+        <meta
+          name="description"
+          content="Join Karman Singh Financial Services and start your journey to financial independence. Discover a proven success system, unlimited earning potential, and a supportive community."
+        />
+        <meta
+          name="keywords"
+          content="join our team, financial independence, career opportunities, Karman Singh, financial services, mentorship"
+        />
+        <meta name="author" content="Karman Singh Financial Services" />
+        <meta property="og:title" content="Join Our Team - Karman Singh Financial Services" />
+        <meta
+          property="og:description"
+          content="Become part of a driven team at Karman Singh Financial Services. Enjoy flexible work, unlimited earnings, and world-class mentorship to achieve your goals."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.karmansingh.com/participate" />
+        <meta property="og:image" content="https://www.karmansingh.com/participate-hero.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Join Our Team - Karman Singh Financial Services" />
+        <meta
+          name="twitter:description"
+          content="Take the first step toward a rewarding career with Karman Singh Financial Services. Schedule a call to learn about our proven system and supportive community."
+        />
+        <meta name="twitter:image" content="https://www.karmansingh.com/participate-hero.webp" />
+      </Helmet>
       {/* Hero Section */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
@@ -204,40 +231,83 @@ const Participate = () => {
 
       {/* Video Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-indigo-50 to-blue-100">
-        <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-          <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Our Mission in
-              <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
-                2 Minutes
-              </span>
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Watch this short video to discover how you can be part of our
-              vision.
-            </p>
-          </motion.div>
-          <motion.div
-            {...fadeInUp}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 sm:p-12 border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-300"
+      <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        {/* Heading */}
+        <motion.div {...fadeInUp} className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            Our Approach in
+            <span className="block bg-gradient-to-r from-lime-500 to-green-600 bg-clip-text text-transparent mt-2">
+              2 Minutes
+            </span>
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Watch a brief video introducing Karman and our wealth-building
+            philosophy.
+          </p>
+        </motion.div>
+
+        {/* Video Thumbnail with Play Button */}
+        <motion.div
+          {...fadeInUp}
+          className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 sm:p-12 border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-300"
+        >
+          <div
+            className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden relative cursor-pointer"
+            onClick={() => setIsOpen(true)}
           >
-            <div className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden">
-              <div className="text-center">
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-[#1e3a8a] p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg"
-                >
-                  <Play className="w-10 h-10 text-white ml-1" />
-                </motion.div>
-                <p className="text-gray-600 text-sm sm:text-base">
-                  A message from our team leader about our mission and vision
-                </p>
-              </div>
+            {/* Thumbnail Image */}
+            <img
+              src="/founder.webp" // <-- Replace with your thumbnail path
+              alt="Karman Video Thumbnail"
+              className="w-full h-full object-cover"
+            />
+
+            {/* Overlay with Play Button */}
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.3 }}
+                className="bg-[#1e3a8a] p-6 rounded-full w-20 h-20 flex items-center justify-center shadow-lg"
+              >
+                <Play className="w-10 h-10 text-white ml-1" />
+              </motion.div>
+            </div>
+          </div>
+          <p className="text-gray-600 text-sm sm:text-base text-center mt-4">
+            Video introducing Karman and his wealth-building services
+          </p>
+        </motion.div>
+
+        {/* Video Modal */}
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+          >
+            <div className="relative w-[90%] sm:w-[70%] lg:w-[50%] aspect-video bg-black rounded-xl overflow-hidden">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute top-3 right-3 text-white bg-black/50 rounded-full p-2 hover:bg-black/70"
+                aria-label="Close video modal"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <iframe
+                className="w-full h-full"
+                src={"https://res.cloudinary.com/dbyjiqjui/video/upload/v1759820089/singhkarman-2_pxdaew.mp4"} // fallback link
+                title="Karman Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
           </motion.div>
-        </div>
-      </section>
+        )}
+      </div>
+    </section>
 
       {/* Testimonial Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white to-gray-100 relative overflow-hidden">
@@ -267,9 +337,9 @@ const Participate = () => {
                 quote:
                   "“Joining this team gave me the freedom to work on my terms and the tools to succeed beyond my expectations.”",
                 author: "Sarah M.",
-                role: "Entrepreneur",
+                role: "Student",
                 avatar:
-                  "https://images.unsplash.com/photo-1633332755192-727a05c4013d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fHwwhttps://images.unsplash.com/photo-1633332755192-727a05c4013d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fHww", // Replace with actual image path
+                  "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80", // real student photo
               },
               {
                 quote:
@@ -277,7 +347,7 @@ const Participate = () => {
                 author: "James T.",
                 role: "Team Leader",
                 avatar:
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpQFJfD_kdEn3Wknz5WjQqpp6idyu-5NC9FmKl9NM4hh0dsHQ1Qb8hfUt6Opwx2U4Fxt4&usqp=CAU", // Replace with actual image path
+                  "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=800&q=80", // confident leader
               },
               {
                 quote:
@@ -285,7 +355,7 @@ const Participate = () => {
                 author: "Emily R.",
                 role: "Marketing Specialist",
                 avatar:
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmkDX1YgROXc_lQ_RfHI0Nj1x4xaFQi1_7KDgg11Tezro8ldEGdJs5LMuV1rC81iO20Y0&usqp=CAU", // Replace with actual image path
+                  "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=800&q=80", // marketing pro vibe
               },
             ].map((testimonial, index) => (
               <motion.div
@@ -352,87 +422,6 @@ const Participate = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* Form Popup */}
-      {/* {showForm && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative shadow-2xl"
-          >
-            <button
-              onClick={() => setShowForm(false)}
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
-            >
-              <X size={24} />
-            </button>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Join Our Team
-            </h3>
-            <form onSubmit={handleFormSubmit} className="space-y-4">
-              <div>
-                <label
-                  htmlFor="fullName"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="fullName"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
-                />
-              </div>
-              <Button
-                type="submit"
-                className="w-full justify-center bg-gradient-to-r from-lime-500 to-green-600 text-white hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl"
-              >
-                Schedule My Call
-              </Button>
-            </form>
-          </motion.div>
-        </div>
-      )} */}
 
       <style jsx>{`
         @keyframes float {

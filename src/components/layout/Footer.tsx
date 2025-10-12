@@ -1,7 +1,12 @@
-import { Mail, Phone, MapPin, Instagram, Linkedin, Facebook } from "lucide-react";
+
+import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Footer = () => {
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [message, setMessage] = useState({ text: "", type: "" });
+
   const footerLinks = {
     services: [
       { name: "Life Insurance Planning", href: "/services#life-insurance" },
@@ -25,6 +30,47 @@ const Footer = () => {
     { icon: Instagram, href: "https://instagram.com/singhkarman", label: "Instagram" },
     { icon: Linkedin, href: "https://linkedin.com/in/karmansinghceo", label: "LinkedIn" }
   ];
+
+  const handleNewsletterSubscribe = async (email) => {
+    if (!email) {
+      setMessage({ text: "Please enter a valid email address.", type: "error" });
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:3000/api/newsletter/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage({
+          text: data.message || 'Please check your email to confirm your subscription.',
+          type: 'success'
+        });
+        setNewsletterEmail("");
+        setTimeout(() => setMessage({ text: "", type: "" }), 5000); // Clear message after 5 seconds
+      } else {
+        setMessage({
+          text: data.message === "Subscription request is pending confirmation"
+            ? "A confirmation email has been resent. Please check your email."
+            : data.message || 'Subscription failed. Please try again.',
+          type: 'error'
+        });
+      }
+    } catch (error) {
+      console.error('Subscription error:', error);
+      setMessage({
+        text: 'An error occurred. Please try again later.',
+        type: 'error'
+      });
+    }
+  };
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -109,7 +155,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Social Links & CTA */}
+        {/* Social Links, Newsletter & CTA */}
         <div className="border-t border-primary-foreground/20 pt-8 mb-8">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-left">
             <div>
@@ -118,23 +164,49 @@ const Footer = () => {
               </h4>
               <p>Schedule your free consultation today</p>
             </div>
-            <div className="flex flex-wrap justify-start md:justify-end gap-4">
-              {/* Social Icons */}
-              <div className="flex gap-4">
-                {socialLinks.map((social) => (
-                  <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
-                    <social.icon className="w-5 h-5" />
-                  </a>
-                ))}
+            <div className="flex flex-col sm:flex-row justify-start md:justify-end gap-4">
+              {/* Newsletter Signup */}
+              <div className="flex flex-col gap-2">
+                <h4 className="font-heading font-semibold text-lg">Stay Updated</h4>
+                <p className="text-sm">Subscribe to our newsletter for financial tips and updates</p>
+                <div className="flex gap-2">
+                  <input 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    className="bg-primary-foreground/10 text-primary-foreground px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent flex-1"
+                  />
+                  <button 
+                    onClick={() => handleNewsletterSubscribe(newsletterEmail)}
+                    className="bg-accent px-4 py-2 rounded-lg font-medium hover:bg-accent-dark transition-colors"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+                {message.text && (
+                  <p className={`text-sm mt-2 ${message.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+                    {message.text}
+                  </p>
+                )}
               </div>
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="https://calendly.com/singhkarman/businessoverview" target="_blank" rel="noopener noreferrer" className="bg-accent px-6 py-3 rounded-lg font-medium hover:bg-accent-dark transition-colors text-center">
-                  Business Overview
-                </a>
-                <a href="https://calendly.com/singhkarman/financialstrategy" target="_blank" rel="noopener noreferrer" className="bg-accent px-6 py-3 rounded-lg font-medium hover:bg-accent-dark transition-colors text-center">
-                  Financial Strategy
-                </a>
+              {/* Social Icons & CTA Buttons */}
+              <div className="flex flex-col gap-4">
+                <div className="flex gap-4">
+                  {socialLinks.map((social) => (
+                    <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                      <social.icon className="w-5 h-5" />
+                    </a>
+                  ))}
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a href="https://calendly.com/singhkarman/businessoverview" target="_blank" rel="noopener noreferrer" className="bg-accent px-6 py-3 rounded-lg font-medium hover:bg-accent-dark transition-colors text-center">
+                    Business Overview
+                  </a>
+                  <a href="https://calendly.com/singhkarman/financialstrategy" target="_blank" rel="noopener noreferrer" className="bg-accent px-6 py-3 rounded-lg font-medium hover:bg-accent-dark transition-colors text-center">
+                    Financial Strategy
+                  </a>
+                </div>
               </div>
             </div>
           </div>

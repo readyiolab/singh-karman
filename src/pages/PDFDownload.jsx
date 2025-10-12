@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import { motion } from "framer-motion";
 import {
   FileText,
@@ -41,7 +42,7 @@ const pdfGuides = [
     ],
     gradient: "from-emerald-400 via-green-500 to-teal-600",
     icon: FileText,
-    fileName: "dummy-pdf-1.pdf",
+    fileName: "The Beginner’s Guide to Building a Tax-Free Retirement.pdf",
   },
   {
     title: "How to Create Generational Wealth Without a Million-Dollar Salary",
@@ -52,7 +53,7 @@ const pdfGuides = [
     ],
     gradient: "from-rose-400 via-red-500 to-orange-500",
     icon: FileText,
-    fileName: "dummy-pdf-2.pdf",
+    fileName: "How to Create Generational Wealth Without a Million-Dollar Salary.pdf",
   },
   {
     title: "How High Earners Can Still Retire Tax-Free",
@@ -63,7 +64,7 @@ const pdfGuides = [
     ],
     gradient: "from-teal-400 via-cyan-500 to-blue-500",
     icon: FileText,
-    fileName: "dummy-pdf-3.pdf",
+    fileName: "How High Earners Can Still Retire Tax-Free.pdf",
   },
 ];
 
@@ -129,6 +130,33 @@ const PDFDownload = () => {
 
   return (
     <div className="bg-gray-50">
+      <Helmet>
+        <title>Free Financial Guides - Karman Singh Financial Services</title>
+        <meta
+          name="description"
+          content="Download free financial guides from Karman Singh Financial Services to learn about tax-free retirement, generational wealth, and more. Start your financial journey today."
+        />
+        <meta
+          name="keywords"
+          content="financial guides, tax-free retirement, generational wealth, Karman Singh, financial planning, free resources"
+        />
+        <meta name="author" content="Karman Singh Financial Services" />
+        <meta property="og:title" content="Free Financial Guides - Karman Singh Financial Services" />
+        <meta
+          property="og:description"
+          content="Access expert-crafted guides on building wealth, tax-free retirement strategies, and financial planning from Karman Singh Financial Services."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.karmansingh.com/pdf-download" />
+        <meta property="og:image" content="https://www.karmansingh.com/pdf-guides-hero.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Financial Guides - Karman Singh Financial Services" />
+        <meta
+          name="twitter:description"
+          content="Download free guides to unlock your financial future with Karman Singh Financial Services. Learn strategies for tax-free retirement and generational wealth."
+        />
+        <meta name="twitter:image" content="https://www.karmansingh.com/pdf-guides-hero.webp" />
+      </Helmet>
       {/* Hero Section */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"

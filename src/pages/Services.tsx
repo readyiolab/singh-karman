@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Sparkles, Star, Zap, Award, Calculator, TrendingUp, GraduationCap, PiggyBank, Heart, BookOpen, Target, ArrowRight, Play, FileText, CreditCard, ShieldCheck, CheckCircle, Clock, Users, Lock } from 'lucide-react';
+import { Sparkles, Star, Zap, Award, Calculator, TrendingUp, GraduationCap, PiggyBank, Heart, BookOpen, Target, ArrowRight, Play, FileText, CreditCard, ShieldCheck, CheckCircle, Clock, Users, Lock, X } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+// Configuration for external links
+const config = {
+  calendlyLink: 'https://calendly.com/karmansingh/financialstratgey',
+  videoLink: 'https://res.cloudinary.com/dbyjiqjui/video/upload/v1759820095/singhkarman-1_zilhya.mp4', // Replace with actual video URL
+};
 
 // Custom Button Component
-const Button = ({ children, className, variant = 'default', size = 'lg', to, ...props }) => {
+const Button = ({ children, className, variant = 'default', size = 'lg', to, external, ...props }) => {
   const baseStyles = 'inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 focus:outline-none';
   const variants = {
     default: 'bg-gradient-to-r from-lime-500 to-green-600 text-white hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl',
@@ -15,6 +21,20 @@ const Button = ({ children, className, variant = 'default', size = 'lg', to, ...
     lg: 'px-8 py-4 text-lg',
     md: 'px-6 py-3 text-base',
   };
+
+  if (external) {
+    return (
+      <a
+        href={to}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className || ''}`}
+        {...props}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
     <Link
@@ -174,6 +194,7 @@ const tools = [
     description: 'Access our collection of financial planning PDFs and resources to get started.',
     to: '/pdf-download',
     gradient: 'from-indigo-400 via-indigo-500 to-blue-600',
+    external: false,
   },
   {
     icon: Calculator,
@@ -181,21 +202,50 @@ const tools = [
     description: 'Calculate your potential wealth growth with our interactive tool.',
     to: '/calculator',
     gradient: 'from-pink-400 via-pink-500 to-rose-600',
+    external: false,
   },
   {
     icon: CreditCard,
     title: 'Debt Payoff Simulator',
     description: 'Simulate debt elimination strategies and see how fast you can become debt-free.',
-    link: 'https://calendly.com/karmansingh/financialstratgey', // external link
+    to: config.calendlyLink,
     gradient: 'from-amber-400 via-orange-500 to-red-500',
     external: true,
   },
 ];
 
 const Services = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="bg-gray-50">
-      {/* Hero Section */}
+      <Helmet>
+        <title>Services - Karman Singh Financial Services</title>
+        <meta
+          name="description"
+          content="Explore Karman Singh Financial Services' wealth-building solutions, including life insurance planning, tax-free retirement strategies, college savings, debt elimination, and more."
+        />
+        <meta
+          name="keywords"
+          content="financial services, wealth building, life insurance, retirement planning, college savings, debt elimination, legacy planning, financial education, Karman Singh"
+        />
+        <meta name="author" content="Karman Singh Financial Services" />
+        <meta property="og:title" content="Services - Karman Singh Financial Services" />
+        <meta
+          property="og:description"
+          content="Discover tailored financial strategies to protect your income, grow your assets, and secure your family's future with Karman Singh Financial Services."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.karmansingh.com/services" />
+        <meta property="og:image" content="https://www.karmansingh.com/bg-2.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Services - Karman Singh Financial Services" />
+        <meta
+          name="twitter:description"
+          content="From life insurance to tax-free retirement and debt elimination, Karman Singh Financial Services offers expert strategies for financial freedom."
+        />
+        <meta name="twitter:image" content="https://www.karmansingh.com/bg-2.webp" />
+      </Helmet>
       {/* Hero Section */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
@@ -205,12 +255,7 @@ const Services = () => {
           backgroundPosition: "center",
         }}
       >
-        {/* Dark + Gradient Overlay */}
-        <div className="absolute inset-0 bg-black/50 z-0" /> {/* Dark overlay for contrast */}
-
-
-
-        {/* Floating Icons */}
+        <div className="absolute inset-0 bg-black/50 z-0" />
         <div className="absolute inset-0 pointer-events-none z-0">
           <div className="absolute top-1/4 left-1/4 animate-float">
             <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-[#84cc16] opacity-60" />
@@ -225,8 +270,6 @@ const Services = () => {
             <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-[#84cc16] opacity-70" />
           </div>
         </div>
-
-        {/* Content */}
         <div className="container relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -240,38 +283,32 @@ const Services = () => {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-3 rounded-full mb-8 border border-white/20 shadow-lg"
             >
-              <Award className="w-5 h-5 text-[#84cc16] " />
+              <Award className="w-5 h-5 text-[#84cc16]" />
               <span className="text-sm font-medium tracking-wide">Empowering Wealth Creation</span>
             </motion.div>
-
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
               Wealth Is More Than Money
               <span className="block text-accent-dark mt-2 pb-3">
                 Freedom. Legacy. Peace.
               </span>
             </h1>
-
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
               Tailored strategies to protect your income, grow your assets, and secure your family’s future with confidence.
             </p>
-
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-flex group">
-              <a href=" https://calendly.com/karmansingh/financialstratgey " target="_blank" rel="noopener noreferrer">
-                <button
-
-
-                  className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
-                  aria-label="Start Your Financial Journey"
-                >
-                  Start Your Journey
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </a>
+              <Button
+                to={config.calendlyLink}
+                external
+                className="min-w-[240px] bg-accent-dark flex justify-center items-center text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
+                aria-label="Start Your Financial Journey"
+              >
+                Start Your Journey
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </motion.div>
           </motion.div>
         </div>
       </section>
-
 
       {/* Why Choose Us Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white to-green-50 relative overflow-hidden">
@@ -306,16 +343,13 @@ const Services = () => {
                 >
                   <reason.icon className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 ">{reason.title}</h3>
-                <p className="text-base text-gray-600 leading-relaxed ">{reason.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{reason.title}</h3>
+                <p className="text-base text-gray-600 leading-relaxed">{reason.description}</p>
                 <div className="absolute inset-0 bg-gradient-to-br from-lime-200/20 via-transparent to-green-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
               </motion.div>
             ))}
           </motion.div>
-          <motion.div
-            {...fadeInUp}
-            className="text-center mt-12"
-          >
+          <motion.div {...fadeInUp} className="text-center mt-12">
             <Button
               to="/contact#contact-form"
               size="md"
@@ -365,27 +399,69 @@ const Services = () => {
               Watch a brief video introducing Karman and our wealth-building philosophy.
             </p>
           </motion.div>
+
+          {/* Video Thumbnail with Play Button */}
           <motion.div
             {...fadeInUp}
             className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 sm:p-12 border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <div className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden">
-              <div className="text-center">
+            <div
+              className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden relative cursor-pointer"
+              onClick={() => setIsOpen(true)}
+            >
+              {/* Thumbnail Image */}
+              <img
+                src="/founder.webp" // <-- Replace with your thumbnail path
+                alt="Karman Video Thumbnail"
+                className="w-full h-full object-cover"
+              />
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-[#1e3a8a] p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg"
+                  className="bg-[#1e3a8a] p-6 rounded-full w-20 h-20 flex items-center justify-center shadow-lg"
                 >
                   <Play className="w-10 h-10 text-white ml-1" />
                 </motion.div>
-                <p className="text-gray-600 text-sm sm:text-base">
-                  Video introducing Karman and his wealth-building services
-                </p>
               </div>
             </div>
+            <p className="text-gray-600 text-sm sm:text-base text-center mt-4">
+              Video introducing Karman and his wealth-building services
+            </p>
           </motion.div>
+
+          {/* Video Modal */}
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+            >
+              <div className="relative w-[90%] sm:w-[70%] lg:w-[50%] aspect-video bg-black rounded-xl overflow-hidden">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="absolute top-3 right-3 text-white bg-black/50 rounded-full p-2 hover:bg-black/70"
+                  aria-label="Close video modal"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+                <iframe
+                  className="w-full h-full"
+                  src={config.videoLink}
+                  title="Karman Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+          )}
         </div>
       </section>
+
 
       {/* Services Overview */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-white via-green-50/30 to-white relative overflow-hidden">
@@ -407,7 +483,7 @@ const Services = () => {
             initial="initial"
             whileInView="whileInView"
             viewport={{ once: true }}
-            className="grid gap-10 sm:grid-cols-3 lg:grid-cols-2"
+            className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
           >
             {services.map((service) => (
               <motion.div
@@ -498,19 +574,16 @@ const Services = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group">
-                <a href=" https://calendly.com/karmansingh/financialstratgey " target="_blank" rel="noopener noreferrer">
-                  <button
-
-
-                    className="min-w-[240px]  bg-accent-dark flex justify-center items-center  text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
-                    aria-label="Schedule a Free Financial Consultation"
-                  >
-                    Schedule Consultation
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </a>
+                <Button
+                  to={config.calendlyLink}
+                  external
+                  className="min-w-[240px] bg-accent-dark flex justify-center items-center text-white font-semibold py-5 px-10 rounded-full transition-all duration-300"
+                  aria-label="Schedule a Free Financial Consultation"
+                >
+                  Schedule Consultation
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
               </motion.div>
-
             </div>
           </motion.div>
         </div>
@@ -536,7 +609,7 @@ const Services = () => {
             whileInView="whileInView"
             className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
-           {tools.map((tool, index) => (
+            {tools.map((tool, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
@@ -550,37 +623,22 @@ const Services = () => {
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{tool.title}</h3>
                   <p className="text-base text-gray-600 leading-relaxed mb-6 text-center">{tool.description}</p>
-
                   <div className="mt-auto flex justify-center">
-                    {tool.external ? (
-                      <a
-                        href={tool.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="justify-center bg-accent-dark text-white w-full flex  items-center px-5 py-3 rounded-full  transition"
-                        aria-label={`Try ${tool.title}`}
-                      >
-                        Get Started
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </a>
-                    ) : (
-                      <Button
-                        to={tool.to}
-                        size="md"
-                        className="justify-center bg-black text-white w-full"
-                        aria-label={`Try ${tool.title}`}
-                      >
-                        Get Started
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    )}
+                    <Button
+                      to={tool.to}
+                      external={tool.external}
+                      size="md"
+                      className="justify-center bg-black text-white w-full"
+                      aria-label={`Try ${tool.title}`}
+                    >
+                      Get Started
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
                   </div>
                 </div>
-
                 <div className="absolute inset-0 bg-gradient-to-br from-lime-200/20 via-transparent to-green-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
               </motion.div>
             ))}
-
           </motion.div>
         </div>
       </section>
@@ -627,6 +685,10 @@ const Services = () => {
           animation-delay: 3s;
         }
 
+        .motion-div {
+          will-change: transform, opacity;
+        }
+
         @media (max-width: 768px) {
           h1 {
             font-size: 2.5rem;
@@ -637,11 +699,11 @@ const Services = () => {
             grid-template-columns: 1fr;
           }
 
-          .lg\\:grid-cols-4 {
+          .lg\\:grid-cols-3 {
             grid-template-columns: 1fr;
           }
 
-          .lg\\:grid-cols-3 {
+          .lg\\:grid-cols-2 {
             grid-template-columns: 1fr;
           }
         }

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, DollarSign, Calendar, Percent, TrendingUp, Sparkles, BarChart, Users, ShieldCheck } from "lucide-react";
 import { Chart, registerables } from "chart.js";
-
+import { Helmet } from 'react-helmet-async';
 // Register Chart.js components
 Chart.register(...registerables);
 
@@ -248,6 +248,33 @@ const Calculator = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen">
+      <Helmet>
+        <title>Compound Interest Calculator - Karman Singh Financial Services</title>
+        <meta
+          name="description"
+          content="Use our Compound Interest Calculator to visualize how your savings can grow over time with tailored investment strategies. Plan your financial future with confidence."
+        />
+        <meta
+          name="keywords"
+          content="compound interest calculator, financial planning, wealth growth, investment calculator, Karman Singh, savings calculator"
+        />
+        <meta name="author" content="Karman Singh Financial Services" />
+        <meta property="og:title" content="Compound Interest Calculator - Karman Singh Financial Services" />
+        <meta
+          property="og:description"
+          content="Discover the power of compound interest with our interactive calculator. Input your investment details to see how your wealth can grow over time."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.karmansingh.com/calculator" />
+        <meta property="og:image" content="https://www.karmansingh.com/calculator-thumbnail.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Compound Interest Calculator - Karman Singh Financial Services" />
+        <meta
+          name="twitter:description"
+          content="Plan your financial future with our Compound Interest Calculator. Visualize your wealth growth and explore personalized investment strategies."
+        />
+        <meta name="twitter:image" content="https://www.karmansingh.com/calculator-thumbnail.webp" />
+      </Helmet>
       {/* Hero Section */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"

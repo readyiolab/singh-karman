@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Calculator, Video, BookOpen, Download, ArrowRight, Shield, TrendingUp, GraduationCap } from "lucide-react";
+import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 
 const Resources = () => {
@@ -67,7 +68,33 @@ const Resources = () => {
 
   return (
     <div className="min-h-screen bg-background">
-   
+   <Helmet>
+        <title>Free Financial Resources - Karman Singh Financial Services</title>
+        <meta
+          name="description"
+          content="Explore free financial resources from Karman Singh Financial Services, including PDF guides, interactive calculators, and educational videos to accelerate your wealth-building journey."
+        />
+        <meta
+          name="keywords"
+          content="financial resources, PDF guides, financial calculators, educational videos, wealth building, Karman Singh, financial planning"
+        />
+        <meta name="author" content="Karman Singh Financial Services" />
+        <meta property="og:title" content="Free Financial Resources - Karman Singh Financial Services" />
+        <meta
+          property="og:description"
+          content="Access free PDF guides, interactive tools, and educational videos to build wealth and plan your financial future with Karman Singh Financial Services."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.karmansingh.com/resources" />
+        <meta property="og:image" content="https://www.karmansingh.com/resources-hero.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Financial Resources - Karman Singh Financial Services" />
+        <meta
+          name="twitter:description"
+          content="Discover free resources like guides, calculators, and videos to help you achieve financial freedom with Karman Singh Financial Services."
+        />
+        <meta name="twitter:image" content="https://www.karmansingh.com/resources-hero.webp" />
+      </Helmet>
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-hero-gradient">

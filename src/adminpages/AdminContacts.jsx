@@ -9,28 +9,27 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
 import ReactPaginate from "react-paginate";
 
-const fetchApplications = async () => {
+const fetchContacts = async () => {
   const token = localStorage.getItem("token");
-  const response = await fetch("http://localhost:3000/api/applications", {
+  const response = await fetch("http://localhost:3000/api/contact", {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
   });
-  if (!response.ok) throw new Error("Failed to fetch applications");
+  if (!response.ok) throw new Error("Failed to fetch contacts");
   return response.json();
 };
 
-const AdminApplications = () => {
+const AdminContacts = () => {
   const [currentPage, setCurrentPage] = useState(0); // react-paginate uses 0-based indexing
   const itemsPerPage = 10;
 
   const { data, error, isLoading } = useQuery({
-    queryKey: ["applications"],
-    queryFn: fetchApplications,
+    queryKey: ["contacts"],
+    queryFn: fetchContacts,
   });
 
   if (isLoading) return <div>Loading...</div>;
@@ -50,25 +49,35 @@ const AdminApplications = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Form Applications</CardTitle>
+        <CardTitle>Contact Form Submissions</CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>ID</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Email</TableHead>
+              <TableHead>Inquiry Type</TableHead>
               <TableHead>Phone</TableHead>
-            
+              <TableHead>Message</TableHead>
+              <TableHead>Created At</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {paginatedData?.map((app) => (
-              <TableRow key={app.id}>
-                <TableCell>{app.name}</TableCell>
-                <TableCell>{app.email}</TableCell>
-                <TableCell>{app.phone}</TableCell>
-                
+            {paginatedData?.map((contact) => (
+              <TableRow key={contact.id}>
+                <TableCell>{contact.id}</TableCell>
+                <TableCell>{contact.name}</TableCell>
+                <TableCell>{contact.email}</TableCell>
+                <TableCell>
+                  {contact.inquiry_type.charAt(0).toUpperCase() + contact.inquiry_type.slice(1)}
+                </TableCell>
+                <TableCell>{contact.phone}</TableCell>
+                <TableCell className="max-w-xs truncate" title={contact.message}>
+                  {contact.message}
+                </TableCell>
+                <TableCell>{new Date(contact.created_at).toLocaleString()}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -99,4 +108,4 @@ const AdminApplications = () => {
   );
 };
 
-export default AdminApplications;
+export default AdminContacts;

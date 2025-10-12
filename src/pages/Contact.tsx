@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Star, Zap, Phone, Mail, MapPin, Calendar, MessageCircle, Instagram, Linkedin, Target, ChevronDown } from 'lucide-react';
-
+import { Helmet } from 'react-helmet-async';
 // Custom Button Component
 const Button = ({ children, className, variant = 'default', size = 'lg', to, ...props }) => {
   const baseStyles = 'inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 focus:outline-none';
@@ -48,14 +48,14 @@ const staggerContainer = {
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '', // Changed to single name field
     email: '',
     phone: '',
     inquiryType: '',
     message: '',
   });
-  const [formStatus, setFormStatus] = useState(null);
+ const [formStatus, setFormStatus] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -66,21 +66,38 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setFormStatus(null);
+    setErrorMessage('');
+
+    // Data matches backend schema exactly
+    const submitData = {
+      name: formData.name,
+      email: formData.email,
+      inquiry_type: formData.inquiryType,
+      phone: formData.phone,
+      message: formData.message,
+    };
+
     try {
-      // Mock API call (replace with actual endpoint)
-      const response = await fetch('https://api.example.com/contact', {
+      const response = await fetch('http://localhost:3000/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submitData),
       });
+
+      const data = await response.json();
+
       if (response.ok) {
         setFormStatus('success');
-        setFormData({ firstName: '', lastName: '', email: '', phone: '', inquiryType: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', inquiryType: '', message: '' });
       } else {
         setFormStatus('error');
+        setErrorMessage(data.message || 'Failed to send message. Please try again.');
       }
     } catch (error) {
+      console.error('Submission error:', error);
       setFormStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -115,6 +132,33 @@ const Contact = () => {
 
   return (
     <div className="bg-gray-50">
+      <Helmet>
+        <title>Contact Us - Karman Singh Financial Services</title>
+        <meta
+          name="description"
+          content="Get in touch with Karman Singh Financial Services to start your wealth journey. Schedule a consultation, send a message, or connect via email, phone, or social media."
+        />
+        <meta
+          name="keywords"
+          content="contact, financial consultation, wealth planning, Karman Singh, financial services, inquiry"
+        />
+        <meta name="author" content="Karman Singh Financial Services" />
+        <meta property="og:title" content="Contact Us - Karman Singh Financial Services" />
+        <meta
+          property="og:description"
+          content="Reach out to Karman Singh Financial Services to discuss your financial goals. Book a consultation or contact us via email, phone, or social media."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.karmansingh.com/contact" />
+        <meta property="og:image" content="https://www.karmansingh.com/contact-hero.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Us - Karman Singh Financial Services" />
+        <meta
+          name="twitter:description"
+          content="Start your financial transformation with Karman Singh Financial Services. Contact us today for a free consultation or to learn more about our services."
+        />
+        <meta name="twitter:image" content="https://www.karmansingh.com/contact-hero.webp" />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24">
         <div className="absolute inset-0">
@@ -213,20 +257,18 @@ const Contact = () => {
               <h3 className="text-2xl text-center font-extrabold text-black mb-6">
                 Send Me a Message
               </h3>
-              <div className="space-y-6">
-                <div className="grid">
-                  <div className="space-y-2">
-                    <label htmlFor="Name" className="text-base font-medium text-gray-900">Name</label>
-                    <input
-                      id="Name"
-                      type="text"
-                      value={formData.firstName}
-                      onChange={(e) => handleInputChange('firstName', e.target.value)}
-                      placeholder="Your first name"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-lime-500 transition-all duration-300"
-                      required
-                    />
-                  </div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-base font-medium text-gray-900">Name</label>
+                  <input
+                    id="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    placeholder="Your full name"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-lime-500 transition-all duration-300"
+                    required
+                  />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-base font-medium text-gray-900">Email</label>
@@ -280,8 +322,7 @@ const Contact = () => {
                   />
                 </div>
                 <button
-                  type="button"
-                  onClick={handleSubmit}
+                  type="submit"
                   disabled={isSubmitting}
                   className={`w-full rounded-full bg-gradient-to-r from-lime-500 to-green-600 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:from-lime-600 hover:to-green-700 shadow-lg hover:shadow-xl flex items-center justify-center ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
@@ -289,15 +330,15 @@ const Contact = () => {
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
                 {formStatus === 'success' && (
-                  <p className="text-green-600 text-center">Message sent successfully!</p>
+                  <p className="text-green-600 text-center font-semibold">Message sent successfully! We'll get back to you soon.</p>
                 )}
                 {formStatus === 'error' && (
-                  <p className="text-red-600 text-center">Failed to send message. Please try again.</p>
+                  <p className="text-red-600 text-center font-semibold">{errorMessage}</p>
                 )}
-              </div>
+              </form>
             </motion.div>
 
-            {/* Contact Info */}
+            {/* Contact Info (unchanged) */}
             <motion.div variants={fadeInUp} className="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl text-center font-extrabold text-black mb-6">
                 Direct Contact

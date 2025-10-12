@@ -73,7 +73,7 @@ const AdminLogin = () => {
               />
             </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full bg-black">
               Login
             </Button>
           </form>

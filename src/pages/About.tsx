@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Star, Zap, Shield, Target, TrendingUp, Award, Users, BookOpen, Heart } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 // Custom Button Component (unchanged)
 const Button = ({ children, className, variant = 'default', size = 'lg', to, ...props }) => {
@@ -183,6 +184,30 @@ const TeamMember = ({ member, index }) => {
 const About = () => {
   return (
     <div className="bg-gray-50">
+      <Helmet>
+        <title>About Empower Life - Building Your Financial Legacy</title>
+        <meta
+          name="description"
+          content="Learn about Empower Life's mission to empower families with financial strategies for wealth creation, asset protection, and legacy planning. Meet our dedicated team and discover our core values."
+        />
+        <meta name="keywords" content="financial planning, wealth creation, legacy planning, Empower Life, financial freedom, team, core values" />
+        <meta name="author" content="Empower Life" />
+        <meta property="og:title" content="About Empower Life - Building Your Financial Legacy" />
+        <meta
+          property="og:description"
+          content="Discover how Empower Life helps families achieve financial freedom through tailored strategies and a committed team. Learn about our mission, values, and community."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.empowerlife.com/about" />
+        <meta property="og:image" content="https://www.empowerlife.com/empower.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Empower Life - Building Your Financial Legacy" />
+        <meta
+          name="twitter:description"
+          content="Empower Life is dedicated to helping families build wealth and secure their future. Meet our team and explore our mission and values."
+        />
+        <meta name="twitter:image" content="https://www.empowerlife.com/empower.webp" />
+      </Helmet>
       {/* Hero Section (unchanged) */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-20 lg:py-24"
