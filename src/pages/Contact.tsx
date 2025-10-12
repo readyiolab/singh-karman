@@ -79,7 +79,7 @@ const Contact = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:3000/api/contact', {
+      const response = await fetch('https://singhkarman.com/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(submitData),

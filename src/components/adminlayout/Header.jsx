@@ -18,18 +18,11 @@ const Header = () => {
           return;
         }
 
-        // For now, if token exists, consider authenticated
-        // You can uncomment the API call when your backend is ready
+        
         setIsAuthenticated(true);
         setIsLoading(false);
 
-        /* 
-        const response = await fetch("http://localhost:3000/api/auth/check", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await response.json();
-        setIsAuthenticated(data.isAuthenticated);
-        */
+       
       } catch (error) {
         console.error("Auth check failed:", error);
         setIsAuthenticated(false);
@@ -43,16 +36,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      // Optional: Call logout API
-      /* 
-      const token = localStorage.getItem("token");
-      if (token) {
-        await fetch("http://localhost:3000/api/auth/logout", {
-          method: "POST",
-          headers: { Authorization: `Bearer ${token}` },
-        });
-      }
-      */
+     
 
       localStorage.removeItem("token");
       setIsAuthenticated(false);
