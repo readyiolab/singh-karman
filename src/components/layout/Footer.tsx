@@ -38,7 +38,7 @@ const Footer = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/newsletter/', {
+      const response = await fetch('https://singhkarman.com/api/newsletter/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

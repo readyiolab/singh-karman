@@ -24,7 +24,7 @@ const ConfirmSubscription = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:3000/api/newsletter/confirm?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}`,
+        `https://singhkarman.com/api/newsletter/confirm?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}`,
         {
           method: "GET",
           headers: {
@@ -66,7 +66,7 @@ const ConfirmSubscription = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/api/newsletter/unsubscribe", {
+      const response = await fetch("https://singhkarman.com/api/newsletter/unsubscribe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

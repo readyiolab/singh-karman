@@ -13,7 +13,7 @@ import ReactPaginate from "react-paginate";
 
 const fetchContacts = async () => {
   const token = localStorage.getItem("token");
-  const response = await fetch("http://localhost:3000/api/contact", {
+  const response = await fetch("https://singhkarman.com/api/contact", {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",

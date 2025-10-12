@@ -31,7 +31,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment-timezone";
 
-const API_URL = "http://localhost:3000/api";
+const API_URL = "https://singhkarman.com/api";
 
 const fetchCampaigns = async () => {
   const token = localStorage.getItem("token");

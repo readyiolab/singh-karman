@@ -14,7 +14,7 @@ import ReactPaginate from "react-paginate";
 
 const fetchApplications = async () => {
   const token = localStorage.getItem("token");
-  const response = await fetch("http://localhost:3000/api/applications", {
+  const response = await fetch("https://singhkarman.com/api/applications", {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",

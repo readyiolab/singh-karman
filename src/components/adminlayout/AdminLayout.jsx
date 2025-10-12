@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 // Fetch total applications
 const fetchApplications = async () => {
   const token = localStorage.getItem("token");
-  const response = await fetch("http://localhost:3000/api/applications", {
+  const response = await fetch("https://singhkarman.com/api/applications", {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -24,7 +24,7 @@ const fetchApplications = async () => {
 // Fetch total contacts
 const fetchContacts = async () => {
   const token = localStorage.getItem("token");
-  const response = await fetch("http://localhost:3000/api/contact", {
+  const response = await fetch("https://singhkarman.com/api/contact", {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const fetchContacts = async () => {
 // Fetch total newsletter subscriptions
 const fetchSubscriptions = async () => {
   const token = localStorage.getItem("token");
-  const response = await fetch("http://localhost:3000/api/newsletter", {
+  const response = await fetch("https://singhkarman.com/api/newsletter", {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
