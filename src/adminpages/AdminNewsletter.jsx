@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const fetchSubscriptions = async () => {
   const token = localStorage.getItem("token");
-  const response = await fetch("http://localhost:3000/api/newsletter", {
+  const response = await fetch("https://singhkarman.com/api/newsletter", {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
