@@ -11,6 +11,7 @@
     />
     <meta name="author" content="Karman Singh - Empower Life" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,18 +28,19 @@
       property="og:description"
       content="Purpose-driven financial strategies designed to empower you and your family. Build generational wealth with clarity, control, and confidence."
     />
+
+    <!-- ✅ Google tag (gtag.js) must be in the <head> -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1V2E7PEJM4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1V2E7PEJM4', { send_page_view: false });
+    </script>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1V2E7PEJM4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1V2E7PEJM4', { send_page_view: false });
-</script>
   </body>
 </html>
