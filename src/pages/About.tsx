@@ -61,18 +61,7 @@ const teamMembers = [
     image: '/brianna-cruise.webp',
     quote: 'Family is why I do this, and family is why I’ll always give my best.'
   },
-  {
-    name: 'Bianca Brunetti',
-    role: 'Wealth Strategist',
-    bio: [
-      'Discovered the power of life insurance and has made it her mission to educate others.',
-      'From the moment she realized how these tools could transform a family’s future, she made it her mission to share that knowledge with everyone she meets. For Bianca, life insurance isn’t just a product — it’s a pathway to security, stability, and lasting generational wealth.',
-      'She practices what she teaches, implementing multiple policies for herself and her family. That personal commitment gives her a unique perspective and authenticity that clients immediately recognize.',
-      'What sets Bianca apart is her unwavering dedication. She doesn’t just aim to meet expectations; she goes above and beyond to deliver on every promise.'
-    ],
-    image: '/bianca-brunetti.webp',
-    quote: 'The greatest gift we can give our families is a future built on security and love.'
-  },
+  
   {
     name: 'Matt Barnes',
     role: 'Legacy Advisor',
@@ -114,7 +103,7 @@ const teamMembers = [
       'When Raman discovered the wealth strategies that had long been reserved for the few, she was ecstatic to finally bring these tools to her community. She has a gift for helping people see a light they may have never noticed before, guiding them toward the path they were always meant to walk.',
       'Her daily practices of meditation, prayer, and unwavering faith in a higher power keep her centered and strong. For Raman, true wealth is more than money — it’s a life filled with love, abundance, and service.'
     ],
-    image: '/raman-kaur.webp',
+    image: '/raman.webp',
     quote: 'True wealth is love in action — and I live it every day.'
   },
   {
