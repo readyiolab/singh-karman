@@ -114,7 +114,7 @@ const teamMembers = [
       'From a young age, Eknoor achieved great feats that placed him at the forefront of his industry. Even with his early success, he has never stopped striving forward — not just for his own growth, but to lift others up to new levels.',
       'What sets Eknoor apart is the way he operates with loyalty, integrity, and confidence in every relationship and endeavor. For Eknoor, success is not just about reaching the top — it’s about bringing others with him.'
     ],
-    image: '/eknoor.webp',
+    image: '/Eknoor.webp',
     quote: 'True leadership isn’t about titles — it’s about building people.'
   }
 ];
