@@ -85,7 +85,7 @@ const teamMembers = [
     quote: 'Barriers exist only until someone breaks them — and I live to break them.'
   },
   {
-    name: 'EK',
+    name: 'Eaklavya Kakkar ',
     role: 'Financial Strategist',
     bio: [
       'I joined this industry because I saw how money is at the center of almost everything in people’s lives. If it’s handled right, it makes life easier. If it’s not, it causes stress, arguments, and limits people from living the way they want.',

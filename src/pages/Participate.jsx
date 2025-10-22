@@ -338,24 +338,21 @@ const [isOpen, setIsOpen] = useState(false);
                   "“Joining this team gave me the freedom to work on my terms and the tools to succeed beyond my expectations.”",
                 author: "Sarah M.",
                 role: "Student",
-                avatar:
-                  "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80", // real student photo
+               
               },
               {
                 quote:
                   "“The mentorship and community here are unmatched. I went from zero experience to earning a full-time income.”",
                 author: "James T.",
                 role: "Team Leader",
-                avatar:
-                  "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=800&q=80", // confident leader
+               
               },
               {
                 quote:
                   "“This opportunity changed my life. I now have the confidence and skills to build a career I love.”",
                 author: "Emily R.",
                 role: "Marketing Specialist",
-                avatar:
-                  "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=800&q=80", // marketing pro vibe
+                
               },
             ].map((testimonial, index) => (
               <motion.div
@@ -364,11 +361,7 @@ const [isOpen, setIsOpen] = useState(false);
                 className="group relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 border border-gray-200/50 hover:-translate-y-2"
               >
                 <div className="flex items-center mb-6">
-                  <img
-                    src={testimonial.avatar}
-                    alt={`${testimonial.author}'s avatar`}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-lime-500 mr-4"
-                  />
+                  
                   <div>
                     <p className="text-lg font-semibold text-gray-900">
                       {testimonial.author}
