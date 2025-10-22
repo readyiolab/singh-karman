@@ -27,7 +27,7 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Instagram, href: "https://instagram.com/singhkarman", label: "Instagram" },
+    { icon: Instagram, href: "https://instagram.com/Mrkarmansingh", label: "Instagram" },
     { icon: Linkedin, href: "https://linkedin.com/in/karmansinghceo", label: "LinkedIn" }
   ];
 

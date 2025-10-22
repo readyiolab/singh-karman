@@ -15,18 +15,7 @@ const teamMembers = [
     image: '/brianna-cruise.webp',
     quote: 'Family is why I do this, and family is why I’ll always give my best.'
   },
-  {
-    name: 'Bianca Brunetti',
-    role: 'Wealth Strategist',
-    bio: [
-      'Discovered the power of life insurance and has made it her mission to educate others.',
-      'From the moment she realized how these tools could transform a family’s future, she made it her mission to share that knowledge with everyone she meets. For Bianca, life insurance isn’t just a product — it’s a pathway to security, stability, and lasting generational wealth.',
-      'She practices what she teaches, implementing multiple policies for herself and her family. That personal commitment gives her a unique perspective and authenticity that clients immediately recognize.',
-      'What sets Bianca apart is her unwavering dedication. She doesn’t just aim to meet expectations; she goes above and beyond to deliver on every promise.'
-    ],
-    image: '/bianca-brunetti.webp',
-    quote: 'The greatest gift we can give our families is a future built on security and love.'
-  },
+  
   {
     name: 'Matt Barnes',
     role: 'Legacy Advisor',
@@ -50,7 +39,7 @@ const teamMembers = [
     quote: 'Barriers exist only until someone breaks them — and I live to break them.'
   },
   {
-    name: 'EK',
+    name: 'Eaklavya Kakkar ',
     role: 'Financial Strategist',
     bio: [
       'I joined this industry because I saw how money is at the center of almost everything in people’s lives. If it’s handled right, it makes life easier. If it’s not, it causes stress, arguments, and limits people from living the way they want.',
@@ -68,11 +57,11 @@ const teamMembers = [
       'When Raman discovered the wealth strategies that had long been reserved for the few, she was ecstatic to finally bring these tools to her community. She has a gift for helping people see a light they may have never noticed before, guiding them toward the path they were always meant to walk.',
       'Her daily practices of meditation, prayer, and unwavering faith in a higher power keep her centered and strong. For Raman, true wealth is more than money — it’s a life filled with love, abundance, and service.'
     ],
-    image: '/raman-kaur.webp',
+    image: '/raman.webp',
     quote: 'True wealth is love in action — and I live it every day.'
   },
   {
-    name: 'Eknoor',
+    name: 'Eknoor Bains',
     role: 'Community Wealth Educator',
     bio: [
       'Eknoor has a unique talent for bringing people together and helping them see a bigger vision for themselves. With the ability to paint a clear picture of what’s possible, he inspires others to believe in their own potential.',

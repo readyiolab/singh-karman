@@ -123,9 +123,9 @@ const HeroSection = () => {
             {/* Stats row */}
             <div className="flex justify-center lg:justify-start space-x-6 md:space-x-8 mt-10 md:mt-12">
               {[
-                { label: "Clients Served", value: "10K+" },
-                { label: "Assets Protected", value: "$500M+" },
-                { label: "Success Rate", value: "98%" },
+                { label: "Clients Served", value: "521+" },
+                { label: "Assets Protected", value: "28M+" },
+                { label: "Success Rate", value: "97%" },
               ].map((stat, index) => (
                 <div
                   key={stat.label}
